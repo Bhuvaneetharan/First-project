@@ -1,0 +1,120 @@
+<!-- <mat-toolbar>Upgrade Plan</mat-toolbar> -->
+<div class="container r-top">
+  <div class="title_wrapper">
+    <h4 class="page_title">Pricing</h4>
+    <div class="flex_between">
+      <label>Choose Your Plans
+
+        <mat-radio-group aria-label="Select an option" (change)="plansmethod($event?.value)">
+          <mat-radio-button color="primary" value="Monthly Plan" checked>Monthly Plan</mat-radio-button>
+          <mat-radio-button color="primary" value="3-months">3 month Plan</mat-radio-button>
+          <mat-radio-button color="primary" value="Bi-Annual">Bi-Annual Plan</mat-radio-button>
+          <mat-radio-button color="primary" value="Annual Plan">Annual Plan</mat-radio-button>
+        </mat-radio-group>
+
+
+      </label>
+      <div class="header_wrapper">
+        <!-- <h2 class="main-head">{{'Choose Your Payment' | translate}}</h2> -->
+        <p>{{'Current plan expires on' | translate}} on: <span class="date">{{expiryDate}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="flex_Center">
+
+    <!-- Purple Table -->
+    <div class="card headings">
+      <div class="pricing-table">
+        <div class="height">
+          <h4>
+            <!-- {{'Choose your payment' | translate}} -->
+            Features
+            <span class="plandays">{{'Monthly Plan' | translate}}</span>
+          </h4>
+        </div>
+        <ul class="pricing-features">
+          <li class="feature">
+            {{'Order Size' | translate}} </li>
+          <li class="feature">
+            {{'Unlimited ASIN' | translate}} </li>
+          <li class="feature">
+            {{'Unlimited Campaings' | translate}} </li>
+          <li class="feature">
+            {{'Custom Template' | translate}} </li>
+          <li class="feature">
+            {{'Product Review Monitering' | translate}} </li>
+          <li class="feature">
+            {{'Negative Feedback Review' | translate}} </li>
+          <li class="feature">
+            {{'Communication Analystics' | translate}} </li>
+          <li class="feature">
+            {{'Top Selling Product' | translate}} </li>
+          <li class="feature">
+            {{'Repeated Buyers' | translate}} </li>
+          <li class="feature">
+            {{'Inventory Analystics' | translate}} </li>
+          <li class="feature">
+            {{'Geo Analysis' | translate}} </li>
+          <li class="feature">
+            {{'Product Promotion' | translate}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" *ngFor="let plan of monthly">
+
+      <div class="pricing-table" [ngClass]="{
+         'purple':plan?.plan_desc == 'Small Business',
+         'turquoise':plan?.plan_desc == 'Medium Business',
+         'red':plan?.plan_desc == 'Large Business' }">
+        <span
+          class="cur_plan">{{userInfo?.plan_details?.plan_price == plan?.plan_price && userInfo?.plan_details?.plan_name == plan?.plan_name ? 'Current Plan' : ''}}</span>
+        <!-- Table Head -->
+        <div class="height">
+          <div class="pricing-label">Fixed Price</div>
+          <h2>{{plan?.plan_desc}}</h2>
+          <h5>Made for starters</h5>
+
+          <!-- Features -->
+          <!-- Price -->
+          <div class="price-tag">
+            <span class="symbol">₹</span>
+            <span class="amount">{{plan?.plan_price}}</span>
+            <!-- <span class="after">/{{plan?.plan_period}} Days</span> -->
+          </div>
+        </div>
+        <ul class="pricing-features">
+          <li class="feature">
+            <span>{{plan?.order_limit}}</span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+          <li class="feature">
+            <span><i class="fa fa-check" aria-hidden="true"></i></span></li>
+        </ul>
+
+        <!-- Button -->
+        <a mat-raised-button color="primary" class="price-button"
+          (click)="upgradePlan(plan)">{{userInfo?.plan_details?.plan_price == plan?.plan_price && userInfo?.plan_details?.plan_name == plan?.plan_name ? 'Upgrade' : 'Get Started'}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<notifier-container></notifier-container>

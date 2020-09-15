@@ -1,0 +1,519 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import "~angular-notifier/styles";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+@import '~@angular/material/theming'; 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+body{
+  margin: 0;
+  padding: 0;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+  height: auto!important;
+}
+@import "../src/mixins.scss";
+
+$primary-im: (
+
+    50 :  #e0eaff,
+    100 : #b3ccfe,
+    200 : #80aafe,
+    300 : #4d87fd,
+    400 : #266efc,
+    500 : #0054fc,
+    600 : #004dfc,
+    700 : #0043fb,
+    800 : #003afb,
+    900 : #0029fa,
+    A100 : #ffffff,
+    A200 : #edefff,
+    A400 : #bac2ff,
+    A700 : #a1abff,
+
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+
+);
+
+$accent-im: (
+    50 : #fff7e8,
+    100 : #feecc5,
+    200 : #fddf9e,
+    300 : #fcd277,
+    400 : #fcc859,
+    500 : #fbbe3c,
+    600 : #fab836,
+    700 : #faaf2e,
+    800 : #f9a727,
+    900 : #f8991a,
+    A100 : #ffffff,
+    A200 : #fffbf7,
+    A400 : #ffe4c4,
+    A700 : #ffd9ab,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$warn-im: (
+    50 : #ffece7,
+    100 : #ffcec3,
+    200 : #ffae9b,
+    300 : #ff8e73,
+    400 : #ff7555,
+    500 : #ff5d37,
+    600 : #ff5531,
+    700 : #ff4b2a,
+    800 : #ff4123,
+    900 : #ff3016,
+    A100 : #ffffff,
+    A200 : #fffcfc,
+    A400 : #ffcdc9,
+    A700 : #ffb6af,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$pre-primary-im: mat-palette($primary-im);
+$pre-accent-im:  mat-palette($accent-im);
+$pre-warn-im:    mat-palette($warn-im);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$im-app-theme: mat-light-theme($pre-primary-im, $pre-accent-im, $pre-warn-im);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+@include angular-material-theme($im-app-theme);
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background: #f2f8ff;
+}
+label,h1,h2,h3,h4,h5,h6,ul,p{
+  margin: 0;
+  padding: 0;
+}
+.total_prod > *{
+  font-size: 14px;
+  font-weight: 400;
+}
+.container {
+  max-width: 1600px;
+  width: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.title_wrapper{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.page_title {
+  font-size: 26px;
+  // text-transform: capitalize;
+  font-weight: 500;
+  color: #182936;
+}
+.note_sub {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #4a4a4a;
+}
+.success{
+  text-align: center;
+  img{
+    width: 100px;
+  }
+  h3 {
+    color: #3bb54a;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  p{
+    color: #8896a7;
+    span.link{
+
+      cursor: pointer;
+    min-width: 0;
+    height: 0;
+    color: #0054fc;
+    font-weight: 500;
+    }
+  }
+ 
+}
+table{
+  width: 100%;
+  tr:nth-child(odd){
+    td {
+      background: #f8fbff;
+    }
+  } 
+  tr:nth-child(even) {
+    td {
+      background: #fff;
+    }
+  }
+  tr:hover{
+    td{
+      background: #f3f3f3;
+    }
+  }
+}
+.image {
+  height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+}
+.table-scroll {
+  height: calc(100vh - 240px);
+  min-height: 1px;
+  // height: 100%;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  overflow: auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.08);
+
+}
+.dialog_sub_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 14px 0;
+  mat-form-field{
+    margin-right: 10px;
+  }
+}
+.table-scroll::-webkit-scrollbar {
+  width: 20px;
+  height: 10px;
+}
+.table-scroll::-webkit-scrollbar-track {
+  // box-shadow: inset 0 0 5px grey; 
+  background-color: #eee;
+  border-radius: 10px;
+  height: 5px;
+}
+.table-scroll::-webkit-scrollbar-thumb {
+  background: #0054fc; 
+  border-radius: 10px;
+}
+.table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #0054fc; 
+}
+mat-row, mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  border-bottom-color: #eee;
+}
+.flex_between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ ejs-daterangepicker input {
+  padding: 7px 15px!important;
+}
+ ejs-daterangepicker span.e-input-group.e-control-wrapper.e-date-range-wrapper {
+  margin-bottom: 0!important;
+  border-bottom: 0;
+}
+.e-input-group:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left), .e-input-group.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap, .e-float-input.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error) .e-input-in-wrap{
+  border: 0!important;
+}
+ejs-daterangepicker span.e-input-group.e-control-wrapper.e-date-range-wrapper::after,
+ejs-daterangepicker span.e-input-group.e-control-wrapper.e-date-range-wrapper::before{
+  content: unset!important;
+}
+.total_prod{
+  margin-bottom: 20px;
+}
+.note {
+  font-size: 12px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #eee;
+  ul {
+    padding-left: 16px;
+} 
+}
+.no_image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+  text-align: center;
+  // padding: 5% 0;
+  img{
+    max-width: 200px;
+    min-width: 100px;
+    width: 100%;
+  }
+  p{
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 6px;
+  }
+  h5{
+    color: #000017;
+    font-weight: 300;
+    font-size: 22px;
+    margin-top: 15px;
+  }
+}
+.file_path{
+  border-left: 1px solid #00000047;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 11px;
+    font-weight: 200;
+}
+span.file_path:empty {
+  display: none;
+}
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  .header_info {
+    display: flex;
+    align-items: center;
+    img{
+      width: 27px;
+      margin-right: 12px;
+      &:last-child {
+        width: 20px;
+        margin-left: 10px;
+      }
+    }
+    h1{
+      font-size:18px;
+      font-weight: 500;
+    } 
+}
+.additional_actions{
+  display: flex;
+  align-items: center;
+  .field {
+    display: flex;
+    align-items: center;
+    label{
+      font-size: 16px;
+      margin-right: 20px;
+      margin-left: 30px;
+    }
+}
+}
+}
+.flex-center{
+  display: flex;
+  justify-content: center;
+}
+.date_search {
+  display: flex;
+  button{
+    margin-left: 20px;
+  }
+  .searchbox{
+    margin-left: 20px;
+  }
+  ejs-daterangepicker {
+    background: #fff;
+    padding-right:10px;
+    width: 280px;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+  }
+
+  input[type=text] {
+    width: 230px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 95%;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    padding: 9px 35px 9px 15px;
+    transition: width 0.4s ease-in-out;
+  }
+}
+// .mat-form-field-wrapper {
+//   padding-bottom: 0;
+// }
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+//-moz- (Firefox)
+::-webkit-scrollbar {
+  overflow: -moz-scrollbars-none;
+}
+.notifier__notification--info {
+  background-color: #101c25;
+  color: #FFF;
+}
+//-ms- (Internet Explorer +10)
+::-webkit-scrollbar {
+  -ms-overflow-style: none;
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .date_search{
+      width: 100%;
+    .searchbox,ejs-daterangepicker{
+      margin-right: 0!important;
+      width: 100%;
+      input{
+        width: 100%;
+      }
+    }
+  }
+  .flex_between{
+    flex-direction: column;
+    align-items: flex-start;
+    > *{
+      margin-bottom: 10px;
+      &:last-child{
+        margin-bottom: 0!important;
+      }
+    }
+  }
+  .mat-button-toggle-group, .mat-button-toggle-standalone {
+    flex-direction: column!important;
+    width: 100%;
+  }
+  .Radio mat-radio-group{
+    flex-direction: column;
+  }
+  .Template-creation .Template {
+    flex-direction: column;
+    align-items: baseline!important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .title_wrapper {
+    flex-direction: column;
+    align-items: baseline;
+    h4{
+      margin-bottom: 20px;
+    }
+  }
+  .dialog_sub_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 14px 0;
+    .date_search{
+      width: 100%;
+    }
+    .searchbox{
+      width: 100%;
+      margin-right: 0;
+      input{
+        width: 100%;
+      }
+    }
+  }
+  .date_search{
+    flex-wrap: wrap;
+    .searchbox,ejs-daterangepicker{
+      margin-left: 0;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button{
+      margin-bottom: 10px;
+      margin-right: 10px;
+      margin-left: 0;
+    }
+  } 
+ 
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1024px) {
+  .table-scroll table{
+    width: 1366px!important;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  .r-top {
+    margin-top: 90px;
+  }
+  .table-scroll{
+    height: calc(100vh - 370px)!important;
+  }
+}

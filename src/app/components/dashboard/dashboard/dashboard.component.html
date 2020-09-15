@@ -1,0 +1,498 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" [mode]="screenWidth > 1366 ? 'side' : 'over'">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel class="mat-elevation-z0" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'chart widgets'|translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.order_stats"
+              (change)="enableChart($event, 'order_stats')">{{'order statistics'| translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/top-png.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.top_product"
+              (change)="enableChart($event, 'top_product')">{{'selling products' | translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/review-w.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.product_review"
+              (change)="enableChart($event, 'product_review')">{{'products reviews' | translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/product (2)-w.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.undefined"
+              (change)="enableChart($event, 'undefined')">{{'order status' | translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/report=w.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.sales_profit"
+              (change)="enableChart($event, 'sales_profit')">{{'profits & sales' | translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/top-png.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.top_customer"
+              (change)="enableChart($event, 'top_customer')">{{'repeated customer' | translate}}</mat-checkbox>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/location.png">
+            <mat-checkbox color="primary" [checked]="graphDynamic?.geo" (change)="enableChart($event, 'geo')">
+              {{'geo location' | translate}}</mat-checkbox>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+
+      <!-- <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Multilingual
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-radio-button color="primary" class="lang" #langSelect [checked]="lang == 'en' || lang == null"
+              (change)="translateLang($event)" value="en">English</mat-radio-button>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-radio-button color="primary" class="lang" #langSelect [checked]="lang == 'hi'"
+              (change)="translateLang($event)" value="hi">Hindi</mat-radio-button>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-radio-button color="primary" lass="lang" #langSelect [checked]="lang == 'ta'"
+              (change)="translateLang($event)" value="ta">Tamil</mat-radio-button>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel> -->
+
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Multi Channel
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-radio-button color="primary" class="lang" #langSelect [checked]="salesChannel == 'Amazon'"
+            (change)="changeChannel($event)" value="Amazon">Amazon</mat-radio-button>
+          </div>
+          <div class="matcheck-warpper">
+            <img src="../../../../assets/images/order-png.png">
+            <mat-radio-button color="primary" class="lang" #langSelect [checked]="salesChannel == 'Flipkart'"
+            (change)="changeChannel($event)" value="Flipkart">Flipkart</mat-radio-button>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+
+      <!-- <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'trip' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          {{'Inform the date you wish to travel' | translate}}
+        </mat-panel-description>
+      </mat-expansion-panel> -->
+
+    </mat-accordion>
+    
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="container r-top">
+      <button class="arrow_button" (click)="drawer.toggle()" aria-label="Example icon button with a vertical three dot icon"
+          mat-raised-button color="primary"><span class="material-icons">arrow_right</span></button>
+      <div class="Expiration_date">
+          <time datetime="2014-09-20" class="icon">
+            <span class="material-icons">update</span>
+            <h5><span>3</span>Days to Renew</h5>
+          </time>
+          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <span class="material-icons">close</span>
+          </button>
+      </div>
+      <div class="title_wrapper">
+        <h4 class="page_title">{{ 'dashboard' | translate }}</h4>
+          <!-- {{'Integration' | translate}} -->
+          <button (click)="drawer.toggle()" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <mat-icon><span class="material-icons">
+              widgets
+              </span></mat-icon>
+          </button>  
+        <mat-chip-list>
+          <mat-chip *ngIf="graphDynamic?.order_stats == true">{{'order statistics'| translate}}
+            <mat-icon matChipRemove (click)="colseChart('order_stats')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.top_product">{{'selling products' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('top_product')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.product_review">{{'products reviews' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('product_review')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.undefined">{{'order status' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('undefined')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.sales_profit">{{'profits & sales' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('sales_profit')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.top_customer">{{'repeated customer' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('top_customer')">cancel</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="graphDynamic?.geo == true">{{'geo location' | translate}}
+            <mat-icon matChipRemove (click)="colseChart('geo')">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+        <!-- <span>Amazon<mat-slide-toggle (change)="changeChannel($event.checked)">Flipkart</mat-slide-toggle></span> -->
+      </div>
+      <notifier-container></notifier-container>
+      <div class="dashboard_card_wrapper">
+        <div class="card">
+          <div class="padding">
+            <h4>{{'orders received' | translate}}</h4>
+            <h5>{{card_data?.orders}}</h5>
+            <h6>{{'total orders'|translate}}: {{card_data?.total_orders}}</h6>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="padding">
+            <h4>{{'new customers'|translate}}</h4>
+            <h5>{{card_data?.new_users}}</h5>
+            <h6>{{'total customers' |translate}}: {{card_data?.all_buyers}}</h6>
+            <!-- <img class="shape" src="assets/images/shape.png"> -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="padding">
+            <h4>{{'sales and profit'| translate}}</h4>
+            <h5>&#8377; {{card_data?.profit}}</h5>
+            <h6>{{'total revenue'|translate}}: &#8377; {{card_data?.tot_sales}}</h6>
+            <!-- <img class="shape" src="assets/images/shape.png"> -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="padding">
+            <h4>{{'reviews seeking attention' | translate}}</h4>
+            <h5>{{card_data?.feedback}}</h5>
+            <h6>{{'total reviews' | translate}}: {{card_data?.all_feedback}}</h6>
+            <!-- <img class="shape" src="assets/images/shape.png">  -->
+          </div>
+        </div>
+      </div>
+      <div class="highcharts_filter">
+        <label>{{'overview' | translate}}</label>
+        <div class="date_search">
+          <ejs-daterangepicker [allowEdit]='false' class="orders" format='dd-MMM-yyyy' id='daterangepicker'
+        [startDate]='startDate' [endDate]='endDate' (change)="dateRange($event)"></ejs-daterangepicker>
+          <mat-form-field class="range-select" appearance="outline">
+            <mat-label>Days Range</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option class="options" (click)="chartChange('1')" value="1">1 Day</mat-option>
+              <mat-option class="options" *ngFor="let day of chooseDays" (click)="chartChange(day)" value="{{day}}">
+                {{day}} Days</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- HIGHCHARTS -->
+      <div class="chart_wrapper">
+
+        <div class="chart" *ngIf="graphDynamic?.order_stats == true">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24.089" height="24.089" viewBox="0 0 24.089 24.089">
+                <g transform="translate(0 9.464)">
+                  <path
+                    d="M6.022,187.733H.86a.86.86,0,0,0-.86.86V201.5a.86.86,0,0,0,.86.86H6.022a.86.86,0,0,0,.86-.86V188.593A.86.86,0,0,0,6.022,187.733Zm-.86,12.905H1.721V189.454H5.162Z"
+                    transform="translate(0 -187.733)" fill="#182936" />
+                </g>
+                <g transform="translate(8.603)">
+                  <path
+                    d="M176.688,0h-5.162a.86.86,0,0,0-.86.86V23.229a.86.86,0,0,0,.86.86h5.162a.86.86,0,0,0,.86-.86V.86A.86.86,0,0,0,176.688,0Zm-.86,22.369h-3.441V1.721h3.441Z"
+                    transform="translate(-170.666)" fill="#182936" />
+                </g>
+                <g transform="translate(17.207 6.883)">
+                  <path
+                    d="M347.355,136.533h-5.162a.86.86,0,0,0-.86.86v15.486a.86.86,0,0,0,.86.86h5.162a.86.86,0,0,0,.86-.86V137.393A.86.86,0,0,0,347.355,136.533Zm-.86,15.486h-3.441V138.254H346.5Z"
+                    transform="translate(-341.333 -136.533)" fill="#182936" />
+                </g>
+              </svg>
+              <span>{{'order statistics'| translate}}</span>
+              <svg matTooltip="Displays the total orders placed for the selected days range" matTooltipPosition="right" xmlns="http://www.w3.org/2000/svg"
+                width="18.236" height="18.236" viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content" *ngIf="linechart?.length != 0">
+              <div class="charts" [chart]="chart"></div>
+            </div>
+            <div class="chart_content no_data" *ngIf="linechart?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div>
+          </div>
+        </div>
+
+        <div class="chart" *ngIf="graphDynamic?.top_product">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="23.87" height="26.338" viewBox="0 0 23.87 26.338">
+                <path
+                  d="M179.9,208.461H177.84a1.854,1.854,0,0,1-1.852-1.852V193.852A1.854,1.854,0,0,1,177.84,192H179.9a1.854,1.854,0,0,1,1.852,1.852v12.758A1.854,1.854,0,0,1,179.9,208.461Zm-2.058-14.815a.206.206,0,0,0-.206.206v12.758a.206.206,0,0,0,.206.206H179.9a.206.206,0,0,0,.206-.206V193.852a.206.206,0,0,0-.206-.206Z"
+                  transform="translate(-168.169 -182.123)" fill="#182936" />
+                <path
+                  d="M27.9,284.346H25.84a1.854,1.854,0,0,1-1.852-1.852v-8.642A1.854,1.854,0,0,1,25.84,272H27.9a1.854,1.854,0,0,1,1.852,1.852v8.642A1.854,1.854,0,0,1,27.9,284.346Zm-2.058-10.7a.206.206,0,0,0-.206.206v8.642a.206.206,0,0,0,.206.206H27.9a.206.206,0,0,0,.206-.206v-8.642a.206.206,0,0,0-.206-.206Z"
+                  transform="translate(-23.988 -258.008)" fill="#182936" />
+                <path
+                  d="M286.343,26.338h-2.058a1.854,1.854,0,0,1-1.852-1.852V7.408H281.3A1.337,1.337,0,0,1,280.288,5.2l.012-.014L284.7.274a.823.823,0,0,1,1.226,0l4.4,4.912.012.014a1.337,1.337,0,0,1-1.016,2.208H288.2V24.486A1.854,1.854,0,0,1,286.343,26.338ZM281.994,5.761h1.263a.823.823,0,0,1,.823.823v17.9a.206.206,0,0,0,.206.206h2.058a.206.206,0,0,0,.206-.206V6.585a.823.823,0,0,1,.823-.823h1.263l-3.32-3.705Z"
+                  transform="translate(-266.795 0)" fill="#182936" /></svg>
+              <span>{{'selling products' | translate}}</span>
+              <svg matTooltip="Displays Maximum sold top 5 products of the selected days range."
+                matTooltipPosition="right" xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236"
+                viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content" *ngIf="dataSource1?.filteredData?.length!=0">
+              <table mat-table [dataSource]="dataSource1" class="topfive mat-elevation-z0">
+                <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+                  <td mat-cell *matCellDef="let element">{{element?.total }} </td>
+                </ng-container>
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                  <td mat-cell *matCellDef="let element" matTooltip="{{element?.title[0]}}">
+                    {{element?.title[0] | slice:0:40}}</td>
+                </ng-container>
+                <ng-container matColumnDef="quantity">
+                  <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                  <td mat-cell *matCellDef="let element"> {{element?.order_quantity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="count">
+                  <th mat-header-cell *matHeaderCellDef> Customer Count </th>
+                  <td mat-cell *matCellDef="let element">{{element?.asin}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns1;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns1;" (click)="getRecord(row?.title[1])"></tr>
+              </table>
+            </div>
+            <div class="chart_content no_data" *ngIf="dataSource1?.filteredData?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div>
+          </div>
+        </div>
+        <div class="chart" *ngIf="graphDynamic?.product_review">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26.338" height="26.338" viewBox="0 0 26.338 26.338">
+                <path
+                  d="M12.86,77.43a6.43,6.43,0,1,0-6.43,6.43A6.438,6.438,0,0,0,12.86,77.43ZM6.43,82.317a4.887,4.887,0,1,1,4.887-4.887A4.893,4.893,0,0,1,6.43,82.317Z"
+                  transform="translate(0 -67.348)" fill="#182936" />
+                <path
+                  d="M196.43,262a6.43,6.43,0,1,0,6.43,6.43A6.437,6.437,0,0,0,196.43,262Zm0,11.317a4.887,4.887,0,1,1,4.887-4.887A4.893,4.893,0,0,1,196.43,273.317Z"
+                  transform="translate(-180.226 -248.522)" fill="#182936" />
+                <ellipse cx="0.5" cy="1" rx="0.5" ry="1" transform="translate(16.578 17.991)" fill="#182936" />
+                <circle cx="1" cy="1" r="1" transform="translate(13.578 17.991)" fill="#182936" />
+                <path
+                  d="M264.342,405.644a2.141,2.141,0,0,1-3.024,0,.772.772,0,1,0-1.091,1.091,3.686,3.686,0,0,0,5.207,0,.772.772,0,0,0-1.091-1.091Z"
+                  transform="translate(-246.626 -384.562)" fill="#182936" />
+                <ellipse cx="1" cy="1.5" rx="1" ry="1.5" transform="translate(7.578 6.991)" fill="#182936" />
+                <ellipse cx="0.5" cy="1.5" rx="0.5" ry="1.5" transform="translate(4.578 6.991)" fill="#182936" />
+                <path d="M74.887,221H70.772a.772.772,0,0,0,0,1.543h4.115a.772.772,0,1,0,0-1.543Z"
+                  transform="translate(-66.399 -209.631)" fill="#182936" />
+                <path
+                  d="M268.43,0a6.43,6.43,0,1,0,6.43,6.43A6.437,6.437,0,0,0,268.43,0Zm0,11.317a4.887,4.887,0,1,1,4.887-4.887A4.893,4.893,0,0,1,268.43,11.317Z"
+                  transform="translate(-248.522)" fill="#182936" />
+                <ellipse cx="0.5" cy="1" rx="0.5" ry="1" transform="translate(20.578 3.991)" fill="#182936" />
+                <ellipse cx="0.5" cy="1" rx="0.5" ry="1" transform="translate(17.578 3.991)" fill="#182936" />
+                <path
+                  d="M332.227,141.123a.772.772,0,1,0,1.091,1.091,2.141,2.141,0,0,1,3.024,0,.772.772,0,0,0,1.091-1.091A3.686,3.686,0,0,0,332.227,141.123Z"
+                  transform="translate(-314.922 -132.842)" fill="#182936" /></svg>
+              <span>{{'products reviews' | translate}}</span>
+              <svg
+                matTooltip="By default Top 5 ASIN(s) product review rating will be displayed.Once ASIN(s) is selected in Product Review, the same will get reflected in this chart."
+                matTooltipPosition="right" xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236"
+                viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content" *ngIf="product_review?.length != 0">
+              <div class="charts" [chart]="chart1"></div>
+            </div>
+            <div class="chart_content no_data" *ngIf="product_review?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div>
+          </div>
+        </div>
+        <div class="chart order_status" *ngIf="graphDynamic?.undefined">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19.805" height="24.582" viewBox="0 0 19.805 24.582">
+                <path
+                  d="M50.965,32.063l-4.956-1.92a4.884,4.884,0,1,0-9.214,0l-4.956,1.92a.533.533,0,0,0-.339.5v11.5a.533.533,0,0,0,.34.5l9.369,3.632a.535.535,0,0,0,.193.036.528.528,0,0,0,.19-.04l0,0,9.37-3.632a.533.533,0,0,0,.339-.5V32.56a.533.533,0,0,0-.339-.5Zm-1.668.5-1.73.67-2.867-1.1a4.91,4.91,0,0,0,.845-1.021Zm-5.645.307,2.438.938-1.376.533-2.525-.986A4.851,4.851,0,0,0,43.652,32.866Zm1.659,2.382,1.791-.694v2.221l-.3-.2a.534.534,0,0,0-.679.081l-.812.862ZM41.4,24.718a3.818,3.818,0,1,1-3.818,3.818A3.818,3.818,0,0,1,41.4,24.718Zm-3.839,6.825-.714-.279.409-.158a4.893,4.893,0,0,0,.305.438Zm-2.184.291,7.862,3.073L41.4,35.62l-7.895-3.06ZM32.566,43.69V33.338l8.3,3.219V46.908Zm9.369,3.219V36.557l2.309-.9v3.206a.533.533,0,0,0,.337.5.527.527,0,0,0,.2.038.533.533,0,0,0,.388-.168l1.427-1.515.75.487a.533.533,0,0,0,.823-.447V34.141l2.072-.8V43.69Z"
+                  transform="translate(-31.5 -23.638)" fill="#182936" />
+                <path
+                  d="M57.314,37.386a.533.533,0,0,0,.7-.01L60.6,35.051a.533.533,0,1,0-.713-.792l-2.24,2.014-1.02-.862a.533.533,0,0,0-.689.814Z"
+                  transform="translate(-48.361 -30.919)" fill="#182936" /></svg>
+              <span>{{'order status' | translate}}</span>
+              <svg matTooltip="Status of the orders placed during the selected days range." matTooltipPosition="right"
+                xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236" viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content">
+              <div class="chart_contents">
+                <circle-progress [outerStrokeColor]="'#0054FC'" [innerStrokeColor]="'#F1F6FB'" [percent]="85"
+                  [animation]="true" [animationDuration]="300"></circle-progress>
+                <h3>Shipped</h3>
+                <label>Orders</label>
+                <h1>{{piechart?.shipped || 0}}</h1>
+              </div>
+              
+              <div class="chart_contents">
+                <circle-progress [outerStrokeColor]="'#FBBE3C'" [innerStrokeColor]="'#F1F6FB'" [percent]="85"
+                  [animation]="true" [animationDuration]="300"></circle-progress>
+                <h3>Pending</h3>
+                <label>Orders</label>
+                <h1>{{piechart?.pending || 0}}</h1>
+              </div>
+              <div class="chart_contents">
+                <circle-progress [outerStrokeColor]="'#FF5D37'" [innerStrokeColor]="'#F1F6FB'" [percent]="85"
+                  [animation]="true" [animationDuration]="300"></circle-progress>
+                <h3>Cancelled</h3>
+                <label>Orders</label>
+                <h1>{{piechart?.cancelled || 0}}</h1>
+              </div>
+            </div>
+
+            <!-- <div class="chart_content no_data" *ngIf="product_review?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div> -->
+          </div>
+        </div>
+
+        <div class="chart" *ngIf="graphDynamic?.sales_profit">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26.338" height="26.338" viewBox="0 0 26.338 26.338">
+                <path
+                  d="M33.315,12.346A2.306,2.306,0,0,0,34.92,11.7l2.271,1.136a2.315,2.315,0,1,0,4.385-.712l3.087-3.087A2.315,2.315,0,0,0,47.87,6.252l2.682-2.011a2.312,2.312,0,1,0-.927-1.234L46.943,5.018a2.314,2.314,0,0,0-3.371,2.924l-3.087,3.087a2.31,2.31,0,0,0-2.6.423l-2.271-1.136a2.315,2.315,0,1,0-2.3,2.029Zm18.519-10.8a.772.772,0,1,1-.772.772A.773.773,0,0,1,51.834,1.543Zm-6.173,4.63a.772.772,0,1,1-.772.772A.773.773,0,0,1,45.661,6.173Zm-6.173,6.173a.772.772,0,1,1-.772.772A.773.773,0,0,1,39.488,12.346ZM33.315,9.26a.772.772,0,1,1-.772.772A.773.773,0,0,1,33.315,9.26Zm0,0"
+                  transform="translate(-29.405 0)" fill="#182936" />
+                <path
+                  d="M25.567,167.079h-.823V150.772a.772.772,0,0,0-.772-.772H20.885a.772.772,0,0,0-.772.772v16.307H18.57V155.4a.772.772,0,0,0-.772-.772H14.712a.772.772,0,0,0-.772.772v11.677H12.4v-5.5a.772.772,0,0,0-.772-.772H8.539a.772.772,0,0,0-.772.772v5.5H6.224v-8.591a.772.772,0,0,0-.772-.772H2.366a.772.772,0,0,0-.772.772v8.591H.772a.772.772,0,0,0,0,1.543H25.567a.772.772,0,1,0,0-1.543Zm-3.91-15.535H23.2v15.535H21.657Zm-6.173,4.63h1.543v10.906H15.484Zm-6.173,6.173h1.543v4.733H9.311Zm-6.173-3.087H4.681v7.819H3.138Zm0,0"
+                  transform="translate(0 -142.284)" fill="#182936" /></svg>
+              <span>{{'profits & sales' | translate}}</span>
+              <svg matTooltip="Status of the orders placed during the selected days range." matTooltipPosition="right"
+                xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236" viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content">
+              <div class="charts" [chart]="salesProfit"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chart" *ngIf="graphDynamic?.top_customer">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="23.87" height="26.338" viewBox="0 0 23.87 26.338">
+                <path
+                  d="M179.9,208.461H177.84a1.854,1.854,0,0,1-1.852-1.852V193.852A1.854,1.854,0,0,1,177.84,192H179.9a1.854,1.854,0,0,1,1.852,1.852v12.758A1.854,1.854,0,0,1,179.9,208.461Zm-2.058-14.815a.206.206,0,0,0-.206.206v12.758a.206.206,0,0,0,.206.206H179.9a.206.206,0,0,0,.206-.206V193.852a.206.206,0,0,0-.206-.206Z"
+                  transform="translate(-168.169 -182.123)" fill="#182936" />
+                <path
+                  d="M27.9,284.346H25.84a1.854,1.854,0,0,1-1.852-1.852v-8.642A1.854,1.854,0,0,1,25.84,272H27.9a1.854,1.854,0,0,1,1.852,1.852v8.642A1.854,1.854,0,0,1,27.9,284.346Zm-2.058-10.7a.206.206,0,0,0-.206.206v8.642a.206.206,0,0,0,.206.206H27.9a.206.206,0,0,0,.206-.206v-8.642a.206.206,0,0,0-.206-.206Z"
+                  transform="translate(-23.988 -258.008)" fill="#182936" />
+                <path
+                  d="M286.343,26.338h-2.058a1.854,1.854,0,0,1-1.852-1.852V7.408H281.3A1.337,1.337,0,0,1,280.288,5.2l.012-.014L284.7.274a.823.823,0,0,1,1.226,0l4.4,4.912.012.014a1.337,1.337,0,0,1-1.016,2.208H288.2V24.486A1.854,1.854,0,0,1,286.343,26.338ZM281.994,5.761h1.263a.823.823,0,0,1,.823.823v17.9a.206.206,0,0,0,.206.206h2.058a.206.206,0,0,0,.206-.206V6.585a.823.823,0,0,1,.823-.823h1.263l-3.32-3.705Z"
+                  transform="translate(-266.795 0)" fill="#182936" /></svg>
+              <span>{{'repeated customer' | translate}}</span>
+              <svg matTooltip="Customers who repeatedly placed orders with the seller in the selected days range."
+                matTooltipPosition="right" xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236"
+                viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content" *ngIf="dataSource?.filteredData?.length != 0">
+              <table mat-table [dataSource]="dataSource" class="topfive mat-elevation-0">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> S.No </th>
+                  <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Buyer Email ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element[0][0]}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="count">
+                  <th mat-header-cell *matHeaderCellDef> No of Orders </th>
+                  <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="location">
+                  <th mat-header-cell *matHeaderCellDef> State </th>
+                  <td mat-cell *matCellDef="let element"> {{element[0][1]}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRepeated(row[0])"></tr>
+              </table>
+            </div>
+            <div class="chart_content no_data" *ngIf="dataSource?.filteredData?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div>
+          </div>
+        </div>
+        <div class="chart" *ngIf="graphDynamic?.geo == true">
+          <div class="padding">
+            <div class="header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18.111" height="26.338" viewBox="0 0 18.111 26.338">
+                <path
+                  d="M89.023,26.338a1.573,1.573,0,0,1-1.377-.8l-.009-.016L81.106,13.57a9.169,9.169,0,0,1,.12-9.06A8.938,8.938,0,0,1,88.82,0c.135,0,.27,0,.405,0A8.938,8.938,0,0,1,96.821,4.51a9.169,9.169,0,0,1,.12,9.06L90.409,25.524l-.009.016A1.573,1.573,0,0,1,89.023,26.338Zm0-24.692-.169,0a7.3,7.3,0,0,0-6.2,3.688,7.535,7.535,0,0,0-.1,7.445l6.473,11.847L95.5,12.781a7.535,7.535,0,0,0-.1-7.446,7.3,7.3,0,0,0-6.2-3.688l-.169,0Z"
+                  transform="translate(-79.968 0.001)" />
+                <path
+                  d="M187.7,95.408a3.7,3.7,0,1,1,3.7-3.7A3.708,3.708,0,0,1,187.7,95.408Zm0-5.761a2.058,2.058,0,1,0,2.058,2.058A2.06,2.06,0,0,0,187.7,89.646Z"
+                  transform="translate(-178.648 -83.473)" /></svg>
+              <span>{{'geo location' | translate}}</span>
+              <svg matTooltip="Displays location wise orders placed by the customers." matTooltipPosition="right"
+                xmlns="http://www.w3.org/2000/svg" width="18.236" height="18.236" viewBox="0 0 18.236 18.236">
+                <path
+                  d="M9.118,0a9.118,9.118,0,1,0,9.118,9.118A9.128,9.128,0,0,0,9.118,0Zm.593,14.528c-.433.072-1.3.253-1.733.289a1.067,1.067,0,0,1-.933-.486,1.139,1.139,0,0,1-.138-1.043L8.63,8.548H6.838A2.142,2.142,0,0,1,8.525,6.556a6.6,6.6,0,0,1,1.733-.287,1.374,1.374,0,0,1,.933.486A1.139,1.139,0,0,1,11.329,7.8L9.605,12.537H11.4a2.017,2.017,0,0,1-1.686,1.991ZM10.258,5.7a1.14,1.14,0,1,1,1.14-1.14,1.14,1.14,0,0,1-1.14,1.14Z"
+                  fill="#aaa" /></svg>
+            </div>
+            <div class="chart_content">
+              <div id="container"></div>
+            </div>
+            <!-- <div class="chart_content no_data" *ngIf="product_review?.length == 0">
+              <h5 class="charts">Data is not available for the selected Days</h5>
+              <img src="../../../../assets/images/loading.gif">
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,46 @@
+<style type="text/css">
+	.mat-button-toggle-checked{
+        color: #a84866;
+         border-bottom: 1px solid #a84866;
+    background-color: #fff;
+     }
+     .mat-button-toggle-group-appearance-standard, .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+     border: solid 0px rgba(0,0,0,.12); 
+     }
+     .btn-toggle{
+     	text-align: center;
+     	position: relative;
+     }
+     .btn-toggle ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+	    line-height: 28px;
+	    padding: 0 8px;
+	    margin:0px 5px;
+	    font-size: 13px;
+	}
+
+	i.material-icons.clear {
+    position: absolute;
+    right: -7px;
+    top: -17px;
+    color: #fff;
+    background: #0075bb;
+    border-radius: 50px;
+    padding: 2px;
+    font-size: 16px;
+}
+</style>
+<div class="container-fluid">
+	<div class="row d-flex align-items center mt-2 mb-3">
+		<div class="col-md-12  btn-toggle">
+		<mat-button-toggle-group class="" [(ngModel)]='selectedDaysRange'>
+    <mat-button-toggle value='15' (change)="daysChange('15')">15 D</mat-button-toggle>
+    <mat-button-toggle value='30' (change)="daysChange('30')">1 M</mat-button-toggle>
+    <mat-button-toggle value='60' (change)="daysChange('60')">2 M</mat-button-toggle>
+    <mat-button-toggle value='90' (change)="daysChange('90')">3 M</mat-button-toggle>
+
+  </mat-button-toggle-group>
+   <i class="material-icons clear" (click)="close()">clear</i>
+  </div>
+	</div>
+ </div> 
+<div class="charts" [chart]="chart"></div>

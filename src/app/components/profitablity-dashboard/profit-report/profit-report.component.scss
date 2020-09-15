@@ -1,0 +1,287 @@
+.page_title{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    color: rgb(255, 255, 255);
+    background: #0054fc;
+    border-radius: 8px;
+
+}
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+    font-size: 14px;
+    border: 0;
+    
+}
+.mat-button-toggle-group-appearance-standard, .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+    border: 0;
+    background-color: #fff;
+}
+progress, progress[role] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-size: auto;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .key_metrics{
+    margin-top: 30PX;
+    h3{
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    ul{
+      display: flex;
+      flex-wrap: wrap;
+      li{
+        margin-right: 30px;
+        display: flex;
+        align-items: flex-end;
+        img{
+          margin-right: 10px;
+        }
+        label{
+          font-size: 14px;
+          display: inline-block;
+          margin-bottom: 6px;
+        }
+        h2{
+          line-height: 18px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  // The unordered list
+  .skill-list {
+    list-style: none;
+    margin: 0;
+  }
+  
+  // The list item
+  .skill {
+    .progress_wrapper{
+      position: relative;
+    }
+    margin-bottom: 1em;
+    position: relative;
+    label{
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    > span{
+      font-size: 18px;
+      display: inline-block;
+      margin-top: 15px;
+    }
+    h3 {
+      color: #fff;
+      left: 1em;
+      line-height: 1;
+      position: absolute;
+      top: 1em;
+    }
+    ::-webkit-progress-value { 
+      -webkit-animation: bar-fill 2s;
+      width: 0px;
+    }
+  }
+  .profit_breakdown_wrapper {
+    background: #fff;
+    box-shadow: 0px 0px 16px 1px #0000000f;
+    border-radius: 10px;
+    display: flex;
+    .deck{
+      width: 27.5%;
+      &.total_sales{
+        border-right: 1px solid #ececec;
+        .skill,.profit_breakdown_header{
+          label,span{
+            color: #0054FC;
+          }
+        } 
+      }
+      &.total_cost{
+        border-right: 1px solid #ececec;
+        width: 45.5%;
+        .skill,.profit_breakdown_header{
+          label,span{
+            color: #FF5D37;
+          }
+        }
+        .skill-list{
+          > *{
+            transition: .2s ease-in-out;
+          }
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          > .skill{
+            width: calc(98%/2);
+            float: left;
+            &:last-child{
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      &.operating_profit{
+        .skill,.profit_breakdown_header{
+          label,span{
+            color: #4CD68C;
+          }
+        }
+      }
+      .profit_breakdown_header{
+        border-bottom: 1px solid #ececec;
+        span{
+          font-size: 14px;
+          display: block;
+        }
+        label{
+          font-size: 24px;
+          font-weight: 500;
+          display: inline-block;
+          margin-top: 6px;
+        }
+      }
+      .collasible_content{
+        margin-top: 10px;
+        position: absolute;
+        overflow: auto;
+        background: #fff;
+        top: 30px;
+        height: auto;
+        /* min-height: 100px; */
+        left: 0px;
+        right: 0;
+        /* bottom: 0; */
+        padding: 15px;
+        box-shadow: 0px 3px 11px 1px #0003;
+        z-index: 99;
+        border-radius: 6px;
+        width: auto;
+        transition: .2s ease-in-out;
+        // display: none;
+        
+        li{
+          label{
+            font-size: 14px;
+          }
+        }
+        &.collapse-in {
+          opacity:0;
+          z-index: -1;
+          // display: none;
+          overflow: auto;
+          transition: .2s ease-in-out;
+        }
+        &.collapse-out {
+          opacity:9;
+          display: block;
+          overflow: auto;
+          transition: .2s ease-in-out;
+        }
+      }
+      .profit_breakdown_content .padding.scroll {
+        height: calc(100vh - 440px);
+        overflow: auto;
+      }
+    }
+
+    .padding{
+        padding: 30px;
+    }
+}
+
+  .skill-1::-moz-progress-bar {
+    background: #E5EDFF;
+  }
+  .skill-1::-moz-progress-value {
+    background: #0054FC;
+  }
+  .skill-1::-webkit-progress-bar {
+    background: #E5EDFF;
+  }
+  .skill-1::-webkit-progress-value {
+    background: #0054FC;
+  }
+
+  .skill-2::-moz-progress-bar {
+    background: #FAE4E1;
+  }
+  .skill-2::-moz-progress-value {
+    background: #FF5D37;
+  }
+  .skill-2::-webkit-progress-bar {
+    background: #FAE4E1;
+  }
+  .skill-2::-webkit-progress-value {
+    background: #FF5D37;
+  }
+
+  .skill-3::-moz-progress-bar {
+    background: #E5EDFF;
+  }
+  .skill-3::-moz-progress-value {
+    background: #4CD68C;
+  }
+  .skill-3::-webkit-progress-bar {
+    background: #E5EDFF;
+  }
+  .skill-3::-webkit-progress-value {
+    background: #4CD68C;
+  }
+  
+
+  
+  // Animation Keyframes
+  @-webkit-keyframes bar-fill {
+    0% { width: 0; }
+  }
+  
+  @keyframes bar-fill {
+    0% { width: 0; }
+  }
+
+
+
+@media only screen and (max-width: 768px) {
+  .profit_breakdown_wrapper {
+    flex-wrap: wrap;
+    .deck{
+      width: 100%;
+      &.total_cost{
+        width: 100%;
+        .skill-list{
+          > .skill{
+            width: 100%;
+          }
+        } 
+      }
+      .profit_breakdown_content .padding.scroll {
+        height: 100%;
+        overflow: auto;
+      }
+
+    }
+  }  
+  .key_metrics{
+    ul{
+      li{
+        margin-bottom: 20px;
+      }
+    }  
+  }
+  .flex_between{
+    width: 100%;
+  }
+  
+}  

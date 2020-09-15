@@ -1,0 +1,44 @@
+<!-- <notifier-container></notifier-container> -->
+<h2 mat-dialog-title>Select Your ASIN</h2>
+
+<mat-dialog-content class="mat-typography">
+<div class="dialog_sub_header">
+    <mat-form-field appearance="outline">
+        <mat-label>Select from pre-designed templates</mat-label>
+        <mat-select [(ngModel)]="pretemplate" required>
+            <mat-option *ngIf="data?.tempType == 'Custom'" (click)="setTemplateType('new')" value="New Template">New
+                Template</mat-option>
+            <mat-option *ngFor="let list of templates" [value]="list?.template_subject" (click)="setTemplateType(list?.id)">
+                {{list?.template_subject}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Create New Template*</mat-label>
+        <input matInput placeholder="Enter the Template Name" [disabled]="id != 'new'" [(ngModel)]="templateName"
+            required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Subject</mat-label>
+        <input matInput placeholder="Enter the Subject" [disabled]="id != 'new'" [(ngModel)]='subjectName' required>
+    </mat-form-field>
+</div>
+<div class="dialog_content">
+    <div class="cdk_editor">
+        <label>Template Content</label>
+        <p class="note_sub"><strong>Note:</strong>Minimum 62 character</p>
+        <ckeditor [(ngModel)]="htmlContent" [config]="ckeConfig" [readonly]="id != 'new'" debounce="500">
+            <ckgroup [name]="'documenthandling'" [previous]="'1'">
+                <ckbutton [name]="'imageExplorer'" [command]="'insertcontent'"
+                    [icon]="'https://png.icons8.com/color/540/bow-tie-half-filled.png'" [label]="'Insert Content'">
+                </ckbutton>
+            </ckgroup>
+        </ckeditor>
+    </div>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" [disabled]="htmlContent.length < 62 || templateName.length == 0 || subjectName.length == 0" (click)="submit()">{{id == 'new' ? 'Save & Submit' : 'Submit'}}</button>
+  <!-- <button mat-raised-button color="primary" [disabled]="templateName.length == 0 && templateName.length == 0" (click)="submit()">{{id == 'new' ? 'Save & Submit' : 'Submit'}}</button> -->
+
+</mat-dialog-actions>

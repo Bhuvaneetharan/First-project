@@ -1,0 +1,38 @@
+.ck-edit-btn{
+	text-align:center;
+	padding:20px 0px 0px;
+}
+
+i.material-icons.clear {
+   position: absolute;
+    top: -16px;
+    right: -10px;
+    padding: 4px;
+    /*padding-bottom: 0px; */
+    font-size: 16px;
+    color: #fff;
+    background: #0075bb;
+    border-radius: 50px;
+}
+
+.dialogue{
+  position:relative;
+  padding: 20px;
+}
+
+.dialogue ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px;
+}
+
+.dialogue ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0px 0px;
+}
+
+.dialogue ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.dialogue .mat-form-field{
+	width: 100%;
+    padding: 0px 0px 10px;
+}

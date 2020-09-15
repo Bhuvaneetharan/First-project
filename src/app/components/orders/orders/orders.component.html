@@ -1,0 +1,187 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'order history' | translate}}</h4>
+    <div class="date_search">
+      <ejs-daterangepicker [allowEdit]='false' class="orders" format='dd-MMM-yyyy' id='daterangepicker'
+        [startDate]='startDate' [endDate]='endDate' (change)="dateRange($event)"></ejs-daterangepicker>
+      <div class="searchbox">
+        <input style="background-image: url('../../../../assets/images/search.svg');" [(ngModel)]="searchValue"
+          id="search" type="text" placeholder="Search" name="search" class="search" (input)="filter($event)">
+      </div>
+      <button mat-raised-button color="primary" class="submit"
+        *ngIf="dashboardDate || dashboardOrderStatus || dashboardGeoghap || dashboardDates || dashboardAsin || dashboardEmail || dashboardGeo || dashboardStart"
+        (click)="backToDashboard()">Back</button>
+      <button (click)="inventoryexport()" mat-raised-button color="primary">{{'Export' | translate}}</button>
+      <button (click)="orderSync()" mat-raised-button color="primary">{{'Sync' | translate}}</button>
+      <span>Amazon<mat-slide-toggle (change)="changeChannel($event.checked)">Flipkart</mat-slide-toggle></span>
+
+    </div>
+  </div>
+  <div class="flex_between total_prod">
+    <h5>
+      <span>{{'total orders' | translate}}: {{orderCounts?.order_count || 0}} | AFN: {{orderCounts?.split.AFN || 0}} | MFN:
+        {{orderCounts?.split.MFN || 0}}</span>
+    </h5>
+  </div>
+
+  <notifier-container></notifier-container>
+
+  <div class="table-scroll" (scroll)="onScroll($event)">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" multiTemplateDataRows
+      class="mat-elevation-z8">
+
+      <!-- Orderid Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+        <td mat-cell *matCellDef="let i = dataIndex">{{i+1}}</td>
+      </ng-container>
+
+      <!-- Orderid Column -->
+      <ng-container matColumnDef="amazon_order_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+        <td mat-cell *matCellDef="let element"><span class="setcolor">{{element?.amazon_order_id}}</span></td>
+      </ng-container>
+
+      <!-- Product Title Column -->
+      <ng-container matColumnDef="product_title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Title </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element?.order_item[0]?.title}}">
+          {{element?.order_item[0]?.title | slice:0:40}}</td>
+      </ng-container>
+
+      <!-- Fulfillment Channel Column -->
+      <ng-container matColumnDef="fulfillment_channel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-form-field class="custom-filter" appearance="outline">
+            <mat-label class="filter-label"> Channel</mat-label>
+            <mat-select [(value)]="channelSelects">
+              <mat-option value="All" (click)="filterSelect()">All</mat-option>
+              <mat-option *ngFor="let channel of channels" [value]="channel" (click)="filterSelect()">{{channel}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- </span> -->
+        </th>
+        <td mat-cell *matCellDef="let element">{{element?.fulfillment_channel}} </td>
+      </ng-container>
+
+      <!-- Orderdate Column -->
+      <ng-container matColumnDef="asin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ASIN </th>
+        <td mat-cell *matCellDef="let element">{{element?.order_item[0]?.asin}} </td>
+      </ng-container>
+
+      <!-- Orderdate Column -->
+      <ng-container matColumnDef="seller_sku">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU </th>
+        <td mat-cell *matCellDef="let element">{{element?.order_item[0]?.seller_sku}} </td>
+      </ng-container>
+
+      <!-- Orderdate Column -->
+      <ng-container matColumnDef="purchased_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ordered Date </th>
+        <td mat-cell *matCellDef="let element">{{element?.purchased_at | date : 'dd-MMM-yyyy'}} </td>
+      </ng-container>
+
+      <!-- Shipped Date Column -->
+      <ng-container matColumnDef="latest_shipped_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shipping Date </th>
+        <td mat-cell *matCellDef="let element">{{element?.latest_shipped_at | date : 'dd-MMM-yyyy'}} </td>
+      </ng-container>
+
+      <!-- Total Amount Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total amount </th>
+        <td mat-cell *matCellDef="let element"> <span
+            *ngIf="element?.total != '0.0'">{{element?.total | slice:0:-4 }}</span> <span
+            *ngIf="element?.total == '0.0'">- - -</span> </td>
+      </ng-container>
+
+      <!-- Orderstatus Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          <mat-form-field appearance="outline">
+            <mat-label class="filter-label"> Status</mat-label>
+            <mat-select [(value)]="statusSelects">
+              <mat-option value="All" (click)="filterSelect()">All</mat-option>
+              <mat-option *ngFor="let status of allstatus" [value]="status" (click)="filterSelect()">{{status}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </th>
+
+        <td class="status" mat-cell *matCellDef="let element"><label 
+          [ngClass]="{
+    'badge-light-danger':element?.status == 'Canceled',
+    'badge-light-warning':element?.status == 'Pending',
+    'badge-light-primary':element?.status == 'Return',
+    'badge-light-blue':element?.status == 'Unshipped',
+    'badge-light-success':element?.status == 'Shipped'}">{{element?.status}}</label> </td>
+      </ng-container>
+
+      <!-- location Column -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <!-- Location -->
+
+          <mat-form-field appearance="outline">
+            <mat-label class="filter-label"> Location</mat-label>
+            <mat-select [(value)]="locationSelects" [disabled]="statusSelects == 'Pending'">
+              <mat-option value="All" (click)="filterSelect()">All</mat-option>
+              <mat-option *ngFor="let location of locations" [value]="location" (click)="filterSelect()">{{location}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element?.location || '- - -'}} </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+            <div class="example-element-description">
+              <!-- <p>Order ID : {{expandData?.amazon_order_id}} | {{expandData?.status}}</p> -->
+              <div class="order_det">
+                <h4>Buyer Email ID : <p>{{expandData?.email}}</p></h4>
+                
+              </div>
+              <div *ngFor="let data of element?.order_item">
+                <div class="order_col_det" *ngIf="customerException != 'Trail'"> 
+                  <div class="order_det">
+                    <strong>Title : <span>{{data?.title}}</span></strong>
+                    
+                  </div>
+                  <div class="order_det">
+                    <strong>ASIN : <span>{{data?.asin}}</span></strong>
+                    
+                  </div>
+                  <div class="order_det">
+                    <strong>SKU : <span>{{data?.seller_sku}}</span></strong>
+                    
+                  </div>
+                  </div>
+              </div>
+              <p style="border-left:3px solid green;" *ngIf="customerException == 'Trail'"><span
+                  style="margin-left: 7px;">Upgrade to premium plan to view open and click counts</span></p>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element; expand(element?.id)">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+    <div class="no_image" *ngIf="orders?.length == 0">
+      <img src="../../../../assets/images/no_data.svg">
+      <h5>No data found</h5>
+      <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<notifier-container></notifier-container>
+
+<div class="dialogue">
+  <div class="asin-modal">
+    <p *ngIf="data.sendCustomer == 'Top Product Customers'">Below is your Top-Performing Product. Choose anyone your preferred Customer Base of Top Performing products for Promotion.</p>
+    <p *ngIf="data.sendCustomer == 'Geo Customers'">Below is your order's Geographical information. Choose anyone your preferred State - wise Customer Base for your Regional Promotion.</p>
+   
+    <!-- Top Product -->
+{{data.sendCustomer}}
+    <div class="table-scroll" (scroll)="onScroll($event)" *ngIf="data.sendCustomer == 'Top Product Customers'">
+      <mat-card class="example-card" *ngFor="let data of listData">
+        <mat-card-header>
+          <mat-card-title>{{data?.title}}</mat-card-title>
+          <mat-card-subtitle>ASIN: {{data?.order_id}} | ASIN Count: {{data?.asin}} | OrderQuantity:
+            {{data?.order_quantity}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-checkbox class="checkbox" [(ngModel)]="data.checked" (change)="SelectedAsins($event, data?.order_id)"
+            [disabled]="selectedAsin.length>=1 && !data?.checked"></mat-checkbox>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Geo Customers -->
+    
+    <div class="table-scroll" *ngIf="data.sendCustomer == 'Geo Customers'">
+      <mat-card class="example-card" *ngFor="let data of listData">
+        <mat-card-header>
+          <mat-card-title>{{data?.city}} : {{data.count}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-checkbox class="checkbox" [(ngModel)]="data.checked" (change)="SelectedAsins($event, data?.city)"
+            [disabled]="selectedAsin.length>=1 && !data?.checked"></mat-checkbox>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+
+     <!-- Repeated Customers -->
+     <div *ngIf="data.sendCustomer == 'Repeated Customers'">
+      <h4>Total Count</h4>
+     <div class="table-scroll" >
+      <div class="asin-toogle" >
+        <p>Enable All </p>
+        <mat-slide-toggle class="slide" (change)="enableAll($event)" [checked]="toggle">
+        </mat-slide-toggle>
+      </div>
+
+      <mat-card class="example-card" *ngFor="let data of listData">
+        <mat-card-header>
+          <mat-card-title>{{data?.email}} : {{data?.count}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-checkbox class="checkbox" [(ngModel)]="data.checked" (change)="SelectedCustomers($event,data?.email)" ></mat-checkbox>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+</div>
+
+    <div class="template-btn">
+      <button mat-raised-button class="submit" color="primary" (click)="asinSend()" *ngIf="data.sendCustomer != 'Repeated Customers'">Submit</button>
+      <button mat-raised-button class="skipnow" color="primary" style="margin-left: 8px" (click)="clear()">close</button>
+    </div>
+    <!-- <i class="material-icons clear" (click)="clear()">clear</i> -->
+  </div>
+</div>

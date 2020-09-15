@@ -1,0 +1,22 @@
+td img.product-img {
+  width: 35px;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding: 0 8px;
+}
+td input {
+  width: 100px;
+}
+.upload{
+  position: relative;
+}
+input.upload {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0;
+  right: -250px;
+  top: 5px;
+}
+.date_search {
+  align-items: center;
+}

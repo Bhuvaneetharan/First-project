@@ -1,0 +1,180 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Account & Payment Reconciliation' | translate}}</h4>
+    <div class="date_search">
+      
+      <div class="searchbox">
+        <input style="background-image: url('../../../../assets/images/search.svg');" [(ngModel)]="searchValue" id="search" type="text" placeholder="Search" name="search" class="search" (input)="filter($event)">
+      </div>
+      <div class="upload">
+        <button mat-raised-button color="primary">{{'Upload' | translate}}<span class="file_path">{{filename}}</span></button>
+        <input class="upload" type="file" name="file" (change)="upload($event.target.files)" />
+        
+      </div>
+      <button (click)="export()" mat-raised-button color="primary">{{'Export' | translate}}</button>
+    
+    </div>
+  </div> 
+  <div class="flex_between total_prod">
+    <h5>
+      <h4>{{'Total Orders' | translate}} : {{count}}</h4>
+      <p class="note"><strong>{{'Note' | translate}}: </strong>{{'Listing orders details except for cancelled, unshipped and pending status' | translate}}. </p>
+    </h5> 
+  </div>
+
+<mat-button-toggle-group [(ngModel)]="viewDetail" name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup">
+    <mat-button-toggle value="amount" (change)="viewDetails($event.value)">{{'View details in' | translate}} (&#8377;)</mat-button-toggle>
+    <mat-button-toggle value="percentage" (change)="viewDetails($event.value)">{{'View details in' | translate}} (%)</mat-button-toggle>
+    <mat-button-toggle value="both" (change)="viewDetails($event.value)">{{'View details in' | translate}} (&#8377;) & (%)</mat-button-toggle>
+  </mat-button-toggle-group>
+<div class="table-scroll col-md-12" (scroll)="onScroll($event)">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-0">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"> S.No </th>
+    <td mat-cell *matCellDef="let i = index">{{i+1}}</td>
+  </ng-container>
+  <ng-container matColumnDef="S.No">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">S.No </th>
+  </ng-container>
+    <!-- Product Column -->
+    <ng-container matColumnDef="order_id">
+      <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"> Order ID </th>
+      <td mat-cell *matCellDef="let element">{{element?.order_id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="order">
+      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Order ID</th>
+    </ng-container>
+
+    <!-- ASIN Column -->
+    <ng-container matColumnDef="seller_sku">
+      <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"> SKU </th>
+      <td mat-cell *matCellDef="let element"> {{element?.seller_sku}}</td>
+    </ng-container>
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">SKU </th>
+    </ng-container>
+
+    <!-- SKU Column -->
+    <ng-container matColumnDef="posted_date">
+      <th mat-header-cell *matHeaderCellDef  [ngStyle]="{'display': 'none'}"> Posted Date </th>
+      <td mat-cell *matCellDef="let element" [ngStyle]="{'color':dateColor ? 'orange':'green'}">{{element?.posted_date | date : 'dd-MMM-yyyy'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="postedDate">
+      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Posted Date </th>
+    </ng-container>
+      
+    <!-- actual cost Column -->
+    <!-- Header row second group -->
+<ng-container matColumnDef="product_price">
+  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Product Price </th>
+</ng-container>
+
+
+    <ng-container matColumnDef="product_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.product_price | number : '1.2-2'}}</span></td>
+      <!-- {{element?.product_price | number : '1.2-2'}} -->
+    </ng-container>
+    
+    <ng-container matColumnDef="product_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.prod_per}} </span></td>
+    </ng-container>
+
+    <!-- gst Column 
+    <span class="units">(&#8377;)</span> -->
+    <ng-container matColumnDef="Amazon_fees">
+      <th mat-header-cell *matHeaderCellDef  [attr.colspan]="2"> Amazon Fees </th>
+      <!-- <td mat-cell *matCellDef="let element">{{element?.Amazon_fees | number : '1.2-2'}}</td> -->
+    </ng-container>
+    <ng-container matColumnDef="amazon_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.Amazon_fees | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="amazon_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.Amazon_per | number : '1.2-2'}}</span></td>
+    </ng-container>
+
+    <!-- amazon selling price Column -->
+    <ng-container matColumnDef="shipping_fees">
+      <th mat-header-cell *matHeaderCellDef  [attr.colspan]="2"> Shipping Fees </th>
+      <!-- <td mat-cell *matCellDef="let element">{{element?.shipping_fees | number : '1.2-2'}}</td> -->
+    </ng-container>
+    <ng-container matColumnDef="shipping_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.shipping_fees | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="shipping_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.shipping_per | number : '1.2-2'}}</span></td>
+    </ng-container>
+
+     <!-- Quantity Column -->
+     <ng-container matColumnDef="promotion_fees">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Promotion Fees </th>
+      <!-- <td mat-cell *matCellDef="let element">{{element?.promotion_fees | number : '1.2-2'}}</td> -->
+    </ng-container>
+    <ng-container matColumnDef="promotion_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.promotion_fees | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="promotion_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.promotion_per | number : '1.2-2'}}</span></td>
+    </ng-container>
+
+    <!-- Average sales Column -->
+    <ng-container matColumnDef="return">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Return Price </th>
+      <!-- <td mat-cell *matCellDef="let element">{{element?.return_price | number : '1.2-2'}}</td> -->
+    </ng-container>
+    <ng-container matColumnDef="return_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.return_price | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="return_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.return_per | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+
+     <!-- Average sales Column -->
+     <ng-container matColumnDef="net">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Net </th>
+      <!-- <td mat-cell *matCellDef="let element">{{element?.net | number : '1.2-2'}}</td> -->
+    </ng-container>
+    <ng-container matColumnDef="net_rupees">
+      <th mat-header-cell *matHeaderCellDef ><span class="units">(&#8377;)</span></th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'percentage'">{{element?.net | number : '1.2-2'}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="net_percent">
+      <th mat-header-cell *matHeaderCellDef>%</th>
+      <td mat-cell *matCellDef="let element"><span *ngIf="viewDetail != 'amount'">{{element?.net_per | number : '1.2-2'}}</span></td>
+
+    </ng-container>
+
+
+
+   <tr mat-header-row *matHeaderRowDef="['S.No','order','sku','postedDate','product_price','Amazon_fees',  'shipping_fees', 'promotion_fees', 'return', 'net'] ; sticky: true"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- <tr mat-header-row *matHeaderRowDef="['product_rupees', 'product_percent','amazon_rupees', 'amazon_percent','shipping_rupees', 'shipping_percent','promotion_rupees', 'promotion_percent','return_rupees', 'return_percent','net_rupees', 'net_percent']"></tr> -->
+    
+    <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;['rupees', 'percent']"></tr> -->
+
+  </table>
+  <div class="no_image" *ngIf="reconData?.length == 0">
+    <img src="../../../../assets/images/no_data.svg">
+      <h5>No data found</h5>
+      <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+  </div>
+</div>
+</div>

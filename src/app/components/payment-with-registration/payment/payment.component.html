@@ -1,0 +1,52 @@
+<notifier-container></notifier-container>
+
+<div class="terms-condition">
+  <div class="toolbar">
+
+    <!-- <h3><span><i class="material-icons">keyboard_backspace</i></span>Payment</h3> -->
+
+    <img class="logo" src="assets/images/Login-logo.png">
+
+  </div>
+
+  <div class="payment">
+    
+    <strong> Pay Now and start to experience the benefits of paid versions. We encourage you with extra 1000 mails immediately. </strong>
+
+    <div class="registration">
+      <div class="plan">
+        <h4>{{userInfo?.first_name}}</h4>
+        <label>{{userInfo?.email}}</label>
+
+        <p>You have accepted all our <span>Terms & Conditions </span> and you are ready to complete the payment process.
+        </p>
+      </div>
+      <div class="details">
+        <ul>
+          <li><span>GSTIN : </span>{{userInfo?.user_info.gst_no}}</li>
+          <li><span>Address : </span>{{userInfo?.user_info.address}}</li>
+          <li><span>City : </span>{{userInfo?.user_info.city}}</li>
+          <li><span>State : </span>{{userInfo?.user_info.state}}</li>
+          <li><span>Pincode : </span>{{userInfo?.user_info.pincode}}</li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="payment-proceed">
+    <div class="box1" [style.border-top]="'10px solid ' + userInfo?.plan_info.color_code">
+      <h3>&#x20b9; {{userInfo?.plan_info.plan_price}}</h3>
+      <label>{{userInfo?.plan_info.plan_name}}</label>
+      <h5>Free Trial for First 07 days</h5>
+      <div class="more">
+        <p> {{userInfo?.plan_info.email_limit}} mails | ASIN Unlimited | Negative Feedback</p>
+        <p class="click" (click)="moreDetails(userInfo?.plan_info)">More Details</p>
+      </div>
+    </div>
+
+    <div class="payment-btn">
+      <button mat-raised-button class="skipnow" color="primary" routerLink="/marketplace">Skip Now</button>
+      <button mat-raised-button class="submit" color="primary" (click)="payment()">Pay Now</button>
+    </div>
+  </div>
+</div>

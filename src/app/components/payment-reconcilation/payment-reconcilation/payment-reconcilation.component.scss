@@ -1,0 +1,41 @@
+.table-scroll {
+    overflow: auto;
+    height: calc(100vh - 330px);
+    border-radius: 0px !important;
+}
+.date_search {
+    align-items: center;
+}
+.file{
+   position: relative;
+  overflow: hidden;
+  margin-right:1rem;
+}
+.note {
+    margin-top: 20px;
+    font-size: 12px;
+     margin-bottom: 0px;
+}
+.total_prod > * {
+    width: 100%;
+}
+input.upload {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0;
+  right: -250px;
+  top: 5px;
+}
+.upload{
+    position: relative;
+}
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    color: rgb(255, 255, 255);
+    background: #0054fc;
+}
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+    font-size: 14px;
+}
+.mat-button-toggle-group-appearance-standard, .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+    border: 0;
+}

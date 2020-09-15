@@ -1,0 +1,139 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Stock Management' | translate}}</h4>
+    <div class="date_search">
+      <div class="searchbox">
+        <input style="background-image: url('../../../../assets/images/search.svg');" [(ngModel)]="searchValue"
+          id="search" type="text" placeholder="Search" name="search" class="search" (input)="filter($event)">
+      </div>
+      <div class="upload">
+      <button mat-raised-button color="primary">{{'Upload' | translate}}<span class="file_path">{{filename}}</span></button>
+      <input class="upload" type="file" name="file" (change)="upload($event.target.files)" />
+
+    </div>
+
+      <button (click)="inventoryexport()" mat-raised-button color="primary">{{'Export' | translate}}</button>
+      <button (click)="sync()" mat-raised-button color="primary">{{'Sync' | translate}}</button>
+    </div>
+  </div>
+  <div class="flex_between total_prod">
+    <h5>
+      <span *ngIf="checked == false">{{'Total Products in stock' | translate}}: {{productCount}}</span>
+      <span *ngIf="checked == true">{{'Products with errors' | translate}}: {{productCount}}</span>
+    </h5>
+    <mat-checkbox class="checkbox" (change)="toggle($event.checked)">{{'Show products with errors' | translate}} </mat-checkbox>
+  </div>
+  <notifier-container></notifier-container>
+
+  <div class="table-scroll" (scroll)="onScroll($event)">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-0">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="S.No">
+        <th mat-header-cell *matHeaderCellDef> S.No </th>
+        <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Img Column -->
+      <ng-container matColumnDef="img">
+        <th mat-header-cell *matHeaderCellDef>image</th>
+        <td mat-cell *matCellDef="let element"><img class="product-img"
+            [src]="element?.inventory_items[0]?.small_image">
+        </td>
+      </ng-container>
+
+      <!-- Product Column -->
+      <ng-container matColumnDef="product_title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element?.inventory_items[0]?.title}}">
+          {{element?.inventory_items[0]?.title | slice:0:100}} </td>
+      </ng-container>
+
+      <!-- ASIN Column -->
+      <ng-container matColumnDef="asin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ASIN </th>
+        <td mat-cell *matCellDef="let element"> {{element?.asin || '---'}} </td>
+      </ng-container>
+
+      <!-- SKU Column -->
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> SKU </th>
+        <td mat-cell *matCellDef="let element"> {{element?.sku || '---'}} </td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Stock<br>(units) </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException == "Trail"'>{{element?.quantity || '---'}}</span> <span
+            *ngIf='customerException != "Trail"'>{{element?.quantity || '---'}}</span> </td>
+      </ng-container>
+
+      <!-- actual cost Column -->
+      <ng-container matColumnDef="Actual Cost">
+        <th mat-header-cell *matHeaderCellDef> Actual Cost <span class="units">(&#8377;)</span></th>
+        <td mat-cell *matCellDef="let element, let i = index"><input type="text" [(ngModel)]='element.act_price'
+            (change)="checkGST(element.act_price,element.gst,element.price,element.asin)"
+            (keypress)="notAllowNegative($event)"></td>
+      </ng-container>
+
+      <!-- gst Column -->
+      <ng-container matColumnDef="GST">
+        <th mat-header-cell *matHeaderCellDef> GST <span class="units">(%)</span></th>
+        <td mat-cell *matCellDef="let element, let i = index"><input type="text" [(ngModel)]='element.gst'
+            (change)="checkGST(element.act_price,element.gst,element.price,element.asin)"
+            (keypress)="notAllowNegative($event)" [disabled]="!element.act_price"></td>
+      </ng-container>
+
+      <!-- amazon selling price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Selling Price<br>(&#8377;)</th>
+        <td mat-cell *matCellDef="let element">{{element?.price || '---'}} <i class="material-icons error"
+            *ngIf="element?.action == false"
+            matTooltip="Product selling price in amazon is less then the actual price given in the inventory. This will affect your sales, update the price amazon or inventory">
+            error
+          </i></td>
+      </ng-container>
+
+
+
+      <!-- Average sales Column -->
+      <ng-container matColumnDef="avg_sales">
+        <th mat-header-cell *matHeaderCellDef> Sales velocity <span class="units">(units/day)</span> </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException == "Trail"'>{{element?.avg_sales|| '0.0'}} %</span><span
+            *ngIf='customerException != "Trail"'>{{element?.avg_sales|| '0.0'}} %</span> </td>
+      </ng-container>
+
+      <!-- Out of Stock Column -->
+      <ng-container matColumnDef="out_of_stock">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Out of Stock<br>(days)</th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException == "Trail"'>{{element?.out_of_stock || '---'}} </span><span
+            *ngIf='customerException != "Trail"'>{{element?.out_of_stock || '---'}} </span> </td>
+      </ng-container>
+
+      <!-- Days Column -->
+      <!--  <ng-container matColumnDef="location">
+    <th mat-header-cell *matHeaderCellDef> Most Selling Location </th>
+    <td mat-cell *matCellDef="let element"><span class='blur' *ngIf='customerException == "Trail"'>{{element?.location || '---'}}</span><span *ngIf='customerException != "Trail"'>{{element?.location || '---'}}</span>  </td>
+  </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="no_image" *ngIf="products?.length == 0">
+      <img src="../../../../assets/images/no_data.svg">
+      <h5>No data found</h5>
+      <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+      <!-- <h3 *ngIf="checked == true">No data found</h3>
+      <h3 *ngIf="checked == false">No data found</h3> -->
+    </div>
+
+  </div>
+  <!-- <div
+    style="position: fixed; width:100%; height: 100%; display: flex; align-items: center; justify-content: center;top:0;left: 0;background-color: rgba(255,255,255,0.7)"
+    *ngIf="loader == true">
+    <img src="/assets/images/728.gif" alt="Image">
+  </div> -->

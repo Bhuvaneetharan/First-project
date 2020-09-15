@@ -1,0 +1,814 @@
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+.button-top{
+  padding-top: 40px;
+}
+.button{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+.radio-purpose {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+}
+.mat-radio-button {
+  padding-bottom: 10px;
+}
+p{
+  color: gray;
+}
+.promotions{
+  margin-top: 50px;
+}
+.card{
+  background-color: #fbfbfb;
+  font-size: 14px;
+  width: calc(100% / 3 - 50px);
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+}
+.mat-horizontal-stepper {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.text{
+  text-align: center;
+  font-weight: bold;
+  padding-top: 20px;
+  font-size: 18px;
+}
+.image{
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+.asin-radio{
+  display: flex;
+  flex-direction: row; 
+}
+
+.black{
+  color: black;
+}
+
+.campaign-button{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+.Campaign-2{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.button-top-2{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+.card-1{
+  margin-right: 10px;
+  background-color: #fbfbfb;
+  font-size: 14px;
+  width: calc(100% / 3 - 50px);
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+}
+.card-2{
+  margin-left: 10px;
+  background-color: #fbfbfb;
+  font-size: 14px;
+  width: calc(100% / 3 - 50px);
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+}
+.image-1{
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.form-3{
+  margin-right: 10px;
+  padding-top: 10px;
+}
+.flex-3{
+  display: flex;
+  justify-content: space-between;
+}
+.asin-orders{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-4{
+  margin-right: 10px;
+}
+.example-margin{
+  padding-right: 20px;
+}
+
+.promotion{
+  text-align: left;
+  color: black;
+}
+
+.card-4_1{
+  p{
+    padding-left: 30px;
+  }
+}
+
+.card-4_2{
+  p{
+    padding-left: 30px;
+  }
+}
+
+.bothside{
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftside{
+  width: 50%;
+}
+
+.rightside{
+  width: 50%;
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.startcard{
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: space-between;
+}
+
+.right-card{
+  width: auto;
+  height: 90%;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+}
+
+.card-4_1{
+  margin-right: 20px;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+  margin-top: 10px;
+}
+
+.card-4_2{
+  width: 100%;
+  margin-right: 20px;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+}
+
+.flex-5{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.datepicker{
+  width: 350px;
+}
+
+.top-5_1{
+  display: flex;
+  justify-content: space-between;
+}
+.button-top-5{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.card-5_1{
+  margin-right: 20px;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+
+}
+
+.card-5_2{
+  margin-right: 20px;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+  margin-top: 10px;
+}
+.stroked{
+  margin-right: 20px;
+}
+
+.mat-stroked-button{
+  margin-right: 10px;
+}
+
+.top-5{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px
+}
+
+.scheduled{
+  border-radius: 25px;
+  background-color: #f2f8ff;
+  margin-left: 10px
+}
+
+.feedback{
+  display: flex;
+  p{
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: bold;
+  }
+  
+}
+
+
+.details{
+  font-size: 14px;
+  color: rgb(161, 159, 159);
+}
+
+.sub-details{
+  font-size: 14px;
+  color: black;
+}
+
+
+.Campaign-name{
+  display: flex;
+  margin-top: 10px;
+  p{
+    margin-right: 40px;
+  }
+}
+
+.basic {
+  width: 50%;
+  height: 40px;
+  margin-top: 30px;
+  border-style: dashed;
+  border-width: 1px;
+  color: gray;
+}
+
+.delivery{
+  border-color: rgb(226, 226, 226); 
+  border-top-style: solid; 
+  border-top-width: thin;
+  font-size: 14px;
+  p{
+    font-weight: bold;
+    margin-top: 15px;
+  }
+}
+
+.card-5_3{
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+}
+
+.card-5_3_1{
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.right-card-5{
+  width: auto;
+  height: 90%;
+  background-color: #fbfbfb;
+  box-shadow: none !important;
+  border: 1px solid #e6e6e6;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+.edit{
+  border-color: #0054fc;
+}
+
+.previous{
+  background-color: #f2f8ff;
+  color: gray;
+  margin-right: 10px;
+}
+
+
+@media only screen and (max-width: 1366px) {
+
+
+
+
+
+
+}
+
+@media only screen and (max-width: 1024px) { 
+.button-top{
+  padding-top: 40px;
+  display: flex;
+  height: 40px;
+}
+
+.button-5{
+  display: flex;
+  height: 40px;
+}
+
+.image1{
+  width: 100%;
+}
+
+.scheduled{
+  border-radius: 25px;
+  background-color: #f2f8ff;
+  margin-left: 0%;
+  margin-right: 20px;
+}
+
+.rightside{
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.leftside{
+  width: auto;
+}
+
+  
+  .flex-3{
+    display: flex;
+  }
+  
+  .bothside{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .startcard{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    justify-content: flex-start;
+  }
+
+  .basic{
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-style: dashed;
+    border-width: 1px;
+    color: gray;
+}
+
+.scheduled{
+  margin-left: 23px;
+}
+  .right-card-5{
+    margin-left: 0%;
+  }
+
+  .button-top{
+    display: none;
+  }
+
+  .button-top-2{
+    display: none;
+  }
+
+  .button-top-5{
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {  
+  .flex-container{
+      display: flex;
+  }
+    
+  .button-top{
+      display: none;
+  }
+  
+  .button{
+    display: flex;
+    margin-top: 30px;
+    justify-content: start;
+  }
+  
+  .button-top-2{
+    display: none;
+  }
+  
+  .flex{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .card{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: calc(100% / 3 - 50px);
+    margin-bottom: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .image{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .image1{
+    width: 100%;
+  }
+  
+  .Campaign-2{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-direction: row;
+  }
+  
+  .card-1{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: auto;
+    margin-right: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .card-2{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: auto;
+    margin-left: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+    margin-left: 0px;
+  }
+  
+  .image-1{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .campaign-button{
+    padding-top: 0px;
+  }
+  
+  
+  .asin-orders{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-3{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bothside{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .startcard{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    justify-content: flex-start;
+  }
+  
+  .card-4_2{
+    width: 50%;
+    margin-bottom: 10px;
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .right-card{
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .flex-5{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+   
+  .button-top-5{
+    display: none;
+  }
+  
+  .leftside{
+    width: auto;
+  }
+    
+  .Campaign-name{
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .details{
+    font-size: 14px;
+    color: #a19f9f;
+    padding-bottom: 10px;
+  }
+  
+  .top-5{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+  
+  .datepicker{
+    width: auto;
+  }
+  
+  .right-card-5{
+    margin-top: 10px;
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    margin-left: 0px;
+  }
+    
+  .feedback{
+    display: flex;
+    padding-bottom: 10px;
+  }
+  
+  .basic{
+    width: 100%;
+    margin-top: 20px;
+    border-style: dashed;
+    border-width: 1px;
+    color: gray;
+}
+  
+.rightside{
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.leftside{
+  width: auto;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  width: auto;
+}
+
+}
+
+@media only screen and (max-width: 600px) {  
+  .flex-container{
+      display: flex;
+  }
+    
+  .button-top{
+      display: none;
+  }
+  
+  .button{
+    display: flex;
+    margin-top: 30px;
+    justify-content: start;
+  }
+  
+  .button-top-2{
+    display: none;
+  }
+  
+  .flex{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: auto;
+    margin-bottom: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .image{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .image1{
+    width: 100%;
+  }
+  
+  .Campaign-2{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+  
+  .card-1{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: auto;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .card-2{
+    background-color: #fbfbfb;
+    font-size: 14px;
+    width: auto;
+    margin-bottom: 20px;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+    margin-left: 0px;
+    
+  }
+  
+  .image-1{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .campaign-button{
+    padding-top: 0px;
+  }
+  
+  
+  .asin-orders{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .flex-3{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .bothside{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .radio-purpose-period{
+    overflow: auto;
+  }
+  
+  .startcard{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+  }
+  
+  .card-4_2{
+    width: auto;
+    margin-bottom: 20px;
+    margin-right: 0%;
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .right-card{
+    text-align: center;
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+  }
+  
+  .flex-5{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .button-top-5{
+    display: none;
+  }
+  
+  .leftside{
+    width: auto;
+  }
+  
+  
+  .Campaign-name{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .details{
+    font-size: 14px;
+    color: #a19f9f;
+    padding-bottom: 10px;
+  }
+  
+  .top-5{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .datepicker{
+    width: auto;
+  }
+  
+  .right-card-5{
+    margin-top: 10px;
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    margin-left: 0px;
+    text-align: center;
+  }
+  
+  .feedback{
+    display: flex;
+    padding-bottom: 10px;
+  }
+  
+  .basic{
+    margin-top: 20px;
+    border-style: dashed;
+    border-width: 1px;
+    color: gray;
+  }
+  
+  .outline{
+    width: 100%;
+  }
+  
+.mat-form-field{
+  margin-top: 0%;
+  width: 100%;
+}
+
+p{
+  width: 100%;
+}
+
+  }
+  

@@ -1,0 +1,42 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Seller Negative Feedback' | translate}}</h4>
+  </div>
+
+  <notifier-container></notifier-container>
+
+  <div class="no_image" *ngIf="sellerFeedback?.length == 0">
+    <img src="../../../../assets/images/no_data.svg">
+    <h5>No data found</h5>
+    <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+  </div>
+
+  <div class="seller_feedback_wrapper" (scroll)="onScroll($event)">
+    <div class="feedback" *ngFor="let feedback of sellerFeedback">
+      <div class="padding">
+        <div class="flex_between">
+          <h5>{{'Order ID'| translate}}: <span>{{feedback?.order_id}}</span></h5>
+          <h5 class="blur" *ngIf="customerException == 'Trail'">FEEDBACK GIVEN DATE:
+            <SPAN>{{feedback?.date | date : 'dd-MMM-yyyy'}}</SPAN></h5>
+          <h5 *ngIf="customerException != 'Trail'">{{'FEEDBACK GIVEN DATE' | translate}}:
+            <SPAN>{{feedback?.date | date : 'dd-MMM-yyyy'}}</SPAN></h5>
+        </div>
+        <div class="ratings">
+          <star-rating class="blur" *ngIf="customerException == 'Trail'" [value]="feedback?.rating"
+            checkedcolor="#f2b016" uncheckedcolor="#b1b1b1cf" size="15px" readonly="true"></star-rating>
+          <star-rating *ngIf="customerException != 'Trail'" [value]="feedback?.rating" checkedcolor="#f2b016"
+            uncheckedcolor="#b1b1b1cf" size="15px" readonly="true"></star-rating>
+        </div>
+        <div class="feedback_para">
+          <p class="blur" *ngIf="customerException == 'Trail'" matTooltip="{{feedback?.comments}}">
+            {{feedback?.comments | slice:0:150}}</p>
+          <p *ngIf="customerException != 'Trail'" matTooltip="{{feedback?.comments}}">
+            {{feedback?.comments | slice:0:150}}</p>
+        </div>
+        <button mat-stroked-button color="primary" [disabled]="customerException == 'Trail'"
+          (click)="ckeditor(feedback?.order_id)">{{'Send Mail' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+</div>

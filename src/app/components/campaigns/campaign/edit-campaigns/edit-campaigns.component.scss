@@ -1,0 +1,62 @@
+.Campaigns {
+  display: flex;
+  // flex-wrap: wrap;
+  > div{
+    width:calc(100%/2);
+    padding: 20px 20x 20px 0px;
+    margin-right:20px;
+    &:last-child{
+      margin-right:0px;
+    }
+  }
+  .Template-creation{
+    :first-child.field{
+      mat-form-field{
+        width: 100%;
+      }
+    }
+  }
+}
+.field{
+  mat-label{
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  mat-radio-button{
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  &.date_picker{
+    display: flex;
+    mat-form-field{
+      width: 100%;
+      margin-right: 10px;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+}
+.Template{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box{
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #eee;
+  margin-top: 20px;
+  box-shadow: 1px 1px 9px 0px #eee;
+  border-radius: 10px;
+  .title{
+    h5{
+      font-weight: 400;
+      margin-top: 6px;
+    }
+  }
+}

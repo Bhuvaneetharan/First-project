@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="title_wrapper flex_between">
+      <h4 class="page_title">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon (click)="back()">arrow_back</mat-icon>
+          </button>
+          
+       {{'Promotion' | translate}}
+    </h4>
+    <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon (click)="back()"><span class="material-icons" matTooltip="close" routerLink="/campaigns//promotion/promotionlist">clear</span></mat-icon>
+      </button> -->
+      <button mat-raised-button class="submit" color="primary" (click)="confirm()">{{ promotionId==null ? 'Confirm' : 'Update'}}</button>
+    </div>
+<notifier-container></notifier-container>
+<div class="create_promotions_wrapper">
+    <div class="promotion_des">
+        <div class="padding">
+        <div class="flex_between">
+            <div class="flex-center">
+                <mat-form-field appearance="outline">
+                    <mat-label class="pro-label">{{'Promotion Title' | translate}}<span class="red">*</span></mat-label>
+                    <input matInput placeholder="Enter the promotion name" [formControl]="promotionTitle" maxlength="20">
+                </mat-form-field>
+                <div class="radio">
+                    <label id="example-radio-group-label">{{'Channel Settings' | translate}}</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="channelSettings">
+                        <mat-radio-button class="example-radio-button" *ngFor="let channel of channels" [value]="channel">
+                            {{channel}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            
+                <div class="field">
+                    <label class="pro-label">{{'Is Coupon Code available' | translate}}? </label>
+                    <span class="slide_content">no<mat-slide-toggle [(ngModel)]="couponEnable" (change)="toggle($event.checked)"></mat-slide-toggle>yes</span>
+                </div>
+            
+        </div>
+        <div class="note">
+            <label>{{'You can choose your preferred ASINs or select all the ASINs to include in the campaign' | translate}} :</label>
+        </div>
+        <div class="actions flex_between">
+            <button mat-raised-button class="submit" color="primary" (click)="selectAsins()">{{'Select Your ASIN' | translate}}</button>
+            <h5>{{'Selected ASIN Count' | translate}}: {{count || 0}}</h5>
+        </div>
+        <div class="fields_wrapper">
+        <div class="field" *ngIf="couponEnable" >
+            <mat-form-field appearance="outline">
+                <mat-label class="pro-label">{{'Coupon Code' | translate}}</mat-label>
+                <input matInput placeholder="Enter coupon code here" [formControl]="couponCode">
+            </mat-form-field>
+        </div>
+        <div class="fields">
+        <div class="field promo-date" matTooltip="daterangepicker" *ngIf="couponEnable" >
+            <label class="pro-label">{{'Daterange' | translate}}</label>
+            <ejs-daterangepicker [allowEdit]='false' format='dd-MMM-yyyy' id='daterangepicker' [startDate]='startDate'
+                [endDate]='endDate' (change)="dateRange($event)">
+            </ejs-daterangepicker>
+        </div>
+        <div class="promo-date field">
+            <label class="pro-label">{{'Frequency of days' | translate}}</label>
+            <ejs-datetimepicker format='dd-MMM-yyyy  hh:mm' [value]='dateTime' (change)="datetimePicker($event)">
+            </ejs-datetimepicker>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class="editor"> 
+        <div class="padding">
+        <div class="asinSelect">
+            <label class="pro-label">Message Content</label>
+            <div class="promotion">
+                <p class="note"><span class="red">!</span> {{'Sending Promotion Emails with Amazon page likes to your
+                customers is' | translate}} <span class="red">{{'not advisable' | translate}}</span>. {{'Kindly read the Amazon policies and guidelines for
+                your reference' | translate}}.</p>  
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label class="pro-label">{{'Subject' | translate}}<span class="red">*</span></mat-label>
+                <input matInput placeholder="Enter subject" [formControl]="subject" maxlength="20">
+            </mat-form-field>
+            <div class="base_promotion">
+                <div class="Radio">
+                    <label id="example-radio-group-label">{{'Choose your customer base of promotion' | translate}}</label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="promotionType">
+                        <mat-radio-button class="example-radio-button" *ngFor="let promotionType of promotionTypes"
+                            [value]="promotionType" (click)="sendCutomers(promotionType)">
+                            {{promotionType}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <ejs-daterangepicker [allowEdit]='false' *ngIf="promotionType == 'Customers purchased in specific period'"
+                        format='dd-MMM-yyyy' id='daterangepicker' [startDate]='promoStartDate' [endDate]='promoEndDate'
+                        (change)="promoDateRange($event)"></ejs-daterangepicker>
+                        <p class="state" *ngIf="promotionType == 'Geo Customers' && promoTypeAsin">{{'Selected State' | translate}}: {{promoTypeAsin}}</p>
+                        <p class="state" *ngIf="promotionType == 'Top Product Customers' && promoTypeAsin">{{'Selected ASIN' | translate}}: {{promoTypeAsin}}</p>
+                </div>
+            </div>
+            <div class="ckeditor">
+                <ckeditor [(ngModel)]="ckeditordata" [config]="ckeConfig" 
+                    debounce="500">
+                    <ckgroup [name]="'documenthandling'" [previous]="'1'">
+                        <ckbutton [name]="'imageExplorer'" [command]="'insertcontent'"
+                            [icon]="'https://png.icons8.com/color/540/bow-tie-half-filled.png'"
+                            [label]="'Insert Content'">
+                        </ckbutton>
+                    </ckgroup>
+                </ckeditor>
+            </div>
+        </div>
+        <a class="guidelines" mat-button color="primary" href=" https://sellercentral.amazon.in/gp/help/help.html?itemID=G202125900&language=en_IN&ref=ag_G202125900_cont_521 "
+        target="blank"> {{'Amazon Guidelines' | translate}}</a>
+    </div>
+    </div>
+</div>
+<div class="promotion actions">
+    
+</div>
+</div>

@@ -1,0 +1,132 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Review Insight' | translate}}</h4>
+    <button mat-raised-button color="warn" class="submit" *ngIf="dashboardDates || dashboardASIN"
+      (click)="backToDashboard()">Back</button>
+    <button (click)="openDialog()" mat-raised-button class="sumbit" color="primary">{{'Select ASINs' | translate}}</button>
+  </div>
+  <div class="note">
+    <ul>
+      <li>{{'instruction' | translate}}</li>
+      <li><strong>{{'Note' | translate}}: </strong>{{'instrct' | translate}}</li>
+    </ul>
+  </div>
+  <div class="review_wrapper">
+    <div class="review_msg">
+      <div class="review_insight flex_between">
+        <mat-button-toggle-group [value]="selectedVal" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle value="tot_count" [ngClass]="{'buttons': stylehide==1}" (click)="asinList('total')">{{'Total' | translate}} -
+            {{count?.total}}</mat-button-toggle>
+          <mat-button-toggle value="unread" [ngClass]="{'buttons': stylehide==0}" (click)="asinList('unread')">{{'Unread' | translate}}
+            - {{count?.unread}}</mat-button-toggle>
+          <!-- <mat-button-toggle value="underline">Underline</mat-button-toggle> -->
+        </mat-button-toggle-group>
+        <button mat-button class="submit" color="primary" (click)="removeAllAsin()">{{'Remove All' | translate}}</button>
+      </div>
+      <div class="product-scroll">
+        <div class="review_content" *ngFor="let asin of selectedAsins">
+          <mat-card class="example-card" *ngIf="asin?.product_reviews?.length != 0" (click)="selectAsins(asin?.asin)">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"> <img mat-card-avatar
+                  src="{{asin?.inventory_items[0].small_image}}">
+              </div>
+              <mat-card-title *ngIf="asin?.product_reviews?.length != 0" [matBadge]="asin?.product_reviews?.length"
+                matBadgeOverlap="false" [ngStyle]="{'color':(asin?.asin==dashboardASIN)?'#0075bb':'#5d5b5b'}">
+                {{asin?.inventory_items[0].title}}</mat-card-title>
+              <mat-card-title *ngIf="asin?.product_reviews?.length == 0" matBadgeOverlap="false"
+                [ngStyle]="{'color':(asin?.asin==dashboardASIN)?'#0075bb':'#5d5b5b'}">
+                {{asin?.inventory_items[0].title}}</mat-card-title>
+              <mat-card-subtitle [ngStyle]="{'color':(asin?.asin==dashboardASIN)?'#0075bb':'#5d5b5b'}">{{asin?.asin}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <button (click)="asinDelete(asin?.asin)" mat-icon-button
+                aria-label="Example icon button with a home icon">
+                <i class="material-icons remove">highlight_off</i>
+              </button>
+
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="no_image" *ngIf="count?.unread == 0 && reviewtype == 'unread' && selectedAsins.length == 0">
+          <img src="../../../../assets/images/no_data.svg">
+          <h5>No data for the selected ASIN(s)</h5>
+        </div>
+      </div>
+      
+    </div>
+    <div class="review_types" *ngIf="selectedAsins?.length != 0 || reviewtype == 'unread'">
+      <div class="rev-radio-btn flex_between">
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+          [(ngModel)]="feedbackcheck" (change)="radioSelect($event)">
+          <mat-radio-button color="primary" class="radio" value="All">{{'All' | translate}} <span class="blue">{{reviewCount?.tot}}</span>
+          </mat-radio-button>
+          <mat-radio-button color="primary" class="radio" value="Positive">{{'Positive' | translate}} <span
+              class="green">{{reviewCount?.pos}}</span>
+          </mat-radio-button>
+          <mat-radio-button color="primary" class="radio" value="Negative">{{'Negative' | translate}} <span
+              class="red">{{reviewCount?.neg}}</span>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="product-scroll">
+        <div class="rating positive" *ngFor="let review of productReviews?.reviews" [ngStyle]="{'border-color' : review?.review_rating >= '3' ? 'green':'red'}">
+          <div class="prod_image">
+            <img mat-card-avatar width="20px" height="20px" src="{{review?.small_image}}">
+          </div>
+          <div class="prod_content">
+            <!-- <i class="material-icons done" *ngIf="review?.action == true">grade</i> -->
+            <h3>{{review?.review_title}} ({{review?.asin}})
+              <i class="material-icons new" *ngIf="review?.flag == null">fiber_new</i>
+            </h3>
+            <span class="star-rating">
+              <star-rating [value]="review?.review_rating" checkedcolor="#f2b016" uncheckedcolor="#b1b1b1cf" size="20px"
+                readonly="true"></star-rating>
+            </span>
+            <p>{{review?.review_text}}</p>
+            <div class="flex_between">
+              <label>{{review?.review_name}} | {{review?.review_date | date : 'dd-MMM-yyyy'}}</label>
+              <a mat-button color="primary" (click)="review_active(review?.id)"
+                [href]="'https://www.amazon.in/'+review?.link" target="blank">
+                {{'Action' | translate}}
+              </a>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="no-data">
+          <h3>Product has been syncing</h3>
+        </div> -->
+        <div class="no_image" *ngIf="count?.unread == 0 && reviewtype == 'unread' && selectedAsins.length == 0">
+          <img src="../../../../assets/images/no_data.svg">
+          <h5>No Reviews</h5>
+        </div>
+        
+      </div>
+      <div class="product" *ngIf="selectedAsins?.length != 0">
+        <div class="paginator">
+          <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            (page)="pagination($event)">
+          </mat-paginator>
+        </div>
+      </div>
+      <div class="asin-image" *ngIf="selectedAsins?.length == 0 && reviewtype == 'total'">
+        <div class="image">
+          <img src="../../../../assets/images/5prods.svg">
+          <h5>As per your current subscription plan, you are allowed to choose maximum of 5 ASINs to check the
+            respective
+            product reviews.</h5>
+
+          <div class="add-btn">
+            <button mat-raised-button color="primary" class="submit" (click)="openDialog()"> Add ASINs</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<notifier-container></notifier-container>
+
+<!-- <button mat-raised-button color="primary" (click)="openDialog()">shfui</button>
+</div> -->
+

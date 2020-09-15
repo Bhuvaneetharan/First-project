@@ -1,0 +1,67 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{templateId==null ? 'Create Template' : 'Update Template' | translate}}</h4>
+  </div>
+  <notifier-container></notifier-container>
+  <div class="Campaigns">
+    <div class="Template-creation ">
+      <div class="padding">
+      <form [formGroup]="createTemplate">
+        <div>
+        <mat-form-field appearance="outline">
+          <mat-label>{{'Template Name' | translate}}*</mat-label>
+          <input matInput placeholder="Enter Name" formControlName="name" (change)="templateUniq($event)">
+        </mat-form-field>
+
+        <div class="radio_Wrapper">
+          <label>{{'Campaign for' | translate}} </label>      
+          <mat-radio-group aria-label="Select an option" (change)="campaign($event)" formControlName="campaignFor">
+            <mat-radio-button class="radio" value="Future" [checked]="true">{{'Future' | translate}}</mat-radio-button>
+            <mat-radio-button class="radio" value="Previous">{{'Previous' | translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="radio_Wrapper">
+          <label>{{'Purpose of' | translate}} </label>
+          <mat-radio-group aria-label="Select an option" (change)="purposeOf($event)" formControlName="purposeOf">
+            <mat-radio-button class="radio" value="Feedback Request">{{'Feedback Request' | translate}}</mat-radio-button>
+            <mat-radio-button class="radio" value="Review Request">{{'Review Request' | translate}}</mat-radio-button>
+            <mat-radio-button class="radio" value="Custom" >{{'Custom' | translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        </div>
+        <div>
+        <mat-form-field appearance="outline" [floatLabel]="'never'">
+          <mat-label>{{'Choose Template' | translate}}</mat-label>
+          <mat-select placeholder="Choose Template" formControlName="chooseTemplate">
+            <mat-option (click)="templateNames('none')">None</mat-option>
+            <mat-option  *ngFor="let template of templates" (click)="templateNames(template)" [value]="template">
+              {{template}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'Subject' | translate}}*</mat-label>
+          <input matInput placeholder="Enter Subject" formControlName="subject">
+        </mat-form-field>
+        </div>
+        
+      </form>
+      </div>
+    </div>
+    <div class="Editor">
+      <ckeditor [(ngModel)]="ckeditordata" [config]="ckeConfig" [readonly]="false" debounce="500">
+        <ckgroup [name]="'documenthandling'" [previous]="'1'">
+          <ckbutton [name]="'imageExplorer'" [command]="'insertcontent'" (click)="insert($event)" [icon]="'https://png.icons8.com/color/540/bow-tie-half-filled.png'" [label]="'Insert Content'">
+          </ckbutton>
+        </ckgroup>
+      </ckeditor>
+      <a class="guidelines" href=" https://sellercentral.amazon.in/gp/help/help.html?itemID=G202125900&language=en_IN&ref=ag_G202125900_cont_521 "  target="blank"> Amazon Guidelines</a>
+      <div class="flex_between">
+        <button mat-raised-button class="skipnow" color="primary" (click)="testmail()">{{'Test Mail' | translate}}</button>
+        <button mat-raised-button class="submit" color="primary" (click)="createTemplatebutton()">{{templateId==null ? 'Create Template' : 'Update Template' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+
+.Dashboard-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .card{  
+    width: calc(96%/5);
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+.title_wrapper {
+  width: 100%;
+}
+.card {
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  .padding{
+    padding: 30px;
+  }
+  h4 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+    svg{
+      fill: #fff;
+    }
+  }
+  h2{
+    font-size: 30px;
+    color: #fff;
+  }
+  .icons svg {
+    fill: #fff;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+  }
+  &:first-child{
+    background-color:#0054FC ;
+    &::after {
+      background: #2168F7;
+    }
+    &::before {
+      background: #2168F7;
+    }
+  }
+  &:nth-child(2){
+    background-color: #FBBE3C;
+    &::after {
+      background: #F9C75C;
+    }
+    &::before {
+      background: #F9C75C;
+    }
+  }
+  &:nth-child(3){
+    background-color: #FF5D37;
+    &::after {
+      background: #FA6F4F;
+    }
+    &::before {
+      background: #FA6F4F;
+    }
+  }
+  &:nth-child(4){
+    background-color: #4CD68C;
+    &::after {
+      background: #55DF95;
+    }
+    &::before {
+      background: #55DF95;
+    }
+  }
+  &:nth-child(5){
+    background-color: #182936;
+    &::after {
+      background: #55DF95;
+    }
+    &::before {
+      background: #55DF95;
+    }
+  }
+}
+.date_search {
+  justify-content: flex-end;
+}
+@media only screen and (max-width: 1200px) {
+  .icons svg {
+    top: 30px;
+    bottom: 0px;
+  }
+  .Dashboard-card {
+    .card{  
+      width: calc(96%/3);
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  
+  .Dashboard-card {
+    .card{  
+      width: calc(100%/1);
+      margin-right: 0px;
+      
+    }
+  }
+}
+
+
+

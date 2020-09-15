@@ -1,0 +1,23 @@
+.tab-td_Detail{
+    
+}
+table tr:nth-child(odd) td {
+    background: #fff;
+    border-bottom: 0;
+    // padding-bottom: 20px;
+}
+.table-scroll {
+    height: calc(100vh - 282px);
+}
+table tr:nth-child(even) {
+    height: auto;
+}
+table td:hover{
+    background-color: transparent;
+}
+table tr:nth-child(even) td {
+    padding-bottom: 15px;
+}
+.no_image {
+    height: calc(100vh - 340px);
+}

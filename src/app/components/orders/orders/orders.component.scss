@@ -1,0 +1,172 @@
+.table-scroll {
+  overflow: auto;
+    height: calc(100vh - 233px);
+    border-radius: 0px !important;
+}
+table {
+  width: 100%;
+  th.mat-header-cell{
+    mat-form-field {
+      min-width: 50px;
+      max-width: 80px;
+      width: 100%;
+    }
+  } 
+}
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #eee;
+}
+.setcolor{
+  color: #0f6ebc;
+    display: flex;
+    align-items: self-start;
+    white-space: nowrap;
+}
+.setcolor:after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: '';
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    vertical-align: top;
+    margin-left: 10px;
+    margin-top: 3px;
+    align-items: center;
+    top: -9px;
+    color: #0c6dbc;
+}
+.example-element-row td {
+  border-bottom-width: 0;
+}
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+// .example-element-diagram {
+//   min-width: 80px;
+//   border: 2px solid black;
+//   padding: 8px;
+//   font-weight: lighter;
+//   margin: 8px 0;
+//   height: 104px;
+// }
+
+// .example-element-symbol {
+//   font-weight: bold;
+//   font-size: 40px;
+//   line-height: normal;
+// }
+tr.example-detail-row td {
+  padding: 0!important;
+}
+.example-element-description {
+  padding: 15px;
+  background: #ffffff;
+  box-shadow: inset 0px 0px 10px 0px #eee;
+  width: 100%;
+}
+.status{
+  label{
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 1px;
+  }
+}
+table ::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+table ::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 5px 0 5px 0;
+}
+.badge-light-warning {
+    background: rgba(255,182,77,.2);
+    color: #e29628;
+}
+
+.badge-light-danger {
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff5370;
+}
+
+.badge-light-success {
+  background: rgba(5, 127, 15, 0.15);
+  color: #169e83;
+}
+
+.badge-light-primary {
+    background: rgba(64,153,255,.2);
+    color: #4099ff;
+}
+
+.badge-light-blue{
+    background-color: rgba(88,103,221,.1);
+    color: #5867dd;
+    }
+    .product-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.mat-progress-bar {
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: opacity 250ms linear;
+  width: 20%;
+}
+.upload{
+  display: none;
+}
+.order_det_em {
+  float: left;
+  margin-right: 30px;
+}
+.order_col_det {
+  display: flex;
+  // flex-wrap: wrap;
+  > div {
+    margin-right: 30px;
+    width: calc(100%/3 - 3%);
+    p{
+      font-weight: 400;
+    }
+  }
+}
+.date_search {
+  align-items: center;
+}
+::ng-deep.e-input-group.e-control-wrapper input.e-input {
+  min-height: 22px;
+}
+.order_det{
+  h4{
+    display: flex;
+  }
+  span{
+    font-weight: 400;
+  }
+}
+// th mat-form-field{
+//   width: 60px;
+// }
+@media only screen and (max-width: 1200px) {
+  .flex_between{
+    flex-direction: column;
+    align-items: flex-start;
+    .page_title{
+      margin-bottom: 30px;
+    }
+  }
+}

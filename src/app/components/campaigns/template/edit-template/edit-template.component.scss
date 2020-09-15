@@ -1,0 +1,306 @@
+.Campaigns {
+  display: flex;
+  justify-content: space-between;
+   padding: 5px 22px 10px;
+
+  .Editor {
+    width: 100%;
+    padding: 0px 10px;
+  }
+
+  .Template-creation {
+    width: 100%;
+    padding: 0px 10px;
+  }
+}
+.Template {
+ /* background: #f8f8f8;*/
+  padding: 5px 5px;
+   display: flex;
+    align-items: center;
+
+  label{
+    font-size:14px;
+  }
+}
+.Template.for {
+  /*background: #f8f8f8;*/
+  padding: 10px  4px;
+  display:flex;
+ align-items: center;
+  label{
+    font-size: 14px;
+  }
+}
+.Template1 {
+  /*background: #f8f8f8;*/
+  padding: 25px  10px 10px;
+  display:flex;
+ align-items: center;
+  label{
+    font-size: 14px;
+  }
+}
+.form {
+  display: flex;
+  flex-flow: column;
+  padding: 0px 0px 10px;
+
+  label {
+    padding: 8px 0px 8px;
+    font-size: 14px;
+  }
+}
+
+.Radio {
+  padding: 5px 20px;
+}
+
+.Mail {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px 0px;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 500px;
+  max-height: 500px;
+}
+
+.Radio mat-radio-group.mat-radio-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Radio .mat-radio-button {
+  margin-right: 15px;
+}
+.Test-btn {
+display:flex;
+justify-content: space-between;
+  padding: 10px 0px;
+}
+.submit.mat-raised-button.mat-primary{
+  margin-left:10px;
+}
+
+.form ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px;
+}
+.form1 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px;
+}
+.form-template ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px;
+}
+.form ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0px 0px;
+}
+
+.form ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+.form1 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  width: 140px
+}
+.form-template ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+width: 260px;
+}
+.form1 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0px 0px;
+}
+
+.form1 ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.form-template ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0px 0px;
+}
+
+.form-template ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.form1 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+     padding: 16px 0px 0px;
+   }
+
+ ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+  top: 0px ;
+}
+
+.form-template ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+     padding: 16px 0px 2px;
+   }
+.form-template ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+ .form-template ::ng-deep .mat-form-field-infix {
+    padding: 0px;
+    border-top: 0;
+}
+
+.form1 ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+ .form1 ::ng-deep .mat-form-field-infix {
+    padding: 0px;
+    border-top: 0;
+}
+.form-template {
+  display: flex;
+  flex-flow: row;
+  padding: 0px 0px 10px;
+
+  label {
+    padding: 8px 8px 8px;
+    font-size: 14px;
+    display: block;
+  }
+}
+
+.form1 {
+  display: flex;
+  flex-flow: column;
+  padding: 0px 7px 10px 0px;
+
+  label {
+    padding: 8px 8px 8px;
+    font-size: 14px;
+    margin-bottom:16px;
+  }
+}
+
+.select-subject{
+  padding: 0px 20px
+}
+
+.form1 ::ng-deep .mat-select{
+  font-size: 14px;
+}
+
+.form-template ::ng-deep .mat-select{
+  font-size: 14px;
+}
+
+.form1 ::ng-deep .mat-form-field-invalid .mat-input-element{
+  font-size: 14px;
+}
+
+.form ::ng-deep .mat-form-field-invalid .mat-input-element{
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 600px){
+.Campaigns {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0px 10px;
+    flex-wrap: wrap;
+}
+
+.Template {
+    padding: 5px 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.Radio {
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+   }
+
+   .Template-creation {
+    width: 100%;
+     border-right: 0px ; 
+     padding: 0px; 
+}
+.Campaigns .Create .image {
+    text-align: center;
+    border: 1px dashed #c5c5c5;
+    padding: 10px 10px;
+  }
+
+  .Campaigns .Create {
+    width: 100%;
+     padding: 10px 0px 0px 0px; 
+}
+.form-template {
+    display: flex;
+    flex-flow: row;
+    padding: 0px 0px 10px;
+    flex-wrap: wrap;
+}
+
+.Mail {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 0px;
+    flex-wrap: wrap;
+ }
+ .select-subject {
+     padding: 0px; 
+  }
+.Campaigns .Template-creation {
+    width: 100%;
+    padding: 0px 0px;
+}
+  .radio{
+    margin-left: 0px !important;
+  }
+
+  .Radio .mat-radio-button {
+    margin-right: 0px;
+  }
+  .Campaigns .Editor {
+    width: 100%;
+    padding: 20px 0px;
+  }
+}
+
+@media only screen and (max-width: 768px){
+.Campaigns {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0px 10px;
+    flex-wrap: wrap;
+}
+
+.Template {
+    padding: 5px 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/*.Radio {
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+   }
+
+   .Template-creation {
+    width: 100%;
+     border-right: 0px ; 
+     padding-right: 0px; 
+}
+.Campaigns .Create .image {
+    text-align: center;
+    border: 1px dashed #c5c5c5;
+    padding: 10px 10px;
+  }
+
+  .Campaigns .Create {
+    width: 100%;
+     padding: 10px 0px 0px 0px; 
+}*/
+}
+
+h4 {
+    font-size: 22px;
+    color: #069191;
+    font-weight: 700;
+    padding:0px 10px;
+    /*margin-top: 7px;*/
+}

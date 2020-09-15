@@ -1,0 +1,43 @@
+.marketPlace{
+    display: flex;
+    > div{
+        padding: 30px;
+        background-color: #fff;
+        width: calc(98%/2);
+        &:first-child{
+            border-right:1px solid #eee;
+        }
+    }
+}
+mat-form-field{
+    width:100%;
+}
+h3 {
+    font-size: 24px;
+    font-weight: 300;
+}
+p.note {
+    background: #f2f8ff;
+    margin-top: 20px;
+}
+ul{
+    margin-top: 15px;
+    // padding-left: 20px;
+    list-style: none;
+    li{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .marketPlace{
+        flex-wrap: wrap;
+        > div{
+            width: calc(100%/1);
+            &:first-child{
+                border-right:0;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+  color: rgb(255, 255, 255);
+  background: #0054fc;
+
+}
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+  font-size: 14px;
+}
+.mat-button-toggle-group-appearance-standard, .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border: 0;
+}
+table{
+  width: 1366px;
+  tr{
+    th{
+      white-space: nowrap;
+      min-width: 100px;
+      &:nth-child(2){
+        min-width: 300px;
+      }
+      &.sno{
+        min-width: 20px;
+      }
+      &.fourty{
+        min-width: 40px;
+      }
+    }
+  }
+  td,th{
+    padding: 10px 6px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  table{
+    width: 1366px;
+    td,th{
+      padding: 10px 6px;
+      position: relative!important;
+      left: 0!important;
+    }
+  }
+}

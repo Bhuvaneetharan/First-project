@@ -1,0 +1,20 @@
+.table-scroll {
+  height: calc(100vh - 196px);
+}
+.no_image {
+  height: calc(100vh - 254px);
+}
+//-webkit- (Chrome, Safari, newer versions of Opera)
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+//-moz- (Firefox)
+::-webkit-scrollbar {
+  overflow: -moz-scrollbars-none;
+}
+
+//-ms- (Internet Explorer +10)
+::-webkit-scrollbar {
+  -ms-overflow-style: none;
+}

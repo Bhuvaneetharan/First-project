@@ -1,0 +1,115 @@
+.bottom-sheet {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plan {
+  width: 100%;
+  background-color: #0c6dbc;
+  color: #fff;
+
+  h1 {
+    padding: 0px 20px;
+    margin: 7px 0px;
+    font-weight: 400;
+  }
+
+  h5 {
+    padding: 0px 20px;
+    margin: 10px 0px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  h6 {
+    padding: 0px 20px;
+    margin: 10px 0px;
+    font-weight: 400;
+    margin: 0px;
+  }
+
+  .sheet-svg {
+    padding: 0px 30px;
+  }
+
+  .plan-details {
+    padding: 20px 10px 0px;
+  }
+}
+
+.details {
+  width: 100%;
+  position: relative;
+  padding: 40px 10px;
+
+  i.material-icons.clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    /*display: block;*/
+     padding: 4px;
+    /*padding-bottom: 0px; */
+    font-size: 16px;
+    color: #fff;
+    background: #0075bb;
+    border-radius: 50px;
+  }
+}
+li {
+  padding: 5px 0px;
+  list-style: none;
+}
+
+i.material-icons.done {
+  vertical-align: middle;
+  margin-right: 6px;
+  font-size: 20px;
+}
+ul {
+  padding-left: 25px;
+}
+
+::ng-deep .mat-bottom-sheet-container-xlarge {
+  padding: 0px !important;
+}
+::ng-deep .mat-bottom-sheet-container-large {
+  padding: 0px !important;
+}
+::ng-deep .mat-bottom-sheet-container-medium {
+  padding: 0px !important;
+} 
+i.material-icons.clear-xl {
+    display: none;
+  }
+
+@media only screen and (max-width: 600px){
+.bottom-sheet{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+   ::ng-deep .mat-bottom-sheet-container{
+      padding: 0px !important;
+    }
+    i.material-icons.clear-xl {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
+  }
+ i.material-icons.clear {
+   display: none
+  }
+}
+
+
+@media only screen and (max-width: 1180px) and (min-width: 780px){
+    .details{
+      padding: 40px 30px
+    }
+    label {
+        word-break: break-all;
+    }
+}

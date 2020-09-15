@@ -1,0 +1,76 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Scheduled Mail' | translate}}</h4>
+    <div class="date_search">
+      <ejs-daterangepicker color="primary" [allowEdit]='false' id='daterangepicker' type='date'
+        placeholder='Select a range' [startDate]='startDate' [endDate]='endDate' (change)="dateRange($event)"
+        [min]='maxDate' [format]='dateFormat'></ejs-daterangepicker>
+      <div class="searchbox">
+        <input style="background-image: url('../../../../assets/images/search.svg');" id="search" type="text"
+          placeholder="Search" name="search" class="search" (input)="filter($event)">
+      </div>
+    </div>
+  </div>
+
+  <notifier-container></notifier-container>
+  <div class="table-scroll email" (scroll)="onScroll($event)">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> S.No </th>
+        <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Orderid Column -->
+      <ng-container matColumnDef="order_id">
+        <th mat-header-cell *matHeaderCellDef> Order ID </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException== "Trial"'>{{element?.template_data.order_id}}</span><span
+            *ngIf='customerException!="Trial"'>{{element?.template_data.order_id}}</span></td>
+      </ng-container>
+
+      <!-- Subject Column -->
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef> Subject </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException=="Trial"'>{{element?.subject}}</span><span
+            *ngIf='customerException!="Trial"'>{{element?.subject}}</span> </td>
+      </ng-container>
+
+      <!-- Purpose Of Column -->
+      <ng-container matColumnDef="purpose_of">
+        <th mat-header-cell *matHeaderCellDef> Purpose of </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException=="Trial"'>{{element?.template_data.template_purpose}}</span><span
+            *ngIf='customerException!="Trial"'>{{element?.template_data.template_purpose}}</span> </td>
+      </ng-container>
+
+      <!-- Scheduled Date Column -->
+      <ng-container matColumnDef="scheduled_date">
+        <th mat-header-cell *matHeaderCellDef> Scheduled Date </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException=="Trial"'>{{element?.trigger_date | date : 'dd-MMM-yyyy'}} |
+            {{element?.trigger_time }}</span><span
+            *ngIf='customerException!="Trial"'>{{element?.trigger_date | date : 'dd-MMM-yyyy'}} |
+            {{element?.trigger_time }}</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Buyer Email </th>
+        <td mat-cell *matCellDef="let element"><span class='blur'
+            *ngIf='customerException=="Trial"'>{{element?.to_email}}</span><span
+            *ngIf='customerException!="Trial"'>{{element?.to_email }}</span> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="no_image" *ngIf="scheduleData?.length == 0">
+      <img src="../../../../assets/images/no_data.svg">
+      <h5>No data found</h5>
+      <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,344 @@
+<div class="container">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Campaign Managment' | translate}}</h4>
+  </div>
+
+  <mat-card>
+    <mat-horizontal-stepper #stepper>
+<!--1-->
+      <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Purpose of campaign</ng-template>
+          <div class="flex-container">
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label class="black">Campaign Name</mat-label>
+              <input matInput placeholder="Enter Name">
+            </mat-form-field>
+          </p>          
+          <div class="button-top">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>
+        </div>
+        <div class="flex">
+          <mat-card class="card">
+            <div class="image">
+            <img class="image1" src="assets/images/Group 1611.svg">           
+            <p class="text">Seller Review</p>
+          </div>
+          </mat-card>
+          <mat-card class="card">
+            <div class="image">
+            <img class="image1" src="assets/images/Group 1610.svg">
+            <p class="text">Product Review</p>
+            </div>
+          </mat-card>          
+          <mat-card class="card">
+            <div class="image">
+            <img class="image1" src="assets/images/Group 1609.svg">           
+            <p class="text">Promotions</p>
+          </div>
+          </mat-card>
+        </div>
+          <div class="button">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>
+        </form>
+      </mat-step>
+<!--2-->
+      <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Campaign type</ng-template>
+          <div class="button-top-2">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>
+          <div class="Campaign-2">
+            <mat-card class="card-1">
+              <div class="campaign-button">
+              <mat-radio-group class="radio-purpose" aria-label="Select an option">
+                <mat-radio-button color="primary" value="1">Automated email campaigns</mat-radio-button>
+              </mat-radio-group>
+              </div>
+              <div class="image-1">
+              <img class="image1" src="assets/images/Group 1611.svg">           
+            </div>
+            </mat-card>  
+            <mat-card class="card-2">
+              <div class="campaign-button">
+              <mat-radio-group class="radio-purpose" aria-label="Select an option">
+                <mat-radio-button color="primary" value="2">Targeted email campaigns</mat-radio-button>
+              </mat-radio-group>
+              </div>
+              <div class="image-1">
+              <img class="image1" src="assets/images/Group 1610.svg">
+              </div>
+            </mat-card>            
+          </div>
+          <div class="button">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>
+        </form>
+      </mat-step>
+<!--3-->
+      <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Select ASIN/Orders</ng-template>
+          <div class="flex-3">
+            <div class="flex3">
+              <mat-form-field class="form-3" appearance="outline">
+                <mat-label class="black">Channels</mat-label>
+                <mat-select>
+                  <mat-option value="option">Select Channels</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-3" appearance="outline">
+                <mat-label class="black">Orders Status</mat-label>
+                <mat-select>
+                  <mat-option value="option">Status</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-3" appearance="outline">
+                <mat-label class="black">Prior Status</mat-label>
+                <mat-select>
+                  <mat-option value="option">Status</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <div class="button-top">
+                <button class="previous" mat-button matStepperPrevious>Previous</button>
+              <button mat-flat-button color="primary">Next</button>
+            </div>
+          </div>          
+          <div class="asin-orders">
+            <p>Choose your prefered ASIN's for promortion here.A maximum of 3 ASIN's are allowed for one promotion.</p>
+            <p>Selected Asin count : 03</p>
+          </div>
+          <div class="button">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>
+        </form>
+      </mat-step>
+<!--4-->
+      <mat-step [stepControl]="forthFormGroup" errorMessage="Address is required.">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Targeted Customers</ng-template>
+          <div class="flex-3">
+            <div class="flex3">
+              <mat-checkbox class="example-margin" [(ngModel)]="disabled" color="primary">Coupon Available</mat-checkbox>
+              <mat-form-field class="form-3" appearance="outline">
+                <mat-label class="black">Customer Type</mat-label>
+                <mat-select>
+                  <mat-option value="option">Select Type</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <div class="button-top">
+              <button class="previous" mat-button matStepperPrevious>Previous</button>
+              <button class="button-4" mat-flat-button color="primary">Test Mail</button>
+              <button class="button-4" mat-flat-button color="primary">Finish</button>
+            </div>
+          </div>
+      <div class="bothside">
+        <div class="leftside">
+          <p class="promotion">Chose your customer base for promotion</p>
+          <div class="startcard">
+            <mat-card class="card-4_2">
+            <mat-radio-group class="radio-purpose" aria-label="Select an option">
+              <mat-radio-button color="primary" value="2">Top product customer</mat-radio-button>
+            </mat-radio-group>
+              <p class="details">Top Products</p><p class="sub-details">B0789NK23W</p>
+            </mat-card>
+            <mat-card class="card-4_2">
+              <mat-radio-group class="radio-purpose" aria-label="Select an option">
+                <mat-radio-button color="primary" value="2">Select Date</mat-radio-button>
+            </mat-radio-group>
+                <mat-form-field class="form" appearance="outline">
+                  <mat-label class="sub-details">Date to sent e-mail</mat-label>
+                  <input matInput placeholder="Enter Name">
+                </mat-form-field>
+            </mat-card>
+            </div>
+
+          <div class="startcard">
+          <mat-card class="card-4_2">
+          <mat-radio-group class="radio-purpose" aria-label="Select an option">
+            <mat-radio-button color="primary" value="2">Geo Customers</mat-radio-button>
+          </mat-radio-group>
+            <p class="details">State</p><p class="sub-details">Tamilnadu</p>
+          </mat-card>
+          <mat-card class="card-4_2">
+            <mat-radio-group class="radio-purpose" aria-label="Select an option">
+              <mat-radio-button color="primary" value="2" class="radio-purpose-period">Customer Purchase Specific Period</mat-radio-button>
+          </mat-radio-group>
+              <mat-form-field class="form" appearance="outline">
+                <mat-label class="sub-details">Date Range</mat-label>
+                <input matInput placeholder="Enter Name">
+              </mat-form-field>
+          </mat-card>
+          </div>
+        </div>
+        <div class="rightside">
+          <mat-card class="right-card">
+            <p>cdk Editor</p>
+          </mat-card>
+        </div>       
+      </div>
+          <div class="button">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+            <button mat-flat-button color="primary">Next</button>
+          </div>     
+        </form>
+      </mat-step>
+<!--4-->
+<mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
+  <form [formGroup]="secondFormGroup">
+    <ng-template matStepLabel>Targeted Customers</ng-template>
+
+    <div class="flex-3">
+      <div class="flex3">
+        <mat-form-field class="form-3" appearance="outline">
+          <mat-label class="black">Localization</mat-label>
+          <mat-select>
+            <mat-option value="option">Select Localization</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-3" appearance="outline">
+          <mat-label class="black">Customer type</mat-label>
+          <mat-select>
+            <mat-option value="option">Select Type</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="datepicker" appearance="outline">
+          <mat-label class="black">Customer Purchase Specific Period</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>        
+      </div>
+        <div class="button-top">
+          <button class="previous" mat-button matStepperPrevious>Previous</button>
+        <button mat-flat-button color="primary">Next</button>
+      </div>
+    </div>
+    <div class="button">
+      <button class="previous" mat-button matStepperPrevious>Previous</button>
+      <button mat-flat-button color="primary">Next</button>
+    </div>
+  </form>
+</mat-step>
+<!--5-->
+  <mat-step [stepControl]="fifthFormGroup" errorMessage="Address is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Choose Template</ng-template>
+      <div class="flex-5">
+        <div class="flex3">
+          <mat-checkbox class="example-margin" [(ngModel)]="disabled" color="primary">Coupon Available</mat-checkbox>           
+        </div>
+          <div class="button-top-5">
+            <button class="previous" mat-button matStepperPrevious>Previous</button>
+          <button class="button-4" mat-flat-button color="primary">Test Mail</button>
+          <button class="button-4" mat-flat-button color="primary">Finish</button>
+        </div>
+      </div>
+  <div class="bothside">
+    <div class="leftside">
+      <mat-form-field class="form" appearance="outline">
+        <mat-label class="product-details">Date to send email</mat-label>
+        <input matInput placeholder="Enter Name">
+      </mat-form-field>     
+      <p class="promotion">Chose customer purchased products for promotion</p>      
+      <div class="startcard">
+      </div>
+    </div>
+    <div class="rightside">
+      <mat-card class="right-card">
+        <p>cdk Editor</p>
+      </mat-card>
+    </div>  
+  </div>
+      <div class="button">
+        <button class="previous" mat-button matStepperPrevious>Previous</button>
+        <button mat-flat-button color="primary">Next</button>
+      </div>
+    </form>
+    
+  </mat-step>
+<!--5-->
+  <mat-step [stepControl]="forthFormGroup" errorMessage="Address is required.">
+  <form [formGroup]="secondFormGroup">
+    <ng-template matStepLabel>Choose Template</ng-template>
+    <div class="top-5_1">
+      <button class="basic" mat-button>Click here to create a new template</button>
+    <div class="button-top-5">     
+      <button class="previous" mat-button matStepperPrevious>Previous</button>
+      <button mat-flat-button color="primary">Finish</button>
+    </div>
+  </div>
+    
+
+<div class="bothside">
+  <div class="leftside">
+    <mat-card class="card-5_3">
+      <div class="top-5">
+        <div class="feedback">
+          <p>Give Your Seller Feedback</p>
+          <button class="scheduled" mat-button color="primary">Scheduled</button>
+        </div>
+        <div class="button-5">
+          <button class="edit" mat-stroked-button color="primary">Edit</button>
+          <button mat-flat-button color="primary">Preview</button>
+        </div>
+      </div>
+      <div class="delivery">
+      <p>Delivery Settings</p>
+      </div>
+      <div class="Campaign-name">
+        <p class="details">Campaign Name<br><div class="sub-details">Blinders Campaign</div></p>
+        <p class="details">Schedule days from today<br><div class="sub-details">Campaign Name</div></p>
+        <p class="details">Time<br><div class="sub-details">12:10</div></p>
+        <p class="details">Am/Pm<br><div class="sub-details">Am</div></p>
+      </div>
+    </mat-card>
+    <mat-card class="card-5_3_1">
+      <div class="top-5">
+        <div class="feedback">
+          <p>Thank You</p>
+        </div>
+        <div class="button-5">
+          <button class="edit" mat-stroked-button color="primary">Edit</button>
+          <button mat-flat-button color="primary">Preview</button>
+        </div>
+      </div>
+      <div class="delivery">
+        <p>Delivery Settings</p>
+      </div>
+      <div class="Campaign-name">
+        <p class="details">Campaign Name<br><div class="sub-details">-</div></p>
+        <p class="details">Schedule days from today<br><div class="sub-details">-</div></p>
+        <p class="details">Time<br><div class="sub-details">-</div></p>
+        <p class="details">Am/Pm<br><div class="sub-details">-</div></p>
+      </div>
+    </mat-card>   
+  </div>
+  <div class="rightside">
+    <mat-card class="right-card-5">
+      <p>Cdk Editor</p>
+    </mat-card>
+  </div>
+</div>
+  
+    <div class="button">
+      <button class="previous" mat-button matStepperPrevious>Previous</button>
+      <button mat-flat-button color="primary">Finish</button>
+    </div>
+  </form>
+</mat-step>
+
+    </mat-horizontal-stepper>    
+  </mat-card>
+</div>

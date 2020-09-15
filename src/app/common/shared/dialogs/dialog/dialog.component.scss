@@ -1,0 +1,212 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h4 {
+    font-size: 21px;
+    color: #069191;
+    font-weight: 700;
+  }
+
+  
+}
+
+p {
+  font-size: 13px;
+  color: #9a9a9a;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ddd;
+}
+.Registration mat-card-subtitle.mat-card-subtitle {
+    font-size: 12px;
+}
+.mat-card {
+  box-shadow: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0px;
+  display: flex;
+  padding: 1px;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 12px;
+    padding: 0px 0px 10px;
+    margin-bottom: 0px;
+    margin-top: 8px;
+}
+
+.template-btn button{
+  margin: 13px;
+}
+.mat-card-header .mat-card-subtitle:not(:first-child) {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-left: 450px;
+  margin-top: -30px;
+}
+.checkbox{
+    margin-left: 160px;
+    margin-right: 0;
+    margin-top: 8px;
+}
+
+.template-btn {
+  text-align: center;
+  padding: 30px 0px 0px;
+}
+
+.Registration {
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  margin: 6px 0px;
+  box-shadow: 0px 8px 8px -3px #d1d1d1a6;
+}
+.Registration ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 20px;
+}
+
+.Registration ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0px 0px;
+  border-top: 0px;
+}
+
+.Registration ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.Registration ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border: none;
+}
+.Registration ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border: none;
+}
+
+.Registration ::ng-deep .mat-form-field-infix{
+  width: 520px
+}
+.Registration input.mat-input-element {
+    margin-top: -.0625em;
+    font-size: 13px;
+}
+
+.table-scroll {
+  overflow: auto;
+  // height: calc(100vh - 375px);
+   height: 45vh;
+  border-radius: 0px !important;
+}
+
+.table-scroll ::ng-deep .mat-card-header-text {
+  width: 420px;
+}
+//-webkit- (Chrome, Safari, newer versions of Opera)
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+//-moz- (Firefox)
+::-webkit-scrollbar {
+  overflow: -moz-scrollbars-none;
+}
+
+//-ms- (Internet Explorer +10)
+::-webkit-scrollbar {
+  -ms-overflow-style: none;
+}
+
+i.material-icons.clear {
+  position: absolute;
+    top: -24px;
+    right: -10px;
+    padding: 4px;
+    /*padding-bottom: 0px; */
+    font-size: 16px;
+    color: #fff;
+    background: #0075bb;
+    border-radius: 50px;
+}
+
+.asin-modal {
+  position: relative;
+}
+
+.table-scroll ::ng-deep .mat-card-header-text {
+  width: 420px;
+}
+ /*.skipnow.mat-raised-button.mat-primary {
+    border: 1px solid #3f51b5;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50px;
+    line-height: 24px;
+    cursor: pointer;
+    color: #3f51b5;
+    width: 80px;
+    background: #fff;
+} */
+
+ .submit.mat-raised-button.mat-primary {
+    background: #4866a8;
+    font-size: 12px;
+    font-weight: 700;
+    // border-radius: 50px; 
+    line-height: 24px;
+    cursor: pointer;
+    color: #fff;
+    width: 100px;
+    padding: 3px 10px;
+    
+}
+// .close.mat-raised-button.mat-primary {
+//   background-color: #01b075;
+//   font-size: 12px;
+//   font-weight: 700;
+//   // border-radius: 50px; 
+//   line-height: 24px;
+//   cursor: pointer;
+//   color: #fff;
+//   width: 100px;
+//   padding: 3px 10px;
+  
+// }
+
+.no-data.ng-star-inserted {
+  text-align: center;
+}
+@media only screen and (max-width: 1280px) and (min-width: 768px){
+.table-scroll {
+  overflow: auto;
+  height: 31vh;
+  border-radius: 0px !important;
+}
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 1280px){
+.table-scroll {
+  overflow: auto;
+  height: 54vh;
+  border-radius: 0px !important;
+}
+}
+
+.search{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h5 {
+    font-size: 14px;
+    color: #2b7fc3;
+  }
+}
+
+.searchbox {
+    margin-bottom: 1rem;
+}
+.mat-card-content>:last-child:not(.mat-card-footer), .mat-card>:last-child:not(.mat-card-footer) {
+  margin-top: 13px; 
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="93" height="92.642" viewBox="0 0 93 92.642">
+  <g id="clock_1_" data-name="clock (1)" transform="translate(-0.002 0)">
+    <g id="Group_1540" data-name="Group 1540" transform="translate(0.002 0)">
+      <g id="Group_1539" data-name="Group 1539" transform="translate(0 0)">
+        <path id="Path_741" data-name="Path 741" d="M2.726,43.607a2.719,2.719,0,0,1,2.725,2.714A40.986,40.986,0,1,0,26.892,10.389L30.3,13.782a2.713,2.713,0,0,1-1.926,4.633H15.335A2.719,2.719,0,0,1,12.61,15.7V2.714A2.726,2.726,0,0,1,17.261.8L22.9,6.408a46.653,46.653,0,0,1,56.487,7.16A46.321,46.321,0,0,1,46.5,92.643,46.411,46.411,0,0,1,0,46.321,2.719,2.719,0,0,1,2.726,43.607Z" transform="translate(-0.002 0)" fill="#fbbe3c"/>
+      </g>
+    </g>
+    <g id="Group_1542" data-name="Group 1542" transform="translate(26.3 26.164)">
+      <g id="Group_1541" data-name="Group 1541">
+        <path id="Path_742" data-name="Path 742" d="M243.717,162.044h14.728V147.315a2.714,2.714,0,0,1,5.428,0v17.443a2.714,2.714,0,0,1-2.714,2.714H243.717a2.714,2.714,0,0,1,0-5.428Z" transform="translate(-241.003 -144.601)" fill="#fbbe3c"/>
+      </g>
+    </g>
+  </g>
+</svg>

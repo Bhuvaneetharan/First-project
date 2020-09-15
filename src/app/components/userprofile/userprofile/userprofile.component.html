@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'User Profile' | translate}}</h4>
+  
+     </div>
+   <div class="registration">
+
+  <div class="plan row d-flex align-item-center  mb-2">
+    <notifier-container></notifier-container>
+      <form [formGroup]="profileForm" class="form_fields_wrapper">
+        <div class="form_field">
+          <div class="padding">
+          <h3><span class="material-icons users">perm_identity</span>{{'User Info' | translate}}</h3>
+            
+                  <mat-form-field appearance="outline">
+                    <mat-label>{{'Amazon Seller Name' | translate}} <span class="red">*</span></mat-label>
+                    <input matInput placeholder="Enter Amazon Seller Name" formControlName="sellerName" (change)="buttonEnable()">
+                    <mat-error *ngIf="profileForm.controls['sellerName'].errors?.required"> {{'Seller name cannot be empty' | translate}}
+                    </mat-error>
+                  </mat-form-field>
+
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>{{'Your Name' | translate}} <span class="red">*</span> </mat-label>
+                    <input matInput placeholder="Enter Your Name" formControlName="name" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpace($event)' maxlength="20" (change)="buttonEnable()">
+                    <mat-error *ngIf="profileForm.controls['name'].errors?.required">{{'Your name cannot be empty' | translate}}
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>{{'Email' | translate}}</mat-label>
+                    <input matInput placeholder="Enter Email ID" formControlName="email" readonly>
+                  </mat-form-field>
+            
+              
+              
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Mobile Number' | translate}}</mat-label>
+                  <input matInput placeholder="Enter Mobile No" formControlName="mobileNo" maxlength="10"
+                    (keypress)="keypress.keypress($event)" (change)="buttonEnable()">
+                  <mat-error *ngIf="profileForm.controls['mobileNo'].errors?.required">{{'Mobile number cannot be empty' | translate}}
+                  </mat-error>
+                  <mat-error *ngIf="profileForm.controls['mobileNo'].errors?.pattern">{{'Please remove whitespaces' | translate}}
+                  </mat-error>
+                  <mat-error *ngIf="profileForm.controls['mobileNo'].errors?.minLength">{{'Please enter 10 Digits' | translate}}
+                  </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Company Name' | translate}} <span class="red">*</span></mat-label>
+                  <input matInput placeholder="Enter Company Name" formControlName="companyName" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpaceCompany($event)' maxlength="30" (change)="buttonEnable()">
+                  <mat-error *ngIf="profileForm.controls['companyName'].errors?.required">{{'GST Company Name cannot be empty' | translate}}
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>GSTIN <span class="red">*</span></mat-label>
+                  <input matInput placeholder="Enter GSTIN" formControlName="gstIn" (change)="buttonEnable()">
+                  <mat-error *ngIf="profileForm.controls['gstIn'].errors?.required">{{'GSTIN cannot be empty' | translate}}</mat-error>
+                  <mat-error *ngIf="profileForm.controls['gstIn'].errors?.pattern">{{'Please enter valid GST Number' | translate}}</mat-error>
+                </mat-form-field>
+
+                </div>
+        </div>
+      <div class="form_field">
+        <div class="padding">
+        <h3><span class="material-icons call">call</span>{{'Contact Details' | translate}}</h3>
+         
+            <mat-form-field appearance="outline">
+                <mat-label>{{'Address' | translate}} <span class="red">*</span></mat-label>
+                <input matInput formControlName="address" placeholder="Enter Address" (keydown)='firstnoSpaceAddress($event)' maxlength="50" (change)="buttonEnable()">
+                <mat-error *ngIf="profileForm.controls['address'].errors?.required">{{'Address cannot be empty' | translate}}</mat-error>
+            </mat-form-field>
+
+     
+            
+            <mat-form-field appearance="outline">
+              <mat-label>{{'Country' | translate}} <span class="red">*</span></mat-label>
+              <input matInput placeholder="Enter Country" formControlName="country" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpaceCountry($event)' maxlength="20" (change)="buttonEnable()">
+              <mat-error *ngIf="profileForm.controls['country'].errors?.required">{{'Country cannot be empty' | translate}}
+              </mat-error>
+            </mat-form-field>
+            
+            
+            <mat-form-field appearance="outline">
+              <mat-label>{{'City' | translate}} <span class="red">*</span></mat-label>
+              <input matInput placeholder="Enter City " formControlName="city"  (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpaceCity($event)' maxlength="20" (change)="buttonEnable()">
+              <mat-error *ngIf="profileForm.controls['city'].errors?.required">{{'City cannot be empty' | translate}}</mat-error>
+            </mat-form-field>
+     
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'State' | translate}} <span class="red">*</span></mat-label>
+                <!-- <mat-label>Favorite food</mat-label> -->
+                <mat-select placeholder="Enter State" formControlName="state" (change)="buttonEnable()">
+                  <mat-option *ngFor="let state of states" [value]="state">
+                    {{state}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+            <!-- (change)="pincode($event.target.value)" -->
+            <mat-form-field appearance="outline">
+              <mat-label>{{'Pincode' | translate}} <span class="red">*</span></mat-label>
+              <input matInput placeholder="Enter Pincode" formControlName="pincode" maxlength="6"
+                (keypress)="keypress.keypress($event)" (change)="buttonEnable()">
+              <mat-error *ngIf="profileForm.controls['pincode'].errors?.required">{{'Pincode cannot be empty' | translate}}
+              </mat-error>
+              <mat-error *ngIf="profileForm.controls['pincode'].errors?.minlength">{{'Please enter six digit pincode' | translate}}
+              </mat-error>
+            </mat-form-field>  
+        </div>
+      </div>
+    </form>    
+  </div>
+</div>
+<button mat-raised-button color="primary" class="submit" [disabled]="changeEnable" (click)="update(profileForm)"><i class="material-icons sync">
+     update
+    </i>{{'Update Profile' | translate}}</button>
+    
+
+
+<!-- <div>
+  <h4 (click)="changePassword()">Click here to change your password</h4>
+</div> -->
+
+<div
+    style="position: fixed; width:100%; height: 100%; display: flex; align-items: center; justify-content: center;top:0;left: 0;background-color: transparent"
+    *ngIf="loader == true">
+    <img src="/assets/images/728.gif" alt="Image">
+  </div>
+</div>

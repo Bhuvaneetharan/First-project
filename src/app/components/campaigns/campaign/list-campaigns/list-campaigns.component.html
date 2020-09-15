@@ -1,0 +1,88 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'campaigns' | translate}}</h4>
+    <button mat-raised-button color="primary" (click)="addCampaign()">+ {{'Create Campaign' | translate}}</button>
+  </div>
+  <div class="note">
+    <ul>
+      <li>{{'camp_note_one' | translate}}</li>
+      <li>{{'camp_note_two' | translate}}</li>
+    </ul>
+  </div>
+<notifier-container></notifier-container>
+<div class="table_container">
+  <div class="table-scroll repeat-table" (scroll)="onScroll($event)">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-0">
+      <!-- C Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Campaign Name </th>
+        <td mat-cell *matCellDef="let element"> {{element?.campaign_name}} </td>
+      </ng-container>
+
+      <!-- Mail Column -->
+      <ng-container matColumnDef="mail">
+        <th mat-header-cell *matHeaderCellDef> Purpose of Campaign </th>
+        <td mat-cell *matCellDef="let element"> {{element?.template_purpose}} </td>
+      </ng-container>
+
+      <!-- For Column -->
+      <ng-container matColumnDef="for">
+        <th mat-header-cell *matHeaderCellDef> Email Campaign For </th>
+        <td mat-cell *matCellDef="let element"> {{element?.campaign_purpose}} </td>
+      </ng-container>
+
+      <!-- Sent Column -->
+      <ng-container matColumnDef="channel">
+        <th mat-header-cell *matHeaderCellDef> Channel </th>
+        <td mat-cell *matCellDef="let element"> {{element?.campaign_channels}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Campaign created date </th>
+        <td mat-cell *matCellDef="let element">{{element?.updated_at | date : 'dd-MMM-yyyy'}}</td>
+      </ng-container>
+
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Edit / Delete  </th>
+        <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+          <button mat-icon-button [disabled]="element?.campaign_purpose =='Promotion'" (click)="editCampaign(element?.id)">
+            <mat-icon><span class="material-icons">create</span></mat-icon>
+          </button>
+          <button mat-icon-button (click)="delete(element?.id)">
+            <mat-icon><span class="material-icons">clear</span></mat-icon>
+          </button>
+         
+
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td class="tab-td_Detail" mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-description">
+              <p *ngIf="customerException != 'Trail'">{{'Scheduled' | translate}}: {{campaignExpand?.scheduled || '0'}} | {{'Sent' | translate}}: {{campaignExpand?.send || '0'}} | {{'Delivered' | translate}} :
+                {{campaignExpand?.delivered || '0'}} | {{'Opened' | translate}}: {{campaignExpand?.open || '0'}} | {{'Clicked' | translate}}:
+                {{campaignExpand?.click || '0'}}</p>
+                <p style="border-left:3px solid green;" *ngIf="customerException == 'Trail'"><span style="margin-left: 7px;">Upgrade to premium plan to view open and click counts</span></p>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element; expand(element?.id)">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <div class="no_image" *ngIf="campaignList?.length == 0">
+      <img src="../../../../assets/images/no_data.svg">
+    <h5>No data found</h5>
+    <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+    </div>
+  </div>
+</div>
+</div>

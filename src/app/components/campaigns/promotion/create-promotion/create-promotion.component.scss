@@ -1,0 +1,137 @@
+.page_title{
+    display: flex;
+    align-items: center;
+    button{
+        margin-right: 6px;
+    }
+}
+.fields_wrapper {
+    display: flex;
+    align-items: center;
+    margin: 30px 0 0;
+    justify-content: space-between;
+}
+.fields{
+    display: flex;
+    align-items: center;
+}
+.state{
+    float:right;
+}
+.create_promotions_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: #fff;
+    margin-bottom: 25px;
+    > div {
+        width: calc(100% / 1);
+        .padding{
+            padding: 0 30px 30px;
+        }
+        .note{
+            background: #f2f8ff;
+        }
+        &.promotion_des{
+            .padding{
+                padding: 30px 30px 0;
+                background: #fff;
+                border-radius: 4px;
+            }   
+            mat-form-field{
+                margin-right: 20px;
+                max-width: 400px;
+                min-width: 280px;
+                width: 100%;
+            }
+        }
+        &.editor{
+            
+            border-left: 1px solid #eee;
+            label{
+                margin-bottom: 20px;
+                display: block;
+            }
+            mat-radio-button{
+                margin-right: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+// mat-form-field{
+//     width: 100%;
+// }
+.actions{
+    text-align: right;
+    margin-bottom: 30px;
+}
+.field{
+    margin-bottom: 20px;
+    .pro-label{
+        font-size: 12px;
+    }
+    span.slide_content{
+        margin-left: 20px;
+        font-size: 12px;
+        mat-slide-toggle{
+            margin: 0 10px;
+        }
+    }
+}
+.actions{
+    // margin-bottom: 20px;
+}
+.radio{
+    label{
+        width: 100%;
+        display: block;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    mat-radio-group{
+        display: flex;
+    }
+    margin-bottom: 20px;
+    mat-radio-button{
+        margin-right: 20px;
+    }
+}
+.promo-date{
+    border: 1px solid #eee;
+    padding: 9px 20px;
+}
+.guidelines{
+    float: right;
+}
+.base_promotion{
+    margin-top: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .create_promotions_wrapper {
+        > div {
+            width: calc(100% / 1);
+        }
+        .flex-center ,.fields_wrapper{
+            flex-direction: column;
+            .fields{
+                width: 100%;
+                flex-direction: column;
+                .field{
+                    width: 100%;
+                }
+            }
+            .field{
+                width: 100%;
+            }
+        }
+        .state{
+            float: none;
+        }
+        .promo-date{
+            border: none; 
+            padding: 0; 
+            width: 100%;
+        }
+    }
+}

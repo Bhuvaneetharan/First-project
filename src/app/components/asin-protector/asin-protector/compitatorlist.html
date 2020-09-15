@@ -1,0 +1,52 @@
+
+<style>
+  .dialog  .mat-card-avatar img{
+    width: 100%;
+  }
+  /* ::ng-deep.mat-card-header-text{
+    margin-left: 20px!important;
+  } */
+</style>
+
+<h2 mat-dialog-title>Counterfeits</h2>
+<!-- <i class="material-icons clear" (click)="close()">clear</i> -->
+<mat-card class="example-card selected_card">
+  <mat-card-header>
+    <div mat-card-avatar style="margin-right: 20px;"><img style="width: 100%;" class="product-img" [src]="data[0]?.inventory_items[0].small_image"></div>
+    <mat-card-title>{{data[0]?.inventory_items[0].title}}</mat-card-title>
+    <mat-card-subtitle>SKU :{{data[0]?.sku}} <span class="asin">ASIN :{{data[0]?.asin}}</span></mat-card-subtitle>
+  </mat-card-header>
+  <mat-dialog-actions align="end">
+    <a mat-button color="primary" (click)='report(data[0].asin)' [href]="'https://www.amazon.in/report/infringement?'" target="_blank" >Report</a>
+  </mat-dialog-actions>
+<mat-card-actions>
+
+  <!-- <button mat-button (click)='review(data?.id)'>Counterfliters</button> -->
+  <!-- <a [href]="'https://www.amazon.in/report/infringement?'" target="_blank">Action</a> -->
+  <!--  <a [href]="'https://www.amazon.in/gp/offer-listing/'+data?.asin " target="_blank">Action</a> -->
+</mat-card-actions>
+</mat-card>
+<mat-dialog-content class="mat-typography">
+<div class="mat_card_scroll">
+<mat-card class="dialog_card" *ngFor='let i of products'>
+  <mat-card-header>
+    <!-- <mat-card-title>{{i.asin}}</mat-card-title> -->
+  </mat-card-header>
+  <mat-card-content>
+    <h6 class="user"><span class="user-icon"><i class="material-icons users">perm_identity</i></span>{{i.seller_name}}</h6>
+    <div class="shipping ">
+    <p>Shipping time: {{i.shipping_time}}</p>
+    <!-- <p>Feedback Rating: {{i.feedback_rating}}</p> -->
+    <!-- <p>Feedback Count: {{i.feedback_count}}</p> -->
+    <p>Product price: {{i.product_price}}</p>
+    <p>Shipping price: {{i.shipping_price}}</p>
+  </div>
+  </mat-card-content>
+</mat-card>
+</div>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->
+

@@ -1,0 +1,272 @@
+<!-- testing -->
+
+<div class="login_wrapper_main">
+  <div class="login_type_wrapper">
+    <div class="anime_Wrapper_in">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <div class="owl_img_content" style="background-image: url('../../../../assets/images/login-1.jpg');">
+            <!-- <h1>Solicit the reviews from buyers</h1>
+              <span>Allow your buyers to bring more future buyers.</span> -->
+          </div>
+          <img src="">
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="owl_img_content" style="background-image: url('../../../../assets/images/login-2.jpg');">
+            <!-- <h1>Be a Proactive seller</h1>
+              <span>Take charge to receive your seller feedback and product reviews.</span> -->
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="owl_img_content" style="background-image: url('../../../../assets/images/login-3.jpg');">
+            <!-- <h1>Set a key for continued business growth</h1>
+              <span>Accelerate your seller rating with automated email campaigns.</span> -->
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+      <!-- <div class="logo_wrapper">
+          <img src="assets/images/im-logo.png">
+        </div>
+        <div class="first-anime word w1" style="background-image: url(../../../../assets/images/login-bg-1.jpg);">
+            <h1>Solicit the reviews from buyers</h1>
+            <span>Allow your buyers to bring more future buyers.</span>
+        </div>
+        <div class="secound_anime word w2" style="background-image: url(../../../../assets/images/login-bg-2.jpg);">
+          
+              <h1>Be a Proactive seller</h1>
+              <span>Take charge to receive your seller feedback and product reviews.</span>
+          
+        </div>
+        <div class="third anime word w3">
+              <h1>Set a key for continued business growth</h1>
+              <span>Accelerate your seller rating with automated email campaigns.</span>
+        </div> -->
+
+    </div>
+    <div class="sign_up" *ngIf="switch == 'login'">
+      <notifier-container></notifier-container>
+      <div class="form-login">
+
+        <form [formGroup]="loginForm" class="form1" (ngSubmit)="login(loginForm)"
+          (keydown)="keyDownFunction($event,loginForm)">
+          <!-- <p>Already have an account ?</p> -->
+          <h3 class="page_title">Login </h3>
+          
+
+          <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="Enter Email ID" formControlName="email" (keypress)="spaceNotAllowed($event)"
+              (change)="emailChange()" autofocus="" required>
+            <mat-icon matPrefix><i class="material-icons">email</i></mat-icon>
+            <mat-error *ngIf="loginForm.controls['email'].errors?.required">Registered Email ID is required.</mat-error>
+            <mat-error *ngIf="loginForm.controls['email'].errors?.email">Incorrect Email ID. Enter Valid registered
+              Email ID.</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" autofocus>
+            <mat-label>Your Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password" formControlName="password"
+              (keypress)="spaceNotAllowed($event)" (change)="emailChange()" autofocus required>
+            <mat-icon matPrefix><i class="material-icons">vpn_key</i></mat-icon>
+            <mat-icon class="eye" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="loginForm.controls['password'].errors?.required">Password is required </mat-error>
+            <mat-error *ngIf="loginForm.controls['password'].errors?.pattern">Space is not allowed</mat-error>
+          </mat-form-field>
+          <div class="login-invalid">
+            <div class="invalid-msg" *ngIf="loginValidate?.key==false">{{loginValidate?.message}}</div>
+          </div>
+          <div class="login-rem">
+            <mat-checkbox color="primary" class="checkbox" [(ngModel)]="Formdata" [ngModelOptions]="{standalone: true}">
+              Remember me</mat-checkbox>
+            <button mat-button color="primary" class="f_pass" (click)="changeRegister('forgot')">Forgot Password?</button>
+          </div>
+          <button mat-raised-button color="primary" class="submit" [disabled]="loginForm.valid !=true">Login</button>
+
+          <label class="register">Don't have an account ? <a (click)="changeRegister('register')">Register</a></label>
+
+          <div class="reg">
+            <a href="https://www.facebook.com/insightmailertool/" target="_blank">
+              <img src="../../../../assets/images/facebook.svg"><span>facebook</span>
+            </a>
+
+            <a href="https://www.instagram.com/insightmailer/" target="_blank">
+              <img src="../../../../assets/images/instagram.svg"><span>instagram</span>
+            </a>
+          </div>
+        </form>
+
+        <!-- <div class="poweredby">
+            <a href="https://www.insightmailer.com/" target="blank">Powered by Forcesight</a>
+            <h6>Digitellingence to Enchance Sales</h6>
+          </div>
+          <button mat-raised-button color="primary" class="submit" [disabled]="loginForm.valid !=true">Login</button>
+
+          <label class="register">Don't have an account ? <a (click)="changeRegister('true')">Register</a></label>
+
+          <div class="reg">
+            <a href="https://www.facebook.com/insightmailertool/" target="_blank">
+              <img src="../../../../assets/images/facebook.svg"><span>facebook</span>
+            </a>
+            
+            <a href="https://www.instagram.com/insightmailer/" target="_blank">
+              <img src="../../../../assets/images/instagram.svg"><span>instagram</span>
+            </a>
+          </div> -->
+
+
+        <div class="poweredby">
+          <a href="https://www.insightmailer.com/" target="blank">Powered by Forcesight</a>
+          <h6>Digitellingence to Enchance Sales</h6>
+        </div>
+      </div>
+    </div>
+    
+    <div class="new-login active" *ngIf="switch == 'register'">
+      <div class="registration-form">
+        <div class="formGroup-registration">
+          <div class="formGroup">
+            <form [formGroup]="registerForm" class="form2" (ngSubmit)="register(registerForm)">
+              <h3 class="page_title">Create an account
+                <span>Fill up all the fields given below to register</span>
+              </h3>
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>User Name</mat-label>
+                <mat-icon matPrefix><i class="material-icons">person</i></mat-icon>
+                <input matInput placeholder="Name" formControlName="fName"
+                  (keypress)="keypress.dontallowNumbers($event)" (keydown)="firstNoSpace($event, 'fName')"
+                  maxlength="20" required>
+                <mat-error *ngIf="registerForm.controls['fName'].errors?.required">Username is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Amazon seller Name</mat-label>
+                <mat-icon matPrefix><i class="material-icons">how_to_reg</i></mat-icon>
+                <input matInput placeholder="Amazon Seller Name" formControlName="sellerName" required
+                  (keydown)="firstNoSpace($event, 'sellerName')">
+                <mat-error *ngIf="registerForm.controls['sellerName'].errors?.required"> Amazon Seller name is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <mat-icon matPrefix><i class="material-icons">phone_iphone</i></mat-icon>
+                <input matInput placeholder="Mobile No" maxlength="10" formControlName="mobileNo"
+                  (keypress)="keypress.keypress($event)" (focusout)="phone_uniq(registerForm['value']['mobileNo'])"
+                  required>
+                <mat-error *ngIf="registerForm.controls['mobileNo'].errors?.required">Enter valid mobile number
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['mobileNo'].errors?.pattern">Please remove whitespaces
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['mobileNo'].errors?.minlength">Please enter 10 Digits
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Email Id</mat-label>
+                <mat-icon matPrefix><i class="material-icons">email</i></mat-icon>
+                <input matInput placeholder="Email ID" formControlName="email"
+                  (focusout)="email_uniq(registerForm['value']['email'])" (keypress)="keypress.spaceNotAllowed($event)"
+                  required>
+                <mat-error *ngIf="registerForm.controls['email'].errors?.required">Email ID is required</mat-error>
+                <mat-error *ngIf="registerForm.controls['email'].errors?.email">Enter valid Email ID
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <mat-icon matPrefix><i class="material-icons">vpn_key</i></mat-icon>
+                <input matInput [type]="hide1 ? 'password' : 'text'" placeholder="Password" formControlName="password"
+                  (input)="confirmPasswordEnable()" (keypress)="keypress.spaceNotAllowed($event)" onCopy="return false"
+                  required>
+                <mat-icon class="eye" matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.required">Password is required
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.minlength"> Your password length should be
+                  minimum of 8 characters</mat-error>
+                <mat-error
+                  *ngIf="registerForm.controls['password'].errors?.maxlength && !registerForm.controls['password'].errors?.passwordStrength">
+                  Your password length should not be more than maximum of 15 characters</mat-error>
+                
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <mat-icon matPrefix><i class="material-icons">vpn_key</i></mat-icon>
+                <input matInput placeholder="Confirm Password" type="password" formControlName="cpassword"
+                  (keypress)="keypress.spaceNotAllowed($event)" onPaste="return false" required>
+                <mat-error *ngIf="registerForm.controls['cpassword'].errors?.required"> Confirm password is required
+                </mat-error>
+                <mat-error *ngIf="registerForm.hasError('passwordDoNotMatch')">Password doesn't match</mat-error>
+              </mat-form-field>
+              <div class="pwd-info" *ngIf = "registerForm.controls['password'].dirty">
+                <h6>{{'Password must contain' | translate}}:</h6>
+                <ul>
+                  <li [ngClass]="{'obtain': !registerForm.controls['password'].errors?.required}">{{'Cannot be empty' | translate}}</li>
+                  <li [ngClass]="{'obtain': registerForm.controls['password'].errors?.passwordStrength != 'Your password should contain atleast 1 uppercase letter [A-Z]'}">{{'At least 1 upper case letter[A-Z]' | translate}}</li>
+                  <li [ngClass]="{'obtain': registerForm.controls['password'].errors?.passwordStrength != 'Your password should contain atleast 1 lowercase letter [a-z]'}">{{'At least 1 lower case letter[a-z]' | translate}}</li>
+                  <li [ngClass]="{'obtain': registerForm.controls['password'].errors?.passwordStrength != 'Your password should contain atleast 1 number between [0-9]'}">{{'At least 1 number' | translate}}</li>
+                  <li [ngClass]="{'obtain': registerForm.controls['password'].errors?.passwordStrength != 'Your password should contain atleast any 1 of the special characters [!@#$^&_]'}">{{'At least any 1 of the special charaters[$@_^#&!]' | translate}}</li>
+                  <li [ngClass]="{'obtain': !registerForm.controls['password'].errors?.minlength}">{{'At least 8-15 characters in length' | translate}}</li>
+                </ul>
+            </div>
+              <mat-checkbox class="checkbox" [formControl]="termsAndCondition" [disabled]="registerForm.valid !=true">
+                You agree to our <a class="link" (click)="terms()" routerLink="/terms"> Terms & Conditions</a>
+              </mat-checkbox>
+              
+              <div class="login-btn">
+                <button mat-raised-button color="primary" class="submit" type="submit"
+                  [disabled]="termsAndCondition?.value != true || registerForm.valid !=true">Register Now</button>
+              </div>
+              <label class="register">Do you already have an account ? <a
+                (click)="changeRegister('login')">login</a></label>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Forgot -->
+    <div *ngIf="switch == 'forgot' && !requestSent">
+      <div class="Forget_Password form-login">
+          <div class="split right">
+            <notifier-container></notifier-container>
+            <div class="forget-bg">
+              <div class="forgot-logo2">
+                <img src="assets/images/forgot2.png">
+              </div>
+              <div class="login-info">
+                <h3>Yo! Forgot your Password?</h3>
+                <p>Not to worry, we got you!</p>
+                <p>Enter your registered email address and we'll send you instructions to reset your password</p>
+              </div>
+              <mat-form-field appearance="outline" class="">
+                <mat-label>Enter your Registered Email ID</mat-label>
+                <mat-icon matPrefix><i class="material-icons">email</i></mat-icon>
+                <input matInput type="text" placeholder="Enter your Registered Email ID" [formControl]="email"
+                  (keypress)="spaceNotAllowed($event)" required>
+                <mat-error *ngIf="email.errors?.required">Please enter your Registered Email id to send request
+                </mat-error>
+                <mat-error *ngIf="email.errors?.email">Please enter valid Email address</mat-error>
+              </mat-form-field>
+              
+
+              <div class="login-btn">
+                <button mat-button color="primary" (click)="changeRegister('login')">Return to Login</button>
+                <button mat-raised-button color="primary" (click)="sendReq(email)">Send Request</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="success_wrapper" *ngIf="requestSent">
+      <div class="success">
+          <img src="../../../../assets/images/successs.svg">
+            <h3>Request Sent</h3>
+            <p>We have sent password reset link to your Registered Email id. </p>
+            <p> Kindly check your Email to reset your Password.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

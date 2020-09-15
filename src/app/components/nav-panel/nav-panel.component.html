@@ -1,0 +1,102 @@
+<mat-toolbar *ngIf="navService.visible">
+  <div class="navigation_flex">
+    <div class="image">
+      <a matTooltip="Home" routerLink="/dashboard" class="logo">
+        <img src="assets/images/N-Insight_mailer.png">
+      </a>
+      <button (click)="clickEvent()" mat-icon-button color="warn" class="responsive_menu"
+        aria-label="Example icon button with a menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="menu" [ngClass]="status ? 'slide_in' : 'slide_back'">
+      <notifier-container></notifier-container>
+      <button mat-button routerLink="./dashboard" routerlinkactive="active">{{ 'dashboard' | translate }}</button>
+
+      <button mat-button [matMenuTriggerFor]="inventory">{{ 'inventory' | translate }} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #inventory="matMenu">
+        <button mat-menu-item routerLink="./inventory">{{ 'stock management' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'self life management' | translate }}</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="orders">{{ 'orders' | translate }} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #orders="matMenu">
+        <button mat-menu-item routerLink="./orders">{{ 'order history' | translate }}</button>
+        <button mat-menu-item routerLink="./returns">{{ 'product return management' | translate }}</button>
+        <button mat-menu-item
+          routerLink="./reviewsfeedback/sellerreview">{{ 'feedback management' | translate }}</button>
+        <button mat-menu-item routerLink="./orders/repeatedCustomers">{{ 'repeated customer' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'claims' | translate }}</button>
+
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="products">{{ 'products' | translate }} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #products="matMenu">
+        <button mat-menu-item routerLink="./reviewsfeedback/productreview">{{ 'review insight' | translate }}</button>
+        <button mat-menu-item routerLink="./asinprotector">{{ 'asin protector' | translate }}</button>
+        <button mat-menu-item routerLink="./reports">{{ 'product perfomance' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'product research' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'competator monitoring' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'keyword optimizer' | translate }}</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="campaigns">{{ 'campaigns' | translate }} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #campaigns="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="email">{{ 'email scheduled sent' | translate }}</button>
+        <button mat-menu-item
+          routerLink="./campaigns/campaign/listcampaigns">{{ 'campaign management' | translate }}</button>
+        <button mat-menu-item
+          routerLink="./campaigns/template/templatelist">{{ 'template management' | translate }}</button>
+        <button mat-menu-item routerLink="./campaigns/promotion/promotionlist">{{ 'promotion' | translate }}</button>
+      </mat-menu>
+      <mat-menu #email="matMenu">
+        <button mat-menu-item routerLink="./email/schedulemail">{{ 'scheduled email' | translate }}</button>
+        <button mat-menu-item routerLink="./email/sentmail">{{ 'sent email' | translate }}</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="payments">{{ 'payments' | translate }} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #payments="matMenu">
+        <button mat-menu-item routerLink='./reconciliation'>{{ 'account and payment' | translate }}</button>
+        <button mat-menu-item routerLink='./profitabilitydashboard'>{{ 'realtime profitability' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'gst filing' | translate }}</button>
+      </mat-menu>
+    </div>
+    <div class='menu-right'>
+      <button color="primary" mat-button class="langbtn" [matMenuTriggerFor]="channel">
+        <span class="material-icons">language</span>
+        <span class="lang">{{chennals}}</span>
+        <i class="fa fa-caret-down"></i></button>
+      <mat-menu #channel="matMenu">
+          <button mat-menu-item (click)="salesChannel('Amazon')">Amazon</button>
+        <button mat-menu-item (click)="salesChannel('Flipkart')">Flipkart</button>
+      </mat-menu>
+
+      <button mat-button class="name" [matMenuTriggerFor]="lang">
+        <span class="material-icons">language</span>
+        <span class="lang">{{changelang == 'hi' ? 'Hi' : (changelang == 'ta' ? 'Ta' : 'Eng')}}</span>
+        <i class="fa fa-caret-down"></i></button>
+      <mat-menu #lang="matMenu">
+        <button mat-menu-item (click)="translateLang('en')">Eng</button>
+        <button mat-menu-item (click)="translateLang('ta')">Tam</button>
+        <button mat-menu-item (click)="translateLang('hi')">Hin</button>
+      </mat-menu>
+      <button mat-button class="name" [matMenuTriggerFor]="custname">{{custName}} <i
+          class="fa fa-caret-down"></i></button>
+      <mat-menu #custname="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="accSettings">{{ 'account settings' | translate }}</button>
+        <button mat-menu-item routerLink="./changepassword">{{ 'change password' | translate }}</button>
+        <button mat-menu-item (click)="logout()">{{ 'logout' | translate }}</button>
+      </mat-menu>
+      <mat-menu #accSettings="matMenu">
+        <button mat-menu-item routerLink="./userprofile">{{ 'user profile' | translate }}</button>
+        <button mat-menu-item routerLink="./marketplace">{{ 'marketplace settings' | translate }}</button>
+        <button mat-menu-item routerLink="./upgradeplan">{{ 'pricing' | translate }}</button>
+        <button mat-menu-item routerLink="./invoices">{{ 'invoice' | translate }}</button>
+        <button mat-menu-item disabled>{{ 'notification' | translate }}</button>
+      </mat-menu>
+    </div>
+  </div> 
+</mat-toolbar>
+<router-outlet></router-outlet>

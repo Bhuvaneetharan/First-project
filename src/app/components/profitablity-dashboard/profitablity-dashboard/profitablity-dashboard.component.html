@@ -1,0 +1,201 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Realtime Profitability Dashboard' | translate}}</h4>
+    <div class="date_search">
+      <div class="searchbox">
+        <input style="background-image: url('../../../../assets/images/search.svg');" [(ngModel)]="searchValue" id="search" type="text" placeholder="Search" name="search" class="search" (input)="filter($event)">
+      </div>
+      <button mat-raised-button color="primary" (click)="profitView()">{{'Profit Breakdown' | translate}}</button>
+    </div>
+  </div> 
+  <notifier-container></notifier-container>
+      <!-- <h5>Enable Error Log  <span><mat-slide-toggle class="slide" (change)="toggle($event.checked)"></mat-slide-toggle></span></h5> -->
+      <mat-button-toggle-group class="btn-toggle" [(ngModel)]='selectedDaysRange'>
+        <mat-button-toggle value='15' (change)="daysChange('15')">15 D</mat-button-toggle>
+        <mat-button-toggle value='30' (change)="daysChange('30')">1 M</mat-button-toggle>
+        <mat-button-toggle value='60' (change)="daysChange('60')">2 M</mat-button-toggle>
+        <mat-button-toggle value='90' (change)="daysChange('90')">3 M</mat-button-toggle>
+      </mat-button-toggle-group>
+<div class="table-scroll" (scroll)="onScroll($event)">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-0">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position" sticky>
+      <th mat-header-cell *matHeaderCellDef class="sno"> S.No </th>
+      <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="title" sticky>
+      <th mat-header-cell *matHeaderCellDef> Product Name </th>
+      <td mat-cell *matCellDef="let element"> {{element?.title}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef> SKU </th>
+      <td mat-cell *matCellDef="let element"> {{element?.sku}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="total_qty">
+      <th mat-header-cell *matHeaderCellDef> Total Qty </th>
+      <td mat-cell *matCellDef="let element"> {{element?.tot_qty}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="ret_qty">
+      <th mat-header-cell *matHeaderCellDef> Return Qty </th>
+      <td mat-cell *matCellDef="let element"> {{element?.ret_qty}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_qty">
+      <th mat-header-cell *matHeaderCellDef> Net Qty </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_qty }} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="tot_sales">
+      <th mat-header-cell *matHeaderCellDef> Total Sales </th>
+      <td mat-cell *matCellDef="let element"> {{element?.tot_sales | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="tot_ret">
+      <th mat-header-cell *matHeaderCellDef> Total Return </th>
+      <td mat-cell *matCellDef="let element"> {{element?.tot_ret | number:'0.0-2'}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_sales">
+      <th mat-header-cell *matHeaderCellDef> Net Sales </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_sales | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_per_unit">
+      <th mat-header-cell *matHeaderCellDef> Net Per Unit </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_per_unit | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="crt_cost">
+      <th mat-header-cell *matHeaderCellDef> Actual Cost </th>
+      <td mat-cell *matCellDef="let element"> {{element?.crt_cost | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="crt_gst">
+      <th mat-header-cell *matHeaderCellDef> Actual GST </th>
+      <td mat-cell *matCellDef="let element"> {{element?.crt_gst | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="over_cost">
+      <th mat-header-cell *matHeaderCellDef> Over Cost </th>
+      <td mat-cell *matCellDef="let element"> {{element?.over_cost | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="over_gst">
+      <th mat-header-cell *matHeaderCellDef> Over GST </th>
+      <td mat-cell *matCellDef="let element"> {{element?.over_gst | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="commision">
+      <th mat-header-cell *matHeaderCellDef> Commission </th>
+      <td mat-cell *matCellDef="let element"> {{element?.commision | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="shipping">
+      <th mat-header-cell *matHeaderCellDef> Shipping </th>
+      <td mat-cell *matCellDef="let element"> {{element?.shipping | number:'0.0-2'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="channel_per_unit">
+      <th mat-header-cell *matHeaderCellDef> Channel Per Unit </th>
+      <td mat-cell *matCellDef="let element"> {{element?.channel_per_unit | number:'0.0-2'}} </td>
+    </ng-container>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="op_gst">
+      <th mat-header-cell *matHeaderCellDef> Product Tax </th>
+      <td mat-cell *matCellDef="let element"> {{element?.op_gst | number:'0.0-2'}} </td>
+    </ng-container>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="gross_unit_margin">
+      <th mat-header-cell *matHeaderCellDef> Gross Unit Margin </th>
+      <td mat-cell *matCellDef="let element"> {{element?.gross_unit_margin | number:'0.0-2'}} </td>
+    </ng-container>
+
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="tot_cost">
+      <th mat-header-cell *matHeaderCellDef> Total cost </th>
+      <td mat-cell *matCellDef="let element"> {{element?.tot_cost | number:'0.0-2'}} </td>
+    </ng-container>
+
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="tot_gst">
+      <th mat-header-cell *matHeaderCellDef> Total GST </th>
+      <td mat-cell *matCellDef="let element"> {{element?.tot_gst | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_pay_gst">
+      <th mat-header-cell *matHeaderCellDef> Net pay gst </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_pay_gst | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_margin">
+      <th mat-header-cell *matHeaderCellDef> Net margin </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_margin | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="net_pay_gst_unit">
+      <th mat-header-cell *matHeaderCellDef> Net pay gst unit </th>
+      <td mat-cell *matCellDef="let element"> {{element?.net_pay_gst_unit | number:'0.0-2'}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="profit_percentage">
+      <th mat-header-cell *matHeaderCellDef> Profit percentage </th>
+      <td mat-cell *matCellDef="let element"> {{element?.profit_percentage | number:'0.0-2'}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+    <ng-container matColumnDef="profit" stickyEnd >
+      <th mat-header-cell *matHeaderCellDef class="fourty"> Profit View </th>
+      <td mat-cell *matCellDef="let element"><img style="width: 25px;cursor: pointer;" src="assets/images/report.png" (click)="profitView(element?.sku)"> </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="chart" stickyEnd >
+      <th mat-header-cell *matHeaderCellDef class="fourty"> Line Chart </th>
+      <td mat-cell *matCellDef="let element"><img style="width: 25px;cursor: pointer;" src="assets/images/line.png" (click)="viewChart(element?.sku)"> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="no_image" *ngIf="tableData?.length == 0">
+    <img src="../../../../assets/images/no_data.svg">
+    <h5>No data found</h5>
+    <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+  </div>
+</div>
+     
+</div>

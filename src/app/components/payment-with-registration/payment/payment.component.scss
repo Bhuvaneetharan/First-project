@@ -1,0 +1,120 @@
+.payment {
+  width: 64%;
+  padding: 0px 40px;
+}
+
+.registration {
+  display: flex;
+  justify-content: space-between;
+
+  .plan {
+    border-right: 1px solid #ddd;
+    width: 66%;
+    padding: 0px 40px 0px 0px;
+
+    h4 {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.payment-proceed {
+  width: 50%;
+  padding: 0px 40px;
+}
+.box1 {
+  transition: box-shadow 0.3s;
+  border-radius: 0px;
+  border: 1px solid #fff;
+  background: #fff;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  padding: 0px 20px;
+  margin-top: 15px;
+}
+.payment-btn {
+  text-align: right;
+  padding: 30px 0px;
+
+  button.submit.mat-raised-button.mat-warn {
+    margin-right: 16px;
+  }
+}
+
+.details {
+  width: 100%;
+
+  li {
+    list-style: none;
+    padding: 5px 0px;
+  }
+
+  li span {
+    font-weight: 600;
+  }
+}
+button.skipnow.mat-raised-button.mat-primary {
+  margin-right: 25px;
+  font-size: 16px;
+}
+
+button.submit.mat-raised-button.mat-primary {
+  font-size: 16px;
+}
+
+i.material-icons {
+  vertical-align: middle;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+h3 {
+  margin: 7px 0px;
+}
+
+h5 {
+  margin: 10px 0px;
+}
+p {
+  margin: 10px 0px;
+}
+.more {
+  display: flex;
+  justify-content: space-between;
+}
+
+p.click {
+  color: #0c6dbc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px){
+    .registration {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .plan {
+    border-right: 0px;
+    width: 100%;
+    padding: 0px ;
+    }
+    }
+
+    .payment{
+      width: 100%;
+      padding: 0px;
+    }
+    ul {
+    padding: 0px;
+    }
+    .payment-proceed {
+      width: 100%;
+      padding: 0px;
+    }
+    p {
+    margin: 10px 0px;
+    font-size: 13px;
+    }
+    
+}

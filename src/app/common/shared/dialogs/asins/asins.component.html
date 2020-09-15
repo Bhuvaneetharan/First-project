@@ -1,0 +1,44 @@
+<notifier-container></notifier-container>
+
+<!-- <notifier-container></notifier-container> -->
+<h2 mat-dialog-title>Total ASIN : {{totalCount}}</h2>
+
+<mat-dialog-content class="mat-typography">
+<div class="dialog_sub_header">
+  <h5> {{count || 0}} ASIN Selected
+    <p>Choose your preferred ASIN for Promotion here. <strong>A maximum of 3 ASINs are allowed for one Promotion.</strong> </p>
+  </h5>
+  <div class="date_search">
+    <div class="searchbox">
+      <input id="search" type="text" placeholder="Search" [(ngModel)]="searchValue" name="search" class="search" (input)="filter($event)">
+    </div>
+  </div>
+</div>
+<div class="dialog_content table-scroll" (scroll)="onScroll($event)">
+  <!-- <div class="no_image" *ngIf="tableData?.length == 0">
+    <img src="../../../../assets/images/no_data.svg">
+    <h5>No data found</h5>
+    <p>No matching ASIN found</p>
+  </div> -->
+  <mat-card class="example-card" *ngFor="let data of listData">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"> <img mat-card-avatar src="{{data?.small_image}}"></div>
+      <mat-card-title>{{data?.title}}</mat-card-title>
+      <mat-card-subtitle>{{data?.asin}} </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-checkbox class="checkbox" [(ngModel)]="data.review_flag" (change)="SelectedAsins($event, data?.asin)"
+        [disabled]="count>=3 && !data.review_flag" [checked]="data.review_flag"></mat-checkbox>
+    </mat-card-content>
+  </mat-card>
+   <div class="no_image" *ngIf="listData?.length == 0">
+    <img src="../../../../assets/images/no_data.svg">
+      <h5>No data found</h5>
+      <p>Data may not load if there is poor internet connectivity, Try Refreshing the page</p>
+  </div> 
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="clear()">close</button>
+  <button mat-raised-button class="submit" color="primary" (click)="confirm()" [disabled]="!listData?.length">Confirm</button>
+</mat-dialog-actions>

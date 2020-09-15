@@ -1,0 +1,64 @@
+<!-- <mat-toolbar>Marketplace</mat-toolbar> -->
+<notifier-container></notifier-container>
+<div class="container">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">{{'Marketplace Settings' | translate}}</h4>
+  </div>  
+  <div class="marketPlace">
+    <div class="plan">
+     
+        <h3>{{'Kindly Sync your Amazon account by yourself by following the below steps' | translate}}.</h3>
+        <ul>
+          <li>
+            <strong>{{'Step' | translate}} 1 :</strong>
+            <a href="https://sellercentral.amazon.in/gp/mws/registration/register.html?signInPageDisplayed=1&developerName=Insight Mailer&devMWSAccountId=8066-9756-3350"
+          target="_blank"> {{'Click here' | translate}} </a> {{'to manually begin the process' | translate}}. 
+          </li>
+          <li>
+            <strong>{{'Step' | translate}} 2 :</strong>
+            {{'Copy and paste the Seller ID and MWS AUTH TOKEN on the respective fields and sync the account' | translate}}.
+          </li>
+          <li>
+            <strong>{{'Step' | translate}} 3 :</strong>
+            {{'Verify the Amazon web services email which you received' | translate}}.
+          </li>
+        </ul>
+        <p class="note">
+          <strong>{{'Note' | translate}}:</strong>  {{'Have not received amazon verification Email yet?' | translate}} 
+            <a (click)="resendCode()">{{'Click here' | translate}}</a> {{'to resend it.
+          Once your account started to get sync, you will get notified through email' | translate}}.</p>    
+      
+    </div>
+    <div class="form">
+    
+        <form [formGroup]="marketPlace" (ngSubmit)="sync(marketPlace)">
+          
+          <mat-form-field appearance="outline">
+            <mat-label>{{'Seller ID' | translate}}*</mat-label>
+            <input matInput placeholder="Enter sellerId" (keypress)="spaceNotAllowed($event)" formControlName="sellerId"
+              [readonly]="hide == true" required>
+            <mat-error *ngIf="marketPlace.controls['sellerId'].errors?.required">{{'Seller ID is required' | translate}}</mat-error>
+            <mat-error *ngIf="marketPlace.controls['sellerId'].errors?.pattern">{{'Please remove whitespaces' | translate}}</mat-error>
+
+          </mat-form-field>
+
+          
+          <mat-form-field appearance="outline">
+            <mat-label>{{'Amazon MWS Authentication Token' | translate}}*</mat-label>
+            <input matInput placeholder="Enter MWS Authentication Token" (keypress)="spaceNotAllowed($event)"
+              formControlName="MWS" [readonly]="hide == true" required>
+            <mat-error *ngIf="marketPlace.controls['MWS'].errors?.required">{{'MWS Authentication Token is required' | translate}}</mat-error>
+            <mat-error *ngIf="marketPlace.controls['MWS'].errors?.pattern">{{'Please remove whitespaces' | translate}}</mat-error>
+          </mat-form-field>
+
+          <div class="market-btn">
+
+            <button mat-raised-button class="submit" type="submit" color="primary" *ngIf="hide == false"> <i
+                class="material-icons sync"> cached </i> {{'Sync Account' | translate}}</button>
+            <button mat-raised-button class="submit" (click)="enableEdit()" color="primary" *ngIf="hide == true">{{'Are you sure want to edit' | translate}}</button>
+          </div>
+        </form>
+   
+    </div>
+  </div>
+</div>

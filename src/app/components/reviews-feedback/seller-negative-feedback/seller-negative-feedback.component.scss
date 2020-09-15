@@ -1,0 +1,49 @@
+
+.seller_feedback_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .feedback{
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid #eee;
+        width: calc(98% / 2);
+        margin-bottom: 1%;
+        .padding{
+            padding: 20px;
+        }
+        h5{
+            font-size: 12px;
+            font-weight: 400;
+            &:first-child {
+                background: #0054fc21;
+                font-size: 12px;
+                color: #0054fc;
+                font-weight: 600;
+                padding: 10px;
+            }
+        }
+        .ratings{
+            margin-top: 10px;
+            margin-bottom: 6px;
+        }
+        .feedback_para{
+            font-size: 12px;
+            margin-bottom: 20px;
+            p{
+                opacity: .7;
+            }
+        }
+    }
+}
+::ng-deep.star{
+    font-size: 25px !important;
+    width: 25px!important;
+}
+@media only screen and (max-width: 768px) {
+    .seller_feedback_wrapper {
+        .feedback{
+            width: calc(100% / 1);
+        }
+    }
+}

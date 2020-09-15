@@ -1,0 +1,317 @@
+<div class="container">
+	<div class="title_wrapper flex_between">
+		<div class="flex_between">
+			<h4 class="page_title">
+				<button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+				<mat-icon (click)="back()">arrow_back</mat-icon>
+				</button>
+				{{'Profit Breakdown' | translate}}
+			</h4>
+			<mat-button-toggle-group class="btn-toggle" [(ngModel)]='selectedDaysRange'>
+				<mat-button-toggle value='15' (change)="daysChange('15')">15 D</mat-button-toggle>
+				<mat-button-toggle value='30' (change)="daysChange('30')">1 M</mat-button-toggle>
+				<mat-button-toggle value='60' (change)="daysChange('60')">2 M</mat-button-toggle>
+				<mat-button-toggle value='90' (change)="daysChange('90')">3 M</mat-button-toggle>
+			</mat-button-toggle-group>
+			
+		</div>
+		<img style="width: 30px;cursor: pointer;" src="assets/images/line.png" matTooltip="view line chart" (click)="viewChart()" *ngIf="!lineChart">
+		<img style="width: 25px;cursor: pointer;" src="assets/images/report.png" matTooltip="view profit chart" (click)="profitView()" *ngIf="lineChart">
+	  </div>
+	  <!-- profit breakdown chart -->
+	  <div class="profit_breakdown_wrapper" *ngIf="!lineChart">
+		<div class="deck total_sales">
+			<div class="profit_breakdown_header">
+				<div class="padding">
+					<span>{{'Total Sales' | translate}}</span>
+					<label>&#8377;{{profitChart?.overall_sales | number:'0.0-2'}}</label>
+				</div>
+			</div>
+			<div class="profit_breakdown_content">
+				<div class="padding scroll">
+					<ul class="skill-list">
+						<li class="skill">
+						  	<label>{{'Total PPC Sales' | translate}}</label>			
+							<div class="progress_wrapper">
+						  		<h3>Nunchucks</h3>
+						  		<progress class="skill-1" max="100" value="50">
+									<strong>Skill Level: 50%</strong>
+						  		</progress>
+							</div>
+						  <Span>&#8377;{{profitChart?.PPC_Sales | number:'0.0-2'}}</Span>
+						</li>
+						<li class="skill">
+							<label>{{'Shipping & Giftwrap revenue' | translate}}</label>			
+						  <div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-1" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  </div>
+						<Span>&#8377;{{profitChart?.Shipping_giftwrap | number:'0.0-2'}}</Span>
+					  </li>
+					  <li class="skill">
+						<label>{{'Organic Sales' | translate}}</label>			
+					  <div class="progress_wrapper">
+							<h3>Nunchucks</h3>
+							<progress class="skill-1" max="100" value="50">
+							  <strong>Skill Level: 50%</strong>
+							</progress>
+					  </div>
+					<Span>&#8377;{{profitChart?.Organic_sales | number:'0.0-2'}}</Span>
+				  </li>
+					  </ul>
+				</div>
+			</div>
+		</div>
+		<div class="deck total_cost">
+			<div class="profit_breakdown_header">
+				<div class="padding">
+					<span>{{'Total cost' | translate}}</span>
+					<label>&#8377;{{profitChart?.tot_cost | number:'0.0-2'}}</label>
+				</div>
+			</div>
+			<div class="profit_breakdown_content">
+				<div class="padding scroll">
+					<ul class="skill-list">
+						<li class="skill">
+							<label>{{'GST' | translate}}</label>		
+							<button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="status=!status">
+								<span class="material-icons">keyboard_arrow_down</span>
+							</button>		
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>9,497.64</Span>
+							<ul class="collasible_content" [ngClass]="status ? 'collapse-out' : 'collapse-in'">
+								<li class="flex_between">
+									<label> {{'GST Commition' | translate}}:</label>
+									<label class="acc">&#8377;{{profitChart?.amazon_comm?.gst | number:'0.0-2'}}</label>
+								</li>
+								<li class="flex_between">
+									<label> {{'GST Return' | translate}} :</label>
+									<label class="acc">&#8377;{{profitChart?.amazon_comm?.gst_return || '0'}}</label>
+								</li>
+							</ul>
+						  </li>
+						  <li class="skill">
+							<label>{{'Amazon Commission' | translate}}</label>
+							<button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="status2=!status2">
+								<span class="material-icons">keyboard_arrow_down</span>
+							</button>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>9,497.64</Span>
+							<ul class="collasible_content" [ngClass]="status2 ? 'collapse-out' : 'collapse-in'">
+								<li class="flex_between"> 
+									<label>{{'Fixed Commission' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.commission | number:'0.0-2'}}</label>
+								</li>
+								<li class="flex_between"> 
+									<label>{{'Giftwrap Commission' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.giftwrap_comm | number:'0.0-2'}}</label>
+								</li>
+								<li class="flex_between"> 
+									<label>{{'Fixed Closing' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.closing_fee | number:'0.0-2'}}</label>
+								</li>
+								<li class="flex_between"> 
+									<label>{{'HB Shipping Fees' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.variable_close | number:'0.0-2'}}</label>
+								</li>
+							</ul>
+						  </li>
+						  <li class="skill">
+							<label>{{'Total Return Cost' | translate}}</label>	
+							<button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="status3=!status3"> 
+								<span class="material-icons">keyboard_arrow_down</span>
+							</button>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>9,497.64</Span>
+							<ul class="collasible_content" [ngClass]="status3 ? 'collapse-out' : 'collapse-in'">
+								<li class="flex_between">
+									<label>{{'Return Commission' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.return_comm || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Close' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.return_fix_close || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Refund' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.return_refund || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Shipping Charge' | translate}} </label>
+									<label>&#8377;{{profitChart?.amazon_comm?.ship_charge_back || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Tax' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.ret_tax || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Shipping Tax' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.ret_ship_tax || '0'}}</label>
+								</li>
+								<li class="flex_between">
+									<label>{{'Return Price' | translate}}</label>
+									<label>&#8377;{{profitChart?.amazon_comm?.ret_prince || '0'}}</label>
+								</li>
+							</ul>
+						  </li>
+						  <li class="skill">
+							<label>{{'FBA Shipping Fees' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.fba_delivery | number:'0.0-2'}}</Span>
+						  </li>
+						  <li class="skill">
+							<label>{{'Variable Close' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.variable_close | number:'0.0-2'}}</Span>
+						  </li>
+						  <li class="skill">
+							<label>{{'Unit Cost' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.unitcost | number:'0.0-2'}}</Span>
+						  </li>
+						  <li class="skill">
+							<label>{{'Weight Based' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.weight_based | number:'0.0-2'}}</Span>
+						  </li>
+						  <li class="skill">
+							<label>{{'Tech Fees' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.tech_fee | number:'0.0-2'}}</Span>
+						  </li>
+						  <li class="skill">
+							<label>{{'Shipping Charge' | translate}}</label>			
+						  	<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-2" max="100" value="50">
+								  <strong>Skill Level: 50%</strong>
+								</progress>
+						  	</div>
+							<Span>&#8377;{{profitChart?.amazon_comm?.ship_charge || '0'}}</Span>
+						  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="deck operating_profit">
+			<div class="profit_breakdown_header">
+				<div class="padding">
+					<span>{{'Operating Profit' | translate}}</span>
+					<label>&#8377;{{profitChart?.profit | number:'0.0-2'}}</label>
+				</div>
+			</div>
+			<div class="profit_breakdown_content">
+				<div class="padding scroll">
+					<ul class="skill-list">
+						<li class="skill">
+							<label>{{'Profit Margin' | translate}}</label>			
+					  		<div class="progress_wrapper">
+								<h3>Nunchucks</h3>
+								<progress class="skill-3" max="100" value="50">
+							  		<strong>Skill Level: 50%</strong>
+								</progress>
+					  		</div>
+							<Span>&#8377;{{profitChart?.PPC_Sales | number:'0.0-2'}}</Span>
+				  		</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	  </div>
+	  <!----end of profit breakdown chart-->
+
+	  <!-- profit line chart -->
+	  <div class="profit_breakdown_wrapper" *ngIf="lineChart">
+		<div class="charts" [chart]="chart"></div>
+	  </div>
+	  <!--end of profit line chart-->
+	  <div class="key_metrics">
+		  <h3>{{'Key Metrics' | translate}}</h3>
+		<ul>
+			<li>
+				<img src="../../../../assets/images/Box.svg">
+				<div class="key_content">
+					<label>{{'Units' | translate}}</label>
+					<h2>{{profitChart?.units | number:'0.0-2'}}</h2>
+				</div>
+			</li>
+			<li>
+				<img src="../../../../assets/images/supermarket.svg">
+				<div class="key_content">
+					<label>{{'Orders' | translate}}</label>
+					<h2>{{profitChart?.orders | number:'0.0-2'}}</h2>
+				</div>
+			</li>
+			<li>
+				<img src="../../../../assets/images/report (1).svg">
+				<div class="key_content">
+					<label>{{'Profit' | translate}}</label>
+					<h2>&#8377;{{profitChart?.profit | number:'0.0-2'}}</h2>
+				</div>
+			</li>
+			<li>
+				<img src="../../../../assets/images/growth (1).svg">
+				<div class="key_content">
+					<label>{{'Profit Margin' | translate}}</label>
+					<h2>100%</h2>
+				</div>
+			</li>
+			<li>
+				<img src="../../../../assets/images/career.svg">
+				<div class="key_content">
+					<label>ROI</label>
+					<h2>1000</h2>
+				</div>
+			</li>
+			<li>
+				<img src="../../../../assets/images/sales.svg">
+				<div class="key_content">
+					<label>{{'Gross Sales Adj. for Refunds' | translate}}</label>
+					<h2>&#8377;{{profitChart?.gross_sales_adj | number:'0.0-2'}}</h2>
+				</div>
+			</li>
+		</ul>
+	  </div>
+</div>

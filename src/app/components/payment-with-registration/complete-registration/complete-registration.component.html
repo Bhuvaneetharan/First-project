@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="terms-condition">
+    <div class="condition ">
+      <div>
+        <img style="width: 200px" class="logo" src="assets/images/Login-logo.png">
+        <div class="card_title">
+          <h4 class="page_title"> Complete Your Registration</h4>
+          <p>Choose a preferred plan and complete your registration to send automated email campaign and promotions to your Amazon customers.</p> 
+        </div>
+        <notifier-container></notifier-container>
+        <div class="Registration"> 
+          <div class="form complete">
+            <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+              <mat-form-field appearance="outline">
+                <mat-label>Company Name</mat-label>
+                <input matInput placeholder="Company Name" formControlName="companyName" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpace($event)' maxlength="30">
+                <mat-error *ngIf="registerForm.controls['companyName'].errors?.required">Company Name is required to register
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+               <mat-label>GST Number</mat-label>
+                <input matInput placeholder="GST Number" formControlName="gstNumber" maxlength="15">
+                <mat-error *ngIf="registerForm.controls['gstNumber'].errors?.required">GST Number is required to register
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['gstNumber'].errors?.pattern">Please enter valid GST Number</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="address" appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea matInput placeholder="Address" formControlName="address" (keydown)='firstnoSpaceAddress($event)' maxlength="50"></textarea>
+                <mat-error *ngIf="registerForm.controls['address'].errors?.required">Address is required to register</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+               <mat-label>Country</mat-label>
+              <input matInput placeholder="Country" formControlName="country" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpaceCountry($event)' maxlength="20">
+              <mat-error *ngIf="registerForm.controls['country'].errors?.required">Country is required to register
+              </mat-error>
+            </mat-form-field>
+
+            
+              <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state" placeholder="State">
+                  <!-- <mat-option checked>Select</mat-option> -->
+                  <mat-option *ngFor="let state of states" [value]="state">
+                    {{state}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="City" formControlName="city" (keypress)="keypress.dontallowNumbers($event)" (keydown)='firstnoSpaceCity($event)' maxlength="20">
+                <mat-error *ngIf="registerForm.controls['city'].errors?.required">City is required to register</mat-error>
+              </mat-form-field>
+           <!-- (change)="pincode($event.target.value)" -->
+             <mat-form-field appearance="outline">
+               <mat-label>Pincode</mat-label>
+               <input matInput placeholder="Pincode" maxlength="6" (keypress)="keypress.keypress($event)"
+                  formControlName="pincode">
+               <mat-error *ngIf="registerForm.controls['pincode'].errors?.required">Pincode is required to register
+               </mat-error>
+               <mat-error *ngIf="registerForm.controls['pincode'].errors?.minlength">Please enter six digit pincode
+               </mat-error>
+              </mat-form-field>
+              <div class="reg-btn">
+                <button mat-raised-button class="submit" color="primary">Proceed</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

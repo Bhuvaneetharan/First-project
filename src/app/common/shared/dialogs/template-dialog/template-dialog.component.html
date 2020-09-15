@@ -1,0 +1,42 @@
+<notifier-container></notifier-container>
+
+<div class="dialogue">
+  <div class="header">
+
+    <h4>Select Your Template</h4>
+
+    <!-- <h5> 05 ASIN Selected</h5> -->
+
+  </div>
+  <div class="Template">
+  </div>
+  <div class="Radio">
+    <mat-radio-group aria-label="Select an option" (change)="purpose($event)">
+      <mat-radio-button class="radio" value="0" [checked]="true">Feedback Request</mat-radio-button>
+      <mat-radio-button class="radio" value="1">Review Request</mat-radio-button>
+      <mat-radio-button class="radio" value="2">Custom</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <p>Choose the below available templates. </p>
+  <div class="table-scroll" (scroll)="onScroll($event)">
+    <mat-card class="example-card" *ngFor="let data of templateData">
+      <mat-card-header>
+
+        <mat-card-title>{{data?.template_subject}}</mat-card-title>
+        <mat-card-subtitle>{{data?.template_purpose}}<br><span>{{data?.mail_trigger_on}} after
+            {{data?.mail_trigger_days}} days</span></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+
+        <mat-checkbox class="checkbox" (change)="templateSelect($event, data?.id)" [checked]="data?.template_status == 'Active'">
+        </mat-checkbox>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+  <div class="template-btn">
+    <button mat-raised-button class="submit" color="primary" (click)="close()">Close</button>
+    <!-- <button mat-raised-button class="skipnow" color="primary" style="margin-left: 8px" (click)="clear()">close</button> -->
+  </div>
+  <!-- <i class="material-icons clear" (click)="clear()">clear</i> -->
+</div>

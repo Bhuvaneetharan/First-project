@@ -1,0 +1,142 @@
+<div class="container r-top">
+  <div class="title_wrapper flex_between">
+    <h4 class="page_title">Update Template</h4>
+    </div>
+
+  <notifier-container></notifier-container>
+
+<div class="Campaigns">
+  <div class="Template-creation ">
+    <form [formGroup]="createTemplate">
+      <div class="form">
+        <label>Template Name</label>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Name" formControlName="name">
+        </mat-form-field>
+      </div>
+
+      <div class="Template">
+        <label>Campaign for  </label>
+        <div class="Radio">
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button class="radio" value="Future" disabled="true" [checked]="this.createTemplate?.value.campaign == 'Future'">Future</mat-radio-button>
+            <mat-radio-button class="radio" value="Previous" disabled="true" [checked]="this.createTemplate?.value.campaign == 'Previous'">Previous</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+       
+      <div class="Template for">
+        <label>Purpose of  </label>
+        <div class="Radio" style="margin-left: 13px;">
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button class="radio" value="Feedback Request" disabled="true" [checked]="this.createTemplate?.value.purposeof == 'Feedback Request'">Feedback Request</mat-radio-button>
+            <mat-radio-button class="radio" value="Review Request" disabled="true" [checked]="this.createTemplate?.value.purposeof == 'Review Request'">Review Request</mat-radio-button>
+            <mat-radio-button class="radio" value="Custom" disabled="true" [checked]="this.createTemplate?.value.purposeof == 'Custom'">Custom</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      
+<!--       <div class="Template">
+        <label>Messages</label>
+      </div>
+
+ -->      <div class="form-template">
+        <div>
+          <label>Choose Template</label>
+          <mat-form-field appearance="outline" [floatLabel]="'never'">
+            <mat-select placeholder="Choose Template" formControlName="chooseTemplate" disabled="true">
+              <mat-option *ngFor="let template of templates" [value]="template">
+                {{template}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      
+        <div class="select-subject">
+          <label>Subject</label>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Subject" formControlName="subject">
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <!-- <div class="Template1">
+        <label>Delivery Settings</label>
+      </div> -->
+      
+      <!-- <div class="Mail">
+        <div class="form1">
+          <label>Order Status </label>
+          <mat-form-field appearance="outline" [floatLabel]="'never'">
+            <mat-select formControlName="orderis">
+              <mat-option *ngFor="let order of orderIs" (click)="orderStatus()" [value]="order">
+                {{order}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form1">
+          <label *ngIf="this.createTemplate['value']['orderis'] != 'Shipped'">Days After</label>
+          <label *ngIf="this.createTemplate['value']['orderis'] == 'Shipped'">Days</label>
+
+          <mat-form-field appearance="outline" [floatLabel]="'never'">
+            <mat-select formControlName="days">
+              <mat-option *ngFor="let day of chooseDays" [value]="day">
+                {{day == '0' ? 'Today': day}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="form1">
+          <label>Time</label>
+          <mat-form-field appearance="outline" [floatLabel]="'never'">
+            <mat-select formControlName="times">
+              <mat-option *ngFor="let time of times" [value]="time">
+                {{time}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="form1">
+          <label>AM / PM</label>
+          <mat-form-field appearance="outline" [floatLabel]="'never'">
+            <mat-select formControlName="timeSet">
+              <mat-option *ngFor="let timesets of timeset" [value]="timesets">
+                {{timesets}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div> -->
+    </form>
+  </div>
+
+  <div class="Editor">
+    <ckeditor
+      [(ngModel)]="ckeditordata"
+      [config]="ckeditorConfig"
+      [readonly]="false"
+      debounce="500">
+      <ckgroup
+        [name]="'documenthandling'"
+        [previous]="'1'">
+        <ckbutton 
+        [name]="'imageExplorer'"
+        [command]="'insertcontent'"
+        (click)="insert($event)"
+        [icon]="'https://png.icons8.com/color/540/bow-tie-half-filled.png'"
+        [label]="'Insert Content'">
+        </ckbutton>
+      </ckgroup>
+    </ckeditor>
+    
+    <div class="Test-btn">
+      <!-- <a href=""> Amazon allowed HTML</a> -->
+      <button mat-raised-button class="skipnow" color="primary" (click)="testmail()">Test Mail</button>
+    <button mat-raised-button color="primary" class="submit" (click)="updateTemplatebutton()">Update Template</button>
+    </div>
+  </div>
+</div>
+</div>

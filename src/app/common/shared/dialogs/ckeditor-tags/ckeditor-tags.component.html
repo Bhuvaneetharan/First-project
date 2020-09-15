@@ -1,0 +1,30 @@
+<div class="dialogue">
+  <notifier-container></notifier-container>
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="Subject" [(ngModel)]="subjectName">
+  </mat-form-field>
+  
+  <ckeditor
+    [(ngModel)]="htmlContent"
+    [config]="ckeConfig"
+    [readonly]="false"
+    debounce="500">
+    <ckgroup
+      [name]="'documenthandling'"
+      [previous]="'1'">
+      <ckbutton 
+       [name]="'imageExplorer'"
+       [command]="'insertcontent'"
+       (click)="insert($event)"
+       [icon]="'https://png.icons8.com/color/540/bow-tie-half-filled.png'"
+       [label]="'Insert Content'">
+      </ckbutton>
+    </ckgroup>
+  </ckeditor>
+  <div class="ck-edit-btn">
+  <button mat-raised-button class="submit" color="primary" (click)="emailSent()">Submit</button>
+  <button mat-raised-button class="skipnow" color="primary" style="margin-left: 8px" (click)="close()">close</button>
+  
+  </div>
+  <!-- <i class="material-icons clear" (click)="close()">clear</i> -->
+</div>

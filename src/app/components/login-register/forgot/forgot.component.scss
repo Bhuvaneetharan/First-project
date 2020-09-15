@@ -1,0 +1,488 @@
+.logo img{
+   width: 200px;
+   margin: 0px 0px -35px;
+}
+ .forgot-logo1{
+   height: 94vh;
+ }
+.forgot-logo1 img{
+  width: 600px;
+  height: 600px;
+  margin: 60px 90px;
+}
+.forgot-logo2 img{
+  width: 200px;
+  height:200px;
+
+}
+.background {
+  margin:0;
+  height: 100vh;
+  background: #1a2980;
+  background: linear-gradient(to right top, #08a6ca, #121579, #9c0057);
+}
+.updated{
+  width: 70%;
+ background: white;
+ padding: 7rem 40px;
+ position: fixed;
+ text-align: center;
+ margin: 38px 195px;
+
+ h3 {
+ font-weight: 600;
+ padding: 15px;
+ }
+ p {
+ font-weight: 500;
+ padding: 2px 0px 0px;
+ font-size: 16px;
+}
+span{
+ text-decoration: underline;
+ cursor:pointer;
+ color: #0e4795;
+}
+.pos-form span {
+ color: #0e4795;
+ font-weight: 600;
+ font-size: 14px;
+}
+}
+
+ @media only screen and (min-width: 600px) and (max-width: 768px){
+    .login {
+      .forget-bg1{
+        .logo img{
+          width: 150px;
+        }
+        .forgot-logo1{
+          height:400px;
+        }  
+        .forgot-logo1 img{
+          width: 300px;
+          height: 450px;
+          margin: 114px 8px;
+        }
+       }
+       .forget-bg {
+         .forgot-logo2{
+           height: 200px;
+         }
+         .forgot-logo2 img{
+          width: 100px;
+          height: 100px;
+          margin: 100px 0px;
+         }
+         .login-info h3{
+          font-size: 25px;
+          font-weight: 600;
+        }
+        .login-info p{
+          font-size:11px;
+          padding-top:0px;
+        }
+       }
+       .mat-error {
+        font-size: 11px;
+      }
+      .right{
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+          padding: 12px 0px 7px;
+          border-top: 0px;
+          font-size: 14px;
+          display: flex;
+          width: 200px;
+         }
+         .login-btn{
+          text-align: center;
+          padding: 0px 60px;
+        }
+        .login-btn button{
+          width: 120px;
+          height: 30px;
+          left: -2%;
+          font-size: 14px;
+        }
+        span.link {
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          margin: 0px 0px;
+          }
+        }
+      } 
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .login {
+    .forget-bg1{
+      .logo img{
+        width: 150px;
+      }
+      .forgot-logo1{
+        height:400px;
+      }  
+      .forgot-logo1 img{
+        width: 450px;
+        height: 500px;
+        margin: 114px 0px;
+      }
+     }
+     .forget-bg {
+       .forgot-logo2{
+         height: 200px;
+       }
+       .forgot-logo2 img{
+        width: 130px;
+        height: 120px;
+        margin: 70px 0px;
+       }
+       .login-info h3{
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .login-info p{
+        font-size: 12px;
+        padding-top: 8px;
+      }
+     }
+     .mat-error {
+      font-size: 11px;
+    }
+    .right{
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 12px 0px 7px;
+        border-top: 0px;
+        font-size: 14px;
+        display: flex;
+        width: 230px;
+       }
+       .login-btn{
+        text-align: center;
+        padding: 0px 60px;
+      }
+      .login-btn button{
+        width: 140px;
+        height: 35px;
+        left: -2%;
+        font-size: 15px;
+      }
+      span.link {
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 0px 0px 0px -16px;
+        }
+      }
+    } 
+    
+}
+@media only screen  and (min-width: 1024px)  and (max-width:1920px){
+  .login {
+    .forget-bg1{
+      .logo img{
+        width: 150px;
+      }
+      .forgot-logo1{
+        /*height:450px;*/
+        text-align: center;
+    display: flex;
+    align-items: center;
+      }  
+      .forgot-logo1 img{
+        width: 450px;
+        height: 450px;
+        /*margin: 50px 59px;*/
+        margin: 0px auto;
+      }
+     }
+     .forget-bg {
+       .forgot-logo2{
+         height: 180px;
+         padding: 0px 0px 0px;
+         /*margin-top: 9rem;*/
+         padding-top: 10rem;
+       }
+       .login-info {
+          padding-top: 11rem;
+    padding-bottom: 0.7rem;
+      }
+       .forgot-logo2 img{
+        width: 160px;
+        height: 160px;
+        /*margin: 38px 0px;*/
+       }
+       .login-info h3{
+        font-size: 27px;
+        font-weight: 600;
+      }
+      .login-info p{
+        font-size: 14px;
+        padding: 8px 0px;
+        padding-left: 35px;
+        width: 358px;
+    margin: 0px auto;
+      }
+     }
+    
+     .mat-error {
+      font-size: 9px;
+    }
+    .right{
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 12px 0px 7px;
+        border-top: 0px;
+        font-size: 13px;
+        display: flex;
+        width: 230px;
+       }
+       .login-btn{
+        text-align: center;
+        padding: 0px 60px;
+      }
+      .login-btn button{
+        width: 130px;
+        height: 30px;
+        left: -2%;
+        font-size: 14px;
+    
+      }
+      span.link {
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 0px 0px 0px -16px;
+        }
+      }
+    } 
+    
+
+}
+ 
+.login-info h3{
+  text-align: center;
+  margin-top:1rem;
+  color: #069191;
+  // margin-left:5%;
+}
+.login-info p{
+  font-size: 15px;
+  font-weight: 600;
+  /*margin-left: 25%;*/
+  /*margin-right: 20%;*/
+  padding-top:15px;
+  padding-bottom: 10px;
+  color:#0c6dbc;
+}
+
+// .reg svg {
+//     width: 23px;
+//     height: 23px;
+//     margin: 0px 15px;
+// }
+
+// .background {
+//     // height: 100vh;
+//   background: linear-gradient(to right top, #08a6ca, #121579, #9c0057);
+// }
+
+.login{
+  position: absolute;
+  // margin:10px;
+  // margin-left: 2.5%;
+  // margin-top: 2.3%;
+  // width:95%;
+  // height:90%;
+  background-color: white;
+  // border:#0c6dbc 2px solid;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+}
+/* Control the left side */
+.left {
+  height:100%;
+  // margin-left: 2.5%;
+  left: 0;
+  padding-left:20px;
+  background: linear-gradient(to right top, #08a6ca, #121579, #9c0057);
+  // border-right: #0c6dbc 2px solid;
+}
+// .empty-div{
+//   margin-left:100px;
+//   margin-top:-300px;
+//   width:600px;
+//   height:300px;
+//   background-color: white;
+// }
+
+/* Control the right side */
+.right {
+  text-align:center;
+  right: 0;
+  // margin-right: 2.5%;
+  // margin-top:80px;
+}
+.forget-bg{
+  /*// padding: 50px 0px 0px;*/
+  /*height: 95%;*/
+  height: 94vh;
+    
+}
+// .logo img{
+//   margin: 0px 0px -35px;
+//   // padding-left:5px;
+// }
+
+
+// .row{
+//   margin: 0px;
+// }
+.mat-error {
+  color: #f44336;
+  font-size: 11px;
+}
+
+  .mat-form-field-appearance-outline .mat-form-field-outline{
+  border:1px solid #155ac1;
+}
+
+
+.login ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px;
+  width: 350px;
+}
+
+
+.login ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 20px;
+}
+// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+//   border:2px solid #155ac1;
+//   border-radius: 4px;
+// }
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0px !important;
+}
+
+ ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 1em;
+}
+
+::ng-deep .mat-form-field-subscript-wrapper {
+    font-size: 75%;
+    margin-top: 8px;
+    top: calc(100% - 1.79167em);
+}
+  .right{
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+   padding: 12px 0px 7px;
+   border-top: 0px;
+   font-size: 15px;
+   display: flex;
+   width: 320px;
+   top:3px;
+   }
+
+    i.material-icons {
+    color: #7b7b7b;
+    margin-right: 8px;
+    font-size: 18px;
+   }
+
+  //  .col-md-6 { 
+  //   padding: 0px;
+  // }
+   span.link {
+  color: #0c6dbc;
+  text-decoration: underline;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+}
+// svg {
+//     width: 23px;
+//     height: 23px;
+//     margin: 0px 15px;
+// }
+
+.login-btn ,.login-btn p{
+  text-align: center;
+  padding: 15px 0px;
+}
+.login-btn button{
+  width:150px;
+  height:35px;
+  left:1%;
+  font-size:16px;
+}
+
+
+.login-form {
+    margin-top: 4rem;
+}
+
+
+  .formGroup-login:after {
+    content: "";
+    width: 3px;
+    background-color: #93b3e0;
+    position: absolute;
+    /* left: 0; */
+    top: 26%;
+    right: 0px;
+    bottom: 0;
+    height: 200px;
+  }
+  p{
+    margin-bottom: 0px;
+    text-align: left;
+  }
+  h3{
+    font-size: 35px;
+    font-weight: 600;
+  }
+
+}
+
+
+// .right {
+//     display: flex;
+//     /* flex-flow: column; */
+//     align-items: center;
+//     height: 100vh;
+// }
+
+// .forget-bg {
+//     display: grid;
+//     flex-flow: column;
+//     background: #fff;
+//     align-items: center;
+//     padding: 6rem 32rem;
+//     border-radius: 4px;
+//     margin:2rem auto;
+// }
+// .reg {
+//     margin: 1rem 0px;
+// }
+// a{
+//   padding: 0px 10px 0px 6px;
+// }
+
+label.acc {
+    // margin-top: 10px;
+}
+  
+// @media screen and (max-width: 600px) {
+//   .forget-bg, .forget-bg1 {
+//     max-width: 100%;
+//     // margin-top: 0;
+//   }
+// }

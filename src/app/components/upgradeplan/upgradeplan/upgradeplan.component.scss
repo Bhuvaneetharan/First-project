@@ -1,0 +1,305 @@
+
+
+body {
+	background: #e6e6e6;
+} 
+.header_wrapper{
+	padding: 10px;
+    background: #0054fc;
+    text-align: center;
+    margin-bottom: 0px;
+    // margin-top: 14px;
+  p{
+	color: #ffffff;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    // margin-top: 0px;
+  }
+}
+.main-head {
+    margin-bottom: 0;
+    color: #3b3b3b;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+mat-radio-group.mat-radio-group {
+    margin-left: 30px;
+    padding-left: 30px;
+	border-left: 1px solid #d5dae0;
+	mat-radio-button{
+		margin-right:20px;
+	}
+}
+.title_wrapper{
+	h4{
+		margin-bottom: 10px;
+	}
+	
+}
+.flex_between {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: baseline;
+    // justify-content: space-between;
+}
+.container {
+	max-width: 1200px;
+}
+.card{
+	overflow: hidden;
+    max-width: 240px;
+    position: relative;
+    width: 100%;
+    // margin-right: 20px;
+    box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    border-radius: 4px;
+	transition: .2s ease-in-out;
+	&.headings{
+		.height{
+			font-size: 28px;
+			font-weight: 400;
+			color: #b5b5b5;
+			p{
+				font-size: 16px;
+				margin-top: 20px;
+			}
+			// height: 145px;
+			// padding: 0;
+			span.plandays {
+				font-size: 18px;
+				font-weight: 400;
+				display: block;
+				margin-top: 15px;
+			}
+		}
+		ul{
+
+			li{
+			  text-align: left;
+			}
+		  }
+	}
+	.height{
+		// max-height: 200px;
+    	display: inline-block;
+		height: 130px;
+		padding: 20px;
+	}
+	ul li:nth-child(even){
+		// background-color: #f7f7f7;
+		background-color: #00000005;
+	}
+	ul{
+		li{
+		  text-align: center;
+		}
+	}
+	span.cur_plan {
+		display: block;
+		background: #182936;
+		color: #fff;
+		text-align: center;
+		transform: rotate(45deg) translateX(34%) translateY(-200%);
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0px;
+		font-size: 14px;
+	}
+	&.headings {
+		background: #182936;
+	}	
+}
+ul{
+	list-style: none;
+  }
+.pricing-table {
+	// padding: 2rem;
+	// background: #0054fc;
+	transition: .3s;
+	&.purple{
+		background: rgba(0, 84, 251, 0.09);
+		span.cur_plan{
+			background: #0054fc;
+		}
+	}
+	&.turquoise{
+		background: rgba(2, 230, 194, 0.03);
+		span.cur_plan{
+			background: #02E7C3;
+		}
+	}
+	&.red{
+		background: rgba(255, 93, 55, 0.03);
+		span.cur_plan{
+			background: #FF5D37;
+		}
+	}
+}
+
+.card:hover {
+  box-shadow: 0px 17px 21px 4px rgba(0, 0, 0, 0.04);
+  transition: .2s ease-in-out;
+  transform: translatey(-15px);
+}
+
+.pricing-table .pricing-label {
+	border-radius: 2px;
+	padding: .25rem .5rem;
+	margin-bottom: 1rem;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.pricing-table h2 {
+	color: #3b3b3b;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.pricing-table h5 {
+	color: #B3B3B3;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.pricing-table .pricing-features {
+	// margin-top: 2rem;
+}
+
+.pricing-table .pricing-features .feature {
+	font-size: 14px;
+    margin: 0.5rem 0;
+    color: #B3B3B3;
+    padding: 3px 15px;
+}
+
+.pricing-table .pricing-features .feature span {
+	display: inline-block;
+	// float: right;
+	text-align: center;
+	color: #3b3b3b;
+	font-weight: 500;
+}
+
+.pricing-table 	.price-tag {
+	margin-top: 1rem;
+	text-align: left;
+	font-weight: 500;
+}
+
+.pricing-table .price-tag .symbol {
+	font-size: 24px;
+}
+
+.pricing-table .price-tag .amount {
+	letter-spacing: -2px;
+	font-size:36px;
+}
+
+.pricing-table .price-tag .after {
+	color: #3b3b3b;
+	font-weight: 500;
+}
+
+.pricing-table .price-button {
+	display: block;
+	color: #fff;
+	// margin: 1rem;
+	padding: .75rem;
+	border-radius: 0px;
+	text-align: center;
+	font-weight: 500;
+	transition: .3s;
+}
+
+.pricing-table .price-button:hover {
+	text-decoration: none;
+}
+
+.purple .pricing-label {
+	background: #cad2ff;
+	color: #0054fc;
+}
+
+.purple .price-tag {
+	color: #0054fc;
+}
+
+.purple .price-button {
+	background: #0054fc;
+}
+
+.purple .price-button:hover {
+	background: #0054fc;
+}
+
+.turquoise .pricing-label {
+	background: #b9edee;
+	color: #02E7C3;
+}
+
+.turquoise .price-tag {
+	color: #02E7C3;
+}
+
+.turquoise .price-button {
+	background: #02E7C3;
+}
+
+.turquoise .price-button:hover {
+	background: #02E7C3;
+}
+
+.red .pricing-label {
+	background: #ffc4c4;
+	color: #FF5D37;
+}
+
+.red .price-tag {
+	color: #FF5D37;
+}
+
+.red .price-button {
+	background: #FF5D37;
+}
+
+.red .price-button:hover {
+	background: #FF5D37;
+}
+
+.flex_Center {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+
+::ng-deep .mat-tab-labels {
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+	.flex_Center {
+		flex-wrap: wrap;
+	  }
+	.card {
+		max-width: 45%;
+		margin-bottom: 30px;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.card {
+		max-width: 100%;
+		margin-bottom: 30px;
+		margin-right: 0;
+	}
+}

@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+  
+.login_type_wrapper {
+  display: flex;
+}
+notifier-container.notifier__container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.pwd-info {
+  margin-bottom: 30px;
+  padding-left: 20px;
+  ul{
+    li{
+      font-size: 14px;
+      font-weight: 300;
+      margin-bottom: 6px;
+      &.obtain{
+        color: #0054FC;
+        font-weight: 400;
+      }
+    }
+  }
+  h6 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+}
+.login_type_wrapper > div {
+  width: calc(100% / 2);
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  &.anime_Wrapper_in{
+    // height: calc(100vh - 0px);
+    // align-items: baseline;
+    display: inline-block;
+    justify-content: center;
+    // padding: 0px;
+    background: #eee;
+    > div {
+      margin-bottom: 30px;
+      // &.word{
+      //   position: absolute;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // justify-content: center;
+      // top: 0;
+      // left: 0;
+      // bottom: 0;
+      // right: 0;
+      // width: 100%;
+      // text-align: center;
+      // background-size: contain;
+      // background-position: center;
+      // }
+      
+    }
+    .owl_img_content {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 30px;
+  h1 {
+    font-family: 'Poppins', sans-serif;
+      // opacity:0;
+      text-align: center;
+      color: #fff;
+    font-size: 3vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1em;
+  }
+  span{
+    font-size: 18px;
+    color: #fff;
+    background: black;
+    padding: 7px 12px;
+  }
+    }
+ 
+  }
+}
+.logo_wrapper {
+  position: fixed;
+  top: 60px;
+  z-index: 9999;
+}
+label.register a ,.checkbox a{
+  color: #0054fc;
+  cursor: pointer;
+}
+.registration-form,.form-login{
+  max-width: 400px;
+  padding: 30px;
+}
+.submit,.checkbox{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.login-rem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  mat-checkbox.checkbox {
+    margin-bottom: 0;
+    width: 227px;
+  }
+
+  label{
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+.page_title{
+  margin-bottom: 30px;
+  text-align: center;
+  span {
+    font-size: 18px;
+    display: inline-block;
+    font-weight: 300;
+  }
+}
+.login-invalid {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: red;
+}
+mat-icon {
+  margin-right: 6px;
+}
+.reg {
+  /* display: flex; */
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    color: #182936;
+    font-weight: 500;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    img{
+      margin-right: 3px;
+    }
+    &:first-child {
+      border-right: 1px solid #C4C4C4;
+    }
+  }
+  
+}
+.poweredby {
+  text-align: center;
+  a {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+}
+form.form2 mat-form-field {
+  width: calc(100% / 2 - 2%);
+  margin-right: 2%;
+  &:nth-child(odd){
+    margin-right: 0%;
+  }
+}
+label.register {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+mat-form-field{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.logo_wrapper img{
+  width: 180px;
+}
+::ng-deep.owl-theme .owl-nav{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+::ng-deep.owl-prev,::ng-deep.owl-next {
+  position: absolute;
+    right: -25px;
+    bottom: 80px;
+    border-radius: 50px!important;
+    background: #0054fc!important;
+    box-shadow: 0px 2px 5px 1px #0003;
+}
+::ng-deep.owl-prev{
+  display: none;
+}
+.Forget_Password {
+  padding: 30px;
+  text-align: center;
+  .login-info {
+    margin: 30px 0;
+    h3{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.f_pass{
+  padding-right: 0;
+  padding-left: 0;
+}
+@media only screen and (max-width: 768px) {
+  .login_type_wrapper {
+    flex-wrap: wrap;
+  }
+  ::ng-deep.owl-next{
+    display: none!important;
+  }
+  ::ng-deep.owl-next{
+    display: none!important;
+  }
+  ::ng-deep.owl-prev{
+    display: none!important;
+  }
+  .login_type_wrapper > div {
+    padding: 0px;
+    width: calc(100% / 1);
+    
+    height: auto;
+    &.sign_up,&.new-login{
+      padding: 30px;
+    }
+    &.anime_Wrapper_in{
+      height: auto;
+      flex-direction: column-reverse;
+      align-items: center;
+      .owl_img_content{
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+      div {
+       text-align: center;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 600Px) {
+  .login_type_wrapper > div {
+    &.anime_Wrapper_in{
+      .owl_img_content{
+        background-size: 300PX;
+    }
+  }
+}
+}

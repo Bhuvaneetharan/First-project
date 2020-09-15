@@ -1,0 +1,1 @@
+export * from "./payment-with-registration.module"
